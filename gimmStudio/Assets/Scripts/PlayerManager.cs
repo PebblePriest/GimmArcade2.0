@@ -18,9 +18,10 @@ namespace Com.MyCompany.MyGame
     public class PlayerManager : MonoBehaviourPunCallbacks
     {
         private float inputX, inputZ;
+        private Vector2 deltaPointer;
         public float moveSpeed;
         public Rigidbody theRB;
-        
+        public Transform theCam;
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
 
@@ -43,9 +44,25 @@ namespace Com.MyCompany.MyGame
             DontDestroyOnLoad(this.gameObject);
         }
 
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        private void Update()
+        {
+            gameObject.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
+        }
+
         private void FixedUpdate()
         {
-            theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+            //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+
+            theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
+            theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
+
+            theCam.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
+            theCam.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
         }
 
         public void Move(InputAction.CallbackContext context)
@@ -59,6 +76,11 @@ namespace Com.MyCompany.MyGame
                     inputZ = context.ReadValue<Vector2>().y;
                 }
             }
+        }
+
+        public void Look(InputAction.CallbackContext context)
+        {
+            deltaPointer = context.ReadValue<Vector2>();
         }
     }
 }
