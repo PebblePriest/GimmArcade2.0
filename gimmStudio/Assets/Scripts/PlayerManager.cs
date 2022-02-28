@@ -25,6 +25,8 @@ namespace Com.MyCompany.MyGame
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
 
+        public GameObject myCamera;
+
        
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
@@ -46,23 +48,36 @@ namespace Com.MyCompany.MyGame
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            if (photonView.IsMine)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+
+                if(myCamera.activeSelf == false)
+                {
+                    myCamera.SetActive(true);
+                }
+            }
         }
 
         private void Update()
         {
-            gameObject.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
+            if (photonView.IsMine)
+            {
+                gameObject.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
+            }
         }
 
         private void FixedUpdate()
         {
             //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+            if (photonView.IsMine)
+            {
+                theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
+                theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
 
-            theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
-            theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
-
-            theCam.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
-            theCam.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
+                theCam.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
+                theCam.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
+            }
         }
 
         public void Move(InputAction.CallbackContext context)
@@ -80,7 +95,10 @@ namespace Com.MyCompany.MyGame
 
         public void Look(InputAction.CallbackContext context)
         {
-            deltaPointer = context.ReadValue<Vector2>();
+            if (photonView.IsMine)
+            {
+                deltaPointer = context.ReadValue<Vector2>();
+            }
         }
     }
 }
