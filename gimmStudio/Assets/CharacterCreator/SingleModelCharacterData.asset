@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba36cc0966ff8104fb010fc3c41e4847, type: 3}
+  m_Name: SingleModelCharacterData
+  m_EditorClassIdentifier: 
+  ears: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  eyebrows: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  eyes: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  handL: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  handR: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  head: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  mask: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  nose: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  torso: {fileID: 3174803886789036350, guid: e65ee93c5e649124e9cdfc99b111253c, type: 3}
+  hairModels:
+  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  - {fileID: 919132149155446097, guid: 611bfdfe7b572564e9518a068ce2fd52, type: 3}
+  _hairColor: {r: 1, g: 1, b: 1, a: 1}
+  _hairIndex: 0
+  _hair: 1
+  topModels:
+  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  _topColor: {r: 1, g: 1, b: 1, a: 1}
+  _topIndex: 0
+  _top: 1
+  bottomModels:
+  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  _bottomColor: {r: 1, g: 1, b: 1, a: 1}
+  _bottomIndex: 0
+  _bottom: 1
+  hatModels:
+  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  _hatColor: {r: 1, g: 1, b: 1, a: 1}
+  _hatIndex: 0
+  _hat: 1
+  maskModels: []
+  _maskColor: {r: 1, g: 1, b: 1, a: 1}
+  _maskIndex: 0
+  _mask: 1
+  wingsModels:
+  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  _wingsColor: {r: 1, g: 1, b: 1, a: 1}
+  _wingsIndex: 0
+  _wings: 1
+  handsModels: []
+  _handsColor: {r: 1, g: 1, b: 1, a: 1}
+  _handsIndex: 0
+  _hands: 1
+  eyeTextures: []
+  _eyeColor: {r: 1, g: 1, b: 1, a: 1}
+  _eyesIndex: 0
+  _eyes: 1
