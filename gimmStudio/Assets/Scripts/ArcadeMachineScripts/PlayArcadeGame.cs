@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using Com.MyCompany.MyGame;
 
-public class PlayArcadeGame : MonoBehaviourPunCallbacks
+public class PlayArcadeGame : MonoBehaviour
 {
    
-    public PhotonView PV;
+    
     public GameObject playPanel;
     public Text gameText;
     public bool isPlaying;
@@ -20,7 +19,7 @@ public class PlayArcadeGame : MonoBehaviourPunCallbacks
    
     public void Awake()
     {
-        PV = this.photonView;
+        
         playPanel.SetActive(false);
         testCam.SetActive(false);
     }
@@ -31,34 +30,31 @@ public class PlayArcadeGame : MonoBehaviourPunCallbacks
  
     public void OnTriggerEnter(Collider other)
     {
-        if(PV.IsMine)
-        {
-            if (other.tag == "Player")
+        
+            if (other.name == "Local")
             {
                 player = other.gameObject;
                 playPanel.SetActive(true);
                 isPlaying = true;
                 
             }
-        }
+        
        
     }
     public void OnTriggerExit(Collider other)
     {
-        if (PV.IsMine)
-        {
-            if (other.tag == "Player")
+        
+            if (other.name == "Local")
             {
                 playPanel.SetActive(false);
                 isPlaying = false;
             }
-        }
+        
        
     }
     public void Update()
     {
-        if (PV.IsMine)
-        {
+        
             if (isPlaying)
             {
                 if (!isLoaded)
@@ -92,7 +88,7 @@ public class PlayArcadeGame : MonoBehaviourPunCallbacks
                 
 
             }
-        }
+        
       
        
     }

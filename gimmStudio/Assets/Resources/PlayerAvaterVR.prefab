@@ -613,6 +613,7 @@ MonoBehaviour:
   theCam: {fileID: 0}
   myCamera: {fileID: 0}
   lookSpeed: 5
+  player: {fileID: 0}
 --- !u!114 &5282810807178358230
 MonoBehaviour:
   m_ObjectHideFlags: 0

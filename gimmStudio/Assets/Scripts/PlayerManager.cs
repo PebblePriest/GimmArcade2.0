@@ -28,6 +28,7 @@ namespace Com.MyCompany.MyGame
         public GameObject myCamera;
         public float lookSpeed = 5f;
         float cameraPitch = 0.0f;
+        public GameObject player;
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -40,6 +41,8 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 PlayerManager.LocalPlayerInstance = this.gameObject;
+                player = this.gameObject;
+                player.name = "Local";
             }
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.

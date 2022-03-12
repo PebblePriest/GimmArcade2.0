@@ -87,6 +87,7 @@ MonoBehaviour:
   theCam: {fileID: 6683727313248739837}
   myCamera: {fileID: 6683727313248739834}
   lookSpeed: 5
+  player: {fileID: 0}
 --- !u!54 &6683727312116776264
 Rigidbody:
   m_ObjectHideFlags: 0
