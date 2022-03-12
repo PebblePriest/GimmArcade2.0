@@ -17,9 +17,6 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private byte maxPlayersPerRoom = 20;
 
-        [Tooltip("The UI Panel to let the user enter nae, connect and play")]
-        [SerializeField]
-        private GameObject controlPanel;
 
         [Tooltip("the ui label to inform the user that the connection is in progress")]
         [SerializeField]
@@ -29,9 +26,7 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private GameObject welcomePanel;
 
-        [Tooltip("The avatar we are going to use")]
-        [SerializeField]
-        private GameObject avatarModel;
+        
 
         #endregion
 
@@ -68,22 +63,15 @@ namespace Com.MyCompany.MyGame
         {
             //Connect();
             progressLabel.SetActive(false);
-            controlPanel.SetActive(false);
+            
             welcomePanel.SetActive(true);
-            avatarModel.SetActive(false);
+            
         }
 
         #endregion
 
         #region Public Methods
 
-
-        public void StartGame()
-        {
-            welcomePanel.SetActive(false);
-            controlPanel.SetActive(true);
-            avatarModel.SetActive(true);
-        }
         /// <summary>
         /// Start the connection process.
         /// - If already connected, we attempt joining a random room
@@ -91,9 +79,9 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         public void Connect()
         {
+            welcomePanel.SetActive(false);
             progressLabel.SetActive(true);
-            controlPanel.SetActive(false);
-            avatarModel.SetActive(false);
+           
 
             if (PhotonNetwork.IsConnected)
             {
@@ -127,7 +115,6 @@ namespace Com.MyCompany.MyGame
         public override void OnDisconnected(DisconnectCause cause)
         {
             progressLabel.SetActive(false);
-            controlPanel.SetActive(true);
             Debug.LogWarningFormat("Pun Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
 
             isConnecting = false;

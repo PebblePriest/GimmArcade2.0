@@ -20,10 +20,10 @@ namespace Com.MyCompany.MyGame
         public GameObject vrPlayerPrefab;
         public GameObject PlayerPrefab;
         private MeshRenderer player;
-        private GameObject mainUser;
-        public GameObject settingsPanel;
-        private bool mouseVisible;
-        private bool settingOpen;
+        public GameObject avatarMenu;
+        public GameObject mainUser;
+        public GameObject hud;
+        private bool avatarChanging;
         public void Awake()
         {
             PV = this.photonView;
@@ -59,56 +59,19 @@ namespace Com.MyCompany.MyGame
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
             }
-            if (PV.IsMine)
-            {
-                
-                
-            }
-          
+            
+            
+            
         }
         public void Update()
         {
-            if(PV.IsMine)
+            if(!avatarChanging)
             {
-                if(!mouseVisible)
+                if(Input.GetKeyDown(KeyCode.Tab))
                 {
-                    if (Input.GetKeyDown(KeyCode.LeftAlt))
-                    {
-                        Cursor.lockState = CursorLockMode.None;
-                        mouseVisible = true;
-                    }
+                   
+                    AvatarMenu();
                 }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.LeftAlt))
-                    {
-                        Cursor.lockState = CursorLockMode.Locked;
-                        mouseVisible = false;
-                    }
-                }
-                if(!settingOpen)
-                {
-                    if (Input.GetKeyDown(KeyCode.P))
-                    {
-                        settingsPanel.SetActive(true);
-                        Cursor.lockState = CursorLockMode.None;
-                        //PhotonNetwork.LocalPlayer.GetComponent<PlayerManager>().moveSpeed = 20f;
-                        //GetComponent<PlayerManager>().lookSpeed = 0f;
-                        settingOpen = true;
-                    }
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.P))
-                    {
-                        settingsPanel.SetActive(false);
-                        Cursor.lockState = CursorLockMode.Locked;
-                        //GetComponent<PlayerManager>().moveSpeed = 20f;
-                        //GetComponent<PlayerManager>().lookSpeed = 5f;
-                        settingOpen = false;
-                    }
-                }
-               
             }
             
            
@@ -125,7 +88,26 @@ namespace Com.MyCompany.MyGame
             SceneManager.LoadScene(0);
         }
 
+        public void AvatarMenu()
+        {
+            mainUser = GameObject.Find("Local");
+            avatarMenu.SetActive(true);
+            hud.SetActive(false);
+            mainUser.GetComponentInChildren<Camera>().enabled = false;
+            mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
+            mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
+            avatarChanging = true;
 
+        }
+        public void StartGame()
+        {
+            avatarMenu.SetActive(false);
+            hud.SetActive(true);
+            mainUser.GetComponentInChildren<Camera>().enabled = true;
+            mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
+            mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
+            avatarChanging = false;
+        }
         #endregion
 
 

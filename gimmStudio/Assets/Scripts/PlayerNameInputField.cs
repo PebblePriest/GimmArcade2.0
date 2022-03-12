@@ -14,23 +14,29 @@ namespace Com.MyCompany.MyGame
     /// </summary>
 
     [RequireComponent(typeof(InputField))]
-    public class PlayerNameInputField : MonoBehaviour
+    public class PlayerNameInputField : MonoBehaviourPunCallbacks
     {
         #region Private constants
 
         const string playerNamePrefKey = "PlayerName";
 
         #endregion
+        
         public MeshRenderer avatar;
         public Slider face;
         public Slider hair;
         public Slider body;
+        Color color;
+        PhotonView PV;
         #region MonoBehaviour CallBacks
 
         /// <summary>
         /// monobehaviour method called on GameObject by Unity during initialization phase.
         /// </summary>
-
+        public void Awake()
+        {
+            PV = this.photonView;
+        }
         void Start()
         {
             string defaultName = string.Empty;
@@ -66,8 +72,13 @@ namespace Com.MyCompany.MyGame
 
             PlayerPrefs.SetString(playerNamePrefKey, value);
         }
+        public void SetColor()
+        {
+            this.photonView.RPC("AvatarChange", RpcTarget.All, color);
 
-        public void AvatarChange()
+        }
+        [PunRPC]
+        private void AvatarChange()
         {
             Color color = avatar.material.color;
             color.r = hair.value;

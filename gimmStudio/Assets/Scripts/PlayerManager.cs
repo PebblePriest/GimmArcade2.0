@@ -53,7 +53,7 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
 
                 if(myCamera.activeSelf == false)
                 {
