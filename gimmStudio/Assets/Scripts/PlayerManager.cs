@@ -26,8 +26,8 @@ namespace Com.MyCompany.MyGame
         public static GameObject LocalPlayerInstance;
 
         public GameObject myCamera;
-
-       
+        public float lookSpeed = 5f;
+        float cameraPitch = 0.0f;
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -63,7 +63,9 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                gameObject.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
+                MouseLookAround();
+                
+                //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
             }
         }
 
@@ -75,8 +77,9 @@ namespace Com.MyCompany.MyGame
                 theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
                 theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
 
-                theCam.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
-                theCam.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
+                //myCamera.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
+                //myCamera.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
+                
             }
         }
 
@@ -99,6 +102,18 @@ namespace Com.MyCompany.MyGame
             {
                 deltaPointer = context.ReadValue<Vector2>();
             }
+        }
+        public void MouseLookAround()
+        {
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+            cameraPitch -= mouseDelta.y * lookSpeed;
+
+            cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+
+            theCam.localEulerAngles = Vector3.right * cameraPitch;
+
+            transform.Rotate(Vector3.up * mouseDelta.x * lookSpeed);
         }
     }
 }
