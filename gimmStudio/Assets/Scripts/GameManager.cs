@@ -59,6 +59,11 @@ namespace Com.MyCompany.MyGame
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
             }
+            if (PV.IsMine)
+            {
+                
+                
+            }
           
         }
         public void Update()
@@ -87,8 +92,8 @@ namespace Com.MyCompany.MyGame
                     {
                         settingsPanel.SetActive(true);
                         Cursor.lockState = CursorLockMode.None;
-                        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().moveSpeed = 0f;
-                        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().lookSpeed = 0f;
+                        //PhotonNetwork.LocalPlayer.GetComponent<PlayerManager>().moveSpeed = 20f;
+                        //GetComponent<PlayerManager>().lookSpeed = 0f;
                         settingOpen = true;
                     }
                 }
@@ -98,8 +103,8 @@ namespace Com.MyCompany.MyGame
                     {
                         settingsPanel.SetActive(false);
                         Cursor.lockState = CursorLockMode.Locked;
-                        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().moveSpeed = 20f;
-                        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().lookSpeed = 5f;
+                        //GetComponent<PlayerManager>().moveSpeed = 20f;
+                        //GetComponent<PlayerManager>().lookSpeed = 5f;
                         settingOpen = false;
                     }
                 }
@@ -180,7 +185,7 @@ namespace Com.MyCompany.MyGame
                 LoadArena();
             }
         }
-
+        
         #endregion
     }
 }

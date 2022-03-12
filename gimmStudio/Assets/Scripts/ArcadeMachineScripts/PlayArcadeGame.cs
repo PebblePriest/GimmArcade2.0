@@ -22,6 +22,7 @@ public class PlayArcadeGame : MonoBehaviourPunCallbacks
     {
         PV = this.photonView;
         playPanel.SetActive(false);
+        testCam.SetActive(false);
     }
     public void Start()
     {
