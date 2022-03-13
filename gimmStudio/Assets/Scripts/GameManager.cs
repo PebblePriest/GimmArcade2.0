@@ -14,16 +14,37 @@ namespace Com.MyCompany.MyGame
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        [Tooltip("Makes sure the game only has one instance of the GameManager")]
         public static GameManager instance;
+
+        [Tooltip("Script for the color changing Avatar Menu as well as values used within that script passed to this one")]
+        public PlayerNameInputField field;
+        public float hair, body, face;
+        Color color;
+        private bool avatarChanging;
+       
+
+        [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
         PhotonView PV;
-        [Tooltip("The prefab to use for representing the player")]
+        public Text playerName;
+
+        [Tooltip("The prefabs to use for representing the player")]
         public GameObject vrPlayerPrefab;
         public GameObject PlayerPrefab;
+
+        [Tooltip("Finds the elements of the Local user, to apply effects")]
         private MeshRenderer player;
+        public Material playerMaterial;
+        bool playerMovementImpared = false;
+        bool findPlayer = false;
+
+        [Tooltip("Panels that are found in the Game, used to turn on and off at given times")]
         public GameObject avatarMenu;
         public GameObject mainUser;
         public GameObject hud;
-        private bool avatarChanging;
+        public GameObject controlsMenu;
+        public GameObject keyBindings;
+        
         public void Awake()
         {
             PV = this.photonView;
@@ -31,7 +52,8 @@ namespace Com.MyCompany.MyGame
         private void Start()
         {
             instance = this;
-
+            controlsMenu.SetActive(true);
+            playerMovementImpared = true;
             if (vrPlayerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -65,6 +87,11 @@ namespace Com.MyCompany.MyGame
         }
         public void Update()
         {
+            if (!findPlayer)
+            {
+                mainUser = GameObject.Find("Local");
+                findPlayer = true;
+            }
             if(!avatarChanging)
             {
                 if(Input.GetKeyDown(KeyCode.Tab))
@@ -73,12 +100,31 @@ namespace Com.MyCompany.MyGame
                     AvatarMenu();
                 }
             }
+            if (playerMovementImpared)
+            {
+                
+                mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
+                mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
+            }
+            else
+            {
+               
+                mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
+                mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
+            }
             
            
         }
 
         #region Photon Callbacks
-
+        public void Instructions()
+        {
+            keyBindings.SetActive(true);
+        }
+        public void InstructionsOff()
+        {
+            keyBindings.SetActive(false);
+        }
 
         /// <summary>
         /// Called when the local player left the room. We need to load the launcher scene.
@@ -91,25 +137,46 @@ namespace Com.MyCompany.MyGame
         public void AvatarMenu()
         {
             mainUser = GameObject.Find("Local");
+            playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
             avatarMenu.SetActive(true);
             hud.SetActive(false);
             mainUser.GetComponentInChildren<Camera>().enabled = false;
-            mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
-            mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
             avatarChanging = true;
-
+            playerMovementImpared = true;
+        }
+        public void CustomizeCharacter()
+        {
+            AvatarMenu();
+            controlsMenu.SetActive(false);
         }
         public void StartGame()
         {
+            photonView.RPC("ChangeAvatarTexture", RpcTarget.All);
+            playerName.text = PhotonNetwork.NickName.ToString();
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
-            mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
-            mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
             avatarChanging = false;
+            playerMovementImpared = false;
         }
         #endregion
-
+        /// <summary>
+        /// This RPC passes the texture set within the avatar menu to the player model, for all to see
+        /// </summary>
+        [PunRPC]
+        void ChangeAvatarTexture()
+        {
+            hair = field.hair.value;
+            face = field.face.value;
+            body = field.body.value;
+            //Debug.Log(hair + " " + face + " " + body);
+            Color color = playerMaterial.color;
+            color.r = hair;
+            color.g = face;
+            color.b = body;
+            playerMaterial.color = color;
+            playerMaterial.SetColor("Avatarbody", color);
+        }
 
         #region Public Methods
 

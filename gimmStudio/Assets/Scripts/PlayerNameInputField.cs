@@ -51,6 +51,7 @@ namespace Com.MyCompany.MyGame
             }
 
             PhotonNetwork.NickName = defaultName;
+            
         }
 
         #endregion
@@ -72,12 +73,6 @@ namespace Com.MyCompany.MyGame
 
             PlayerPrefs.SetString(playerNamePrefKey, value);
         }
-        public void SetColor()
-        {
-            this.photonView.RPC("AvatarChange", RpcTarget.All, color);
-
-        }
-        [PunRPC]
         private void AvatarChange()
         {
             Color color = avatar.material.color;
@@ -86,6 +81,7 @@ namespace Com.MyCompany.MyGame
             color.b = body.value;
             avatar.material.color = color;
             avatar.material.SetColor("AvatarMaterial", color);
+
         }
        
         #endregion
