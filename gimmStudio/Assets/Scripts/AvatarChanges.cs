@@ -51,27 +51,27 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     /// <summary>
     /// Find all the required components to run the game, panels and the avatar, as well as the player model and the username
     /// </summary>
-    public void Start()
-    {
-        if(PV.IsMine)
-        {
-            Debug.Log("STARTING UP");
-            field = GameObject.Find("AvatarInputField").GetComponent<PlayerNameInputField>();
-            avatarMenu = GameObject.Find("AvatarMenu");
-            hud = GameObject.Find("Hud");
-            instructions = GameObject.Find("Instructions");
-            controls = GameObject.Find("Controls");
-            settings = GameObject.Find("Settings");
-            hudPlayerName = GameObject.Find("HudPlayerName").GetComponent<Text>();
-            settings.SetActive(false);
-            avatarMenu.SetActive(false);
-            hud.SetActive(false);
-            controls.SetActive(false);
-            playerMovementImpared = true;
-        }
+    //public void Start()
+    //{
+    //    if(PV.IsMine)
+    //    {
+    //        Debug.Log("STARTING UP");
+    //        field = GameObject.Find("AvatarInputField").GetComponent<PlayerNameInputField>();
+    //        avatarMenu = GameObject.Find("AvatarMenu");
+    //        hud = GameObject.Find("Hud");
+    //        instructions = GameObject.Find("Instructions");
+    //        controls = GameObject.Find("Controls");
+    //        settings = GameObject.Find("Settings");
+    //        hudPlayerName = GameObject.Find("HudPlayerName").GetComponent<Text>();
+    //        settings.SetActive(false);
+    //        avatarMenu.SetActive(false);
+    //        hud.SetActive(false);
+    //        controls.SetActive(false);
+    //        playerMovementImpared = true;
+    //    }
         
 
-    }
+    //}
 
     public void Update()
     {
