@@ -64,10 +64,8 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             settings = GameObject.Find("Settings");
             hudPlayerName = GameObject.Find("HudPlayerName").GetComponent<Text>();
             settings.SetActive(false);
-            instructions.SetActive(true);
             avatarMenu.SetActive(false);
             hud.SetActive(false);
-            
             controls.SetActive(false);
             playerMovementImpared = true;
         }

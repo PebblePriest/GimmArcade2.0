@@ -21,12 +21,10 @@ namespace Com.MyCompany.MyGame
         public GameObject vrPlayerPrefab;
         public GameObject PlayerPrefab;
 
-        public void Awake()
+        
+        private void Start()
         {
             instance = this;
-        }
-        private void Start()
-        { 
             if (vrPlayerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -90,8 +88,12 @@ namespace Com.MyCompany.MyGame
             {
                 Debug.LogError("PhotonNetowrk : trying to load a level but we are not the master Client");
             }
-            Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.LoadLevel(1);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
+                PhotonNetwork.LoadLevel("PlayArea");
+            }
+            
         }
 
         #endregion
