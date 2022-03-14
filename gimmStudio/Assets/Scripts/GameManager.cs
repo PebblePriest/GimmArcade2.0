@@ -51,9 +51,13 @@ namespace Com.MyCompany.MyGame
         }
         private void Start()
         {
+            if (PV.IsMine)
+            {
+                controlsMenu.SetActive(true);
+                playerMovementImpared = true;
+            }
             instance = this;
-            controlsMenu.SetActive(true);
-            playerMovementImpared = true;
+            
             if (vrPlayerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -87,31 +91,35 @@ namespace Com.MyCompany.MyGame
         }
         public void Update()
         {
-            if (!findPlayer)
+            if (PV.IsMine)
             {
-                mainUser = GameObject.Find("Local");
-                findPlayer = true;
-            }
-            if(!avatarChanging)
-            {
-                if(Input.GetKeyDown(KeyCode.Tab))
+                if (!findPlayer)
                 {
-                   
-                    AvatarMenu();
+                    mainUser = GameObject.Find("Local");
+                    findPlayer = true;
+                }
+                if (!avatarChanging)
+                {
+                    if (Input.GetKeyDown(KeyCode.Tab))
+                    {
+
+                        AvatarMenu();
+                    }
+                }
+                if (playerMovementImpared)
+                {
+
+                    mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
+                    mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
+                }
+                else
+                {
+
+                    mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
+                    mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
                 }
             }
-            if (playerMovementImpared)
-            {
-                
-                mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
-                mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
-            }
-            else
-            {
-               
-                mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
-                mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
-            }
+           
             
            
         }
