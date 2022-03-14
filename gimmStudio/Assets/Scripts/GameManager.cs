@@ -165,7 +165,7 @@ namespace Com.MyCompany.MyGame
         }
         public void StartGame()
         {
-            photonView.RPC("ChangeAvatarTexture", RpcTarget.All, playerMaterial);
+            photonView.RPC("ChangeAvatarTexture", RpcTarget.All);
             playerName.text = PhotonNetwork.NickName.ToString();
             avatarMenu.SetActive(false);
             hud.SetActive(true);
@@ -188,8 +188,9 @@ namespace Com.MyCompany.MyGame
             color.r = hair;
             color.g = face;
             color.b = body;
-            playerMaterial.color = color;
-            playerMaterial.SetColor("Avatarbody", color);
+            //playerMaterial.color = color;
+            //playerMaterial.SetColor("Avatarbody", color);
+            mainUser.GetComponentInChildren<MeshRenderer>().material.SetColor("Avatarbody", color);
         }
 
         #region Public Methods
