@@ -44,7 +44,11 @@ namespace Com.MyCompany.MyGame
         public GameObject hud;
         public GameObject controlsMenu;
         public GameObject keyBindings;
-        
+
+
+        public Material choice1;
+        public Material choice2;
+        public Material choice3;
         public void Awake()
         {
             PV = this.photonView;
@@ -66,11 +70,7 @@ namespace Com.MyCompany.MyGame
                     {
                         Debug.Log("You on Windows");
                         PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-                        if (PV.IsMine)
-                        {
-                            controlsMenu.SetActive(true);
-                            playerMovementImpared = true;
-                        }
+                        
 
                     }
                     if(Application.platform == RuntimePlatform.Android)
@@ -78,11 +78,7 @@ namespace Com.MyCompany.MyGame
                         Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                         // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                         PhotonNetwork.Instantiate(this.vrPlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-                        if (PV.IsMine)
-                        {
-                            controlsMenu.SetActive(true);
-                            playerMovementImpared = true;
-                        }
+                        
                     }
                    
                 }
@@ -91,9 +87,14 @@ namespace Com.MyCompany.MyGame
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
             }
-            
-            
-            
+            if (PV.IsMine)
+            {
+                controlsMenu.SetActive(true);
+                playerMovementImpared = true;
+            }
+
+
+
         }
         public void Update()
         {
@@ -123,6 +124,18 @@ namespace Com.MyCompany.MyGame
 
                     mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
                     mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
+                }
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    photonView.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
+                }
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    photonView.RPC("ChangeAvatarTexture", RpcTarget.All, 2);
+                }
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    photonView.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
                 }
             }
            
@@ -165,8 +178,9 @@ namespace Com.MyCompany.MyGame
         }
         public void StartGame()
         {
-            photonView.RPC("ChangeAvatarTexture", RpcTarget.All);
+           
             playerName.text = PhotonNetwork.NickName.ToString();
+            photonView.RPC("ChangeName", RpcTarget.All);
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
@@ -178,19 +192,36 @@ namespace Com.MyCompany.MyGame
         /// This RPC passes the texture set within the avatar menu to the player model, for all to see
         /// </summary>
         [PunRPC]
-        void ChangeAvatarTexture()
+        void ChangeName()
         {
-            hair = field.hair.value;
-            face = field.face.value;
-            body = field.body.value;
-            //Debug.Log(hair + " " + face + " " + body);
-            Color color = playerMaterial.color;
-            color.r = hair;
-            color.g = face;
-            color.b = body;
+            mainUser.GetComponentInChildren<Text>().text = playerName.text;
+        }
+        [PunRPC]
+        void ChangeAvatarTexture(int choice)
+        {
+            if(choice == 1)
+            {
+                mainUser.GetComponentInChildren<Renderer>().material = choice1;
+            }
+            if (choice == 2)
+            {
+                mainUser.GetComponentInChildren<Renderer>().material = choice2;
+            }
+            if (choice == 3)
+            {
+                mainUser.GetComponentInChildren<Renderer>().material = choice3;
+            }
+            //hair = field.hair.value;
+            //face = field.face.value;
+            //body = field.body.value;
+            ////Debug.Log(hair + " " + face + " " + body);
+            //Color color = playerMaterial.color;
+            //color.r = hair;
+            //color.g = face;
+            //color.b = body;
             //playerMaterial.color = color;
-            //playerMaterial.SetColor("Avatarbody", color);
-            mainUser.GetComponentInChildren<MeshRenderer>().material.SetColor("Avatarbody", color);
+            ////playerMaterial.SetColor("Avatarbody", color);
+            //mainUser.GetComponentInChildren<MeshRenderer>().material.SetColor("Avatarbody", color);
         }
 
         #region Public Methods

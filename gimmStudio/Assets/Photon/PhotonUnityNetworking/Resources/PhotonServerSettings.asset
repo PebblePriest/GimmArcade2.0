@@ -44,6 +44,7 @@ MonoBehaviour:
   - HeresWhy
   - AvatarChange
   - ChangeAvatarTexture
+  - ChangeName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
