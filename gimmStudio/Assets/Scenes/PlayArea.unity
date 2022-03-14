@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 75761371}
   - component: {fileID: 75761370}
   - component: {fileID: 75761369}
+  - component: {fileID: 75761373}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -433,8 +434,8 @@ RectTransform:
   - {fileID: 2009078025}
   - {fileID: 418840518}
   - {fileID: 475538651}
-  - {fileID: 1258943659}
   - {fileID: 542901254}
+  - {fileID: 1258943659}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -443,6 +444,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &75761373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75761368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a22b9cfbe4d514990e250e80204407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainUser: {fileID: 0}
+  avatar: {fileID: 0}
 --- !u!1 &92559056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &475538651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1492,7 +1507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &542901254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1509,11 +1524,11 @@ RectTransform:
   - {fileID: 1490874953}
   - {fileID: 1053897237}
   m_Father: {fileID: 75761372}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.37731934, y: 0.38449097}
+  m_AnchoredPosition: {x: 0.37731934, y: 0.38452148}
   m_SizeDelta: {x: -481.1509, y: -228.3701}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542901255
@@ -1875,7 +1890,7 @@ GameObject:
   - component: {fileID: 662561399}
   - component: {fileID: 662561398}
   m_Layer: 5
-  m_Name: AvatarMenu
+  m_Name: GoAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1898,7 +1913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -188}
+  m_AnchoredPosition: {x: 0, y: -363}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &662561398
@@ -1945,9 +1960,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2057650962}
-        m_TargetAssemblyTypeName: Com.MyCompany.MyGame.GameManager, Assembly-CSharp
-        m_MethodName: CustomizeCharacter
+      - m_Target: {fileID: 75761373}
+        m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
+        m_MethodName: AvatarOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2476,7 +2491,7 @@ GameObject:
   - component: {fileID: 1053897239}
   - component: {fileID: 1053897238}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackToSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,9 +2561,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2057650962}
-        m_TargetAssemblyTypeName: Com.MyCompany.MyGame.GameManager, Assembly-CSharp
-        m_MethodName: InstructionsOff
+      - m_Target: {fileID: 75761373}
+        m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
+        m_MethodName: ControlsOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2809,7 +2824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1258943659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2825,7 +2840,7 @@ RectTransform:
   - {fileID: 490596392}
   - {fileID: 662561397}
   m_Father: {fileID: 75761372}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3398,7 +3413,7 @@ GameObject:
   - component: {fileID: 1366923169}
   - component: {fileID: 1366923168}
   m_Layer: 5
-  m_Name: PlayerName
+  m_Name: HudPlayerName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3555,7 +3570,7 @@ GameObject:
   - component: {fileID: 1441053917}
   - component: {fileID: 1441053918}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: AvatarInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5622,7 +5637,7 @@ GameObject:
   - component: {fileID: 1682425778}
   - component: {fileID: 1682425777}
   m_Layer: 5
-  m_Name: Instructions
+  m_Name: ControlsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5692,9 +5707,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2057650962}
-        m_TargetAssemblyTypeName: Com.MyCompany.MyGame.GameManager, Assembly-CSharp
-        m_MethodName: Instructions
+      - m_Target: {fileID: 75761373}
+        m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
+        m_MethodName: ControlsOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6129,7 +6144,7 @@ GameObject:
   - component: {fileID: 1833372711}
   - component: {fileID: 1833372710}
   m_Layer: 5
-  m_Name: AvatarMenu
+  m_Name: RecreateCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6199,9 +6214,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2057650962}
-        m_TargetAssemblyTypeName: Com.MyCompany.MyGame.GameManager, Assembly-CSharp
-        m_MethodName: CustomizeCharacter
+      - m_Target: {fileID: 75761373}
+        m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
+        m_MethodName: AvatarOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6422,7 +6437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1915771790
 Transform:
   m_ObjectHideFlags: 0
@@ -6555,7 +6570,7 @@ GameObject:
   - component: {fileID: 1942327803}
   - component: {fileID: 1942327802}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6597,19 +6612,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2057650962}
-          m_TargetAssemblyTypeName: Com.MyCompany.MyGame.GameManager, Assembly-CSharp
-          m_MethodName: StartGame
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &1942327803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6653,7 +6656,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1942327804}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 75761373}
+        m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
+        m_MethodName: AvatarOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1942327804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7123,22 +7138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5ea13ef3b7598489dd24a318ebbb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  field: {fileID: 1441053917}
-  hair: 0
-  body: 0
-  face: 0
-  playerName: {fileID: 1366923168}
   vrPlayerPrefab: {fileID: 6626538216213038113, guid: f5a66bdbdf720f84bbcac351487cf2c5, type: 3}
   PlayerPrefab: {fileID: 6683727312116776262, guid: 73610ca330b98e141b9f513a8be8db9b, type: 3}
-  playerMaterial: {fileID: 0}
-  avatarMenu: {fileID: 1915771789}
-  mainUser: {fileID: 0}
-  hud: {fileID: 75761368}
-  controlsMenu: {fileID: 1258943658}
-  keyBindings: {fileID: 542901253}
-  choice1: {fileID: 2100000, guid: 35893bbdd9d56b6479db39775fa42d58, type: 2}
-  choice2: {fileID: 2100000, guid: 6c7a008be7c3bdf4ba3f04b7d769e381, type: 2}
-  choice3: {fileID: 2100000, guid: 621c3b1f4675dcf4a9ac603cf4446f1c, type: 2}
 --- !u!4 &2057650963
 Transform:
   m_ObjectHideFlags: 0
