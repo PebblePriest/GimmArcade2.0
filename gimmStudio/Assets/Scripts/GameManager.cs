@@ -51,11 +51,7 @@ namespace Com.MyCompany.MyGame
         }
         private void Start()
         {
-            if (PV.IsMine)
-            {
-                controlsMenu.SetActive(true);
-                playerMovementImpared = true;
-            }
+           
             instance = this;
             
             if (vrPlayerPrefab == null)
@@ -70,13 +66,23 @@ namespace Com.MyCompany.MyGame
                     {
                         Debug.Log("You on Windows");
                         PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-                        
+                        if (PV.IsMine)
+                        {
+                            controlsMenu.SetActive(true);
+                            playerMovementImpared = true;
+                        }
+
                     }
                     if(Application.platform == RuntimePlatform.Android)
                     {
                         Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                         // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                         PhotonNetwork.Instantiate(this.vrPlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                        if (PV.IsMine)
+                        {
+                            controlsMenu.SetActive(true);
+                            playerMovementImpared = true;
+                        }
                     }
                    
                 }
@@ -159,7 +165,7 @@ namespace Com.MyCompany.MyGame
         }
         public void StartGame()
         {
-            photonView.RPC("ChangeAvatarTexture", RpcTarget.All);
+            photonView.RPC("ChangeAvatarTexture", RpcTarget.All, playerMaterial);
             playerName.text = PhotonNetwork.NickName.ToString();
             avatarMenu.SetActive(false);
             hud.SetActive(true);
