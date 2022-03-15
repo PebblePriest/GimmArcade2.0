@@ -129,11 +129,12 @@ public class CharacterCreatorSO : ScriptableObject
     #region Hair Methods
 
     public void HairModel_GetNext(Transform anchor)
-    { 
+    {
+        Debug.Log(_hairIndex);
         if (_hairIndex < hairModels.Length - 1) _hairIndex++;
         else _hairIndex = 0;
         ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,_hair, _hairIndex,anchor);
-        Debug.Log(_hairIndex);
+        
     }
 
     public void HairModel_GetPrevious(Transform anchor)
@@ -378,7 +379,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public void LoadCharacterOnCreator(Transform anchor, bool isCreator = false)
     {
-        Debug.Log("LoadCharacter");
+        //Debug.Log("LoadCharacter");
         // Sam did is
         //if (isCreator) LoadDefaultData();
         LoadDefaultData();
