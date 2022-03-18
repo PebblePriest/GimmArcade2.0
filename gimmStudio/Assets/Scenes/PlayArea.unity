@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17864388, g: 0.2236855, b: 0.3056269, a: 1}
+  m_IndirectSpecularColor: {r: 0.17864375, g: 0.22368531, b: 0.30562612, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 954026982}
   - component: {fileID: 954026984}
   - component: {fileID: 954026983}
+  - component: {fileID: 954026985}
   m_Layer: 0
   m_Name: VoiceManager
   m_TagString: Untagged
@@ -420,7 +421,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -507,6 +508,14 @@ MonoBehaviour:
   WorkInOfflineMode: 1
   usePunAppSettings: 1
   usePunAuthValues: 1
+--- !u!81 &954026985
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954026981}
+  m_Enabled: 1
 --- !u!1 &1262602244
 GameObject:
   m_ObjectHideFlags: 0

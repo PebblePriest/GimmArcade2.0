@@ -139,14 +139,14 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
+            avatarMenu.SetActive(true);
+            hud.SetActive(false);
             settings.SetActive(false);
             controls.SetActive(false);
             hud.SetActive(false);
             instructions.SetActive(false);
             mainUser = GameObject.Find("Local");
             playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
-            avatarMenu.SetActive(true);
-            hud.SetActive(false);
             mainUser.GetComponentInChildren<Camera>().enabled = false;
             avatarChanging = true;
             playerMovementImpared = true;
