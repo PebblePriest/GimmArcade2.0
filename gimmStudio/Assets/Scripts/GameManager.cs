@@ -20,9 +20,12 @@ namespace Com.MyCompany.MyGame
         [Tooltip("The prefabs to use for representing the player")]
         public GameObject vrPlayerPrefab;
         public GameObject PlayerPrefab;
+        public void Awake()
+        {
+            Debug.Log("The game has started!");
+        }
 
-        
-        private void Start()
+        public void Start()
         {
             instance = this;
             if (vrPlayerPrefab == null)

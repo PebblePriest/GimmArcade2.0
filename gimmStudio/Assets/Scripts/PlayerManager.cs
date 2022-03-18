@@ -24,11 +24,15 @@ namespace Com.MyCompany.MyGame
         public Transform theCam;
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-
+        private AvatarChanges avatar;
+        private bool isPlaying;
         public GameObject myCamera;
         public float lookSpeed = 5f;
         float cameraPitch = 0.0f;
         public GameObject player;
+        private bool isLoaded;
+        public GameObject testCam;
+        private ArcadeScript arcadeCode;
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -43,6 +47,7 @@ namespace Com.MyCompany.MyGame
                 PlayerManager.LocalPlayerInstance = this.gameObject;
                 player = this.gameObject;
                 player.name = "Local";
+                avatar = this.GetComponent<AvatarChanges>();
             }
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
@@ -67,6 +72,38 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 MouseLookAround();
+                
+                    if (isPlaying)
+                    {
+                        if (!isLoaded)
+                        {
+                            if (Input.GetKeyDown(KeyCode.F))
+                            {
+                                avatar.LeaveArcadeGame();
+                                avatar.playerMovementImpared = true;
+                                arcadeCode.PlayGame();
+                                Debug.Log("Loaded new Scene");
+                                SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
+                                isLoaded = true;
+
+
+                            }
+
+                        }
+                        else
+                        {
+                            if (Input.GetKeyDown(KeyCode.L))
+                            {
+                                avatar.PlayArcadeGame();
+                                avatar.playerMovementImpared = false;
+                                arcadeCode.EndGame();
+                                SceneManager.UnloadSceneAsync("Test");
+                                isLoaded = false;
+                            }
+                        }
+
+
+                    }
                 
                 //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
             }
@@ -117,6 +154,30 @@ namespace Com.MyCompany.MyGame
             theCam.localEulerAngles = Vector3.right * cameraPitch;
 
             transform.Rotate(Vector3.up * mouseDelta.x * lookSpeed);
+        }
+        public void OnTriggerEnter(Collider other)
+        {
+            if (photonView.IsMine)
+            {
+                if(other.name == "TestMachine")
+                {
+                    
+                    avatar.PlayArcadeGame();
+                    arcadeCode = other.GetComponent<ArcadeScript>();
+                    isPlaying = true;
+                }
+            }
+        }
+        public void OnTriggerExit(Collider other)
+        {
+            if (photonView.IsMine)
+            {
+                if(other.name == "TestMachine")
+                {
+                    avatar.LeaveArcadeGame();
+                    isPlaying = false;
+                }
+            }
         }
     }
 }

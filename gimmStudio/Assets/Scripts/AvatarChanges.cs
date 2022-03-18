@@ -20,18 +20,18 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
 
 
     [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
-    PhotonView PV;
+    public PhotonView PV;
     public Text playerName;
     public Text hudPlayerName;
 
     [Tooltip("Finds the elements of the Local user, to apply effects")]
     private MeshRenderer player;
     public Material playerMaterial;
-    bool playerMovementImpared = false;
+    public bool playerMovementImpared = true;
     private bool startUp = false;
 
     [Tooltip("Panels that are found in the Game, used to turn on and off at given times")]
-    
+    public Text miniGameText;
     public GameObject avatarMenu;
     public GameObject mainUser;
     public GameObject hud;
@@ -44,35 +44,6 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public Material choice2;
     public Material choice3;
 
-   
-    public void Awake()
-    {
-        PV = this.photonView;
-    }
-    /// <summary>
-    /// Find all the required components to run the game, panels and the avatar, as well as the player model and the username
-    /// </summary>
-    //public void Start()
-    //{
-    //    if(PV.IsMine)
-    //    {
-    //        Debug.Log("STARTING UP");
-    //        field = GameObject.Find("AvatarInputField").GetComponent<PlayerNameInputField>();
-    //        avatarMenu = GameObject.Find("AvatarMenu");
-    //        hud = GameObject.Find("Hud");
-    //        instructions = GameObject.Find("Instructions");
-    //        controls = GameObject.Find("Controls");
-    //        settings = GameObject.Find("Settings");
-    //        hudPlayerName = GameObject.Find("HudPlayerName").GetComponent<Text>();
-    //        settings.SetActive(false);
-    //        avatarMenu.SetActive(false);
-    //        hud.SetActive(false);
-    //        controls.SetActive(false);
-    //        playerMovementImpared = true;
-    //    }
-        
-
-    //}
 
     public void Update()
     {
@@ -105,17 +76,14 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
-                PV.RPC("ChangeName", RpcTarget.All);
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 2);
-                PV.RPC("ChangeName", RpcTarget.All);
             }
             if (Input.GetKeyDown(KeyCode.G))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
-                PV.RPC("ChangeName", RpcTarget.All);
             }
         }
 
@@ -127,6 +95,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         if (PV.IsMine)
         {
             controls.SetActive(true);
+            playerMovementImpared = true;
         }
     }
     public void KeyControlsOff()
@@ -134,6 +103,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         if (PV.IsMine)
         {
             controls.SetActive(false);
+            playerMovementImpared = true;
         }
     }
     public void AvatarMenu()
@@ -160,6 +130,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         {
             AvatarMenu();
             instructions.SetActive(false);
+            playerMovementImpared = true;
         }
     }
     public void StartGame()
@@ -167,7 +138,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         if (PV.IsMine)
         {
             playerName.text = PhotonNetwork.NickName.ToString();
-            PV.RPC("ChangeName", RpcTarget.All);
+            PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
@@ -176,41 +147,28 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         }
     }
 
-    /// <summary>
-    /// This RPC passes the texture set within the avatar menu to the player model, for all to see
-    /// </summary>
-    [PunRPC]
-    void ChangeName()
-    {
-        mainUser.GetComponentInChildren<Text>().text = playerName.text;
-        hudPlayerName.text = playerName.text;
-    }
+ 
     [PunRPC]
     void ChangeAvatarTexture(int choice)
     {
         if (choice == 1)
         {
             mainUser.GetComponentInChildren<Renderer>().material = choice1;
+            mainUser.GetComponentInChildren<Text>().text = playerName.text;
+            hudPlayerName.text = playerName.text;
         }
         if (choice == 2)
         {
             mainUser.GetComponentInChildren<Renderer>().material = choice2;
+            mainUser.GetComponentInChildren<Text>().text = playerName.text;
+            hudPlayerName.text = playerName.text;
         }
         if (choice == 3)
         {
             mainUser.GetComponentInChildren<Renderer>().material = choice3;
+            mainUser.GetComponentInChildren<Text>().text = playerName.text;
+            hudPlayerName.text = playerName.text;
         }
-        //hair = field.hair.value;
-        //face = field.face.value;
-        //body = field.body.value;
-        ////Debug.Log(hair + " " + face + " " + body);
-        //Color color = playerMaterial.color;
-        //color.r = hair;
-        //color.g = face;
-        //color.b = body;
-        //playerMaterial.color = color;
-        ////playerMaterial.SetColor("Avatarbody", color);
-        //mainUser.GetComponentInChildren<MeshRenderer>().material.SetColor("Avatarbody", color);
     }
     /// <summary>
     /// Runs in the first update to make sure all the elements of the player are found correctly, as well as pass over the network the username and color of the character.
@@ -224,11 +182,24 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             playerName = GameObject.Find("PlayerName").GetComponent<Text>();
             playerName.text = PhotonNetwork.NickName.ToString();
             PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
-            PV.RPC("ChangeName", RpcTarget.All);
+            playerMovementImpared = true;
             instructions.SetActive(true);
             miniGameStart.SetActive(false);
             startUp = true;
         }
+    }
+    public void PlayArcadeGame()
+    {
+        if (PV.IsMine)
+        {
+            miniGameStart.SetActive(true);
+            miniGameText.text = "Press 'F' to play 'Test Scene'.";
+        }
+        
+    }
+    public void LeaveArcadeGame()
+    {
+        miniGameStart.SetActive(false);
     }
 
 }

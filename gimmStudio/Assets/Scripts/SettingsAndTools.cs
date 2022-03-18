@@ -7,6 +7,7 @@ using Photon.Pun;
 public class SettingsAndTools : MonoBehaviourPunCallbacks
 {
     private GameObject mainUser;
+    private AvatarChanges avatar;
     public GameObject settingsPanel;
     private bool mouseVisible;
     private bool settingOpen;
@@ -15,6 +16,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
     void Start()
     {
         mainUser = GameObject.Find("Local");
+        avatar = mainUser.GetComponent<AvatarChanges>();
     }
 
     // Update is called once per frame
@@ -44,8 +46,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 {
                     settingsPanel.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
-                    mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
-                    mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
+                    avatar.playerMovementImpared = true;
                     settingOpen = true;
                 }
             }
@@ -55,8 +56,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 {
                     settingsPanel.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
-                    mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
-                    mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
+                    avatar.playerMovementImpared = false;
                     settingOpen = false;
                 }
             }

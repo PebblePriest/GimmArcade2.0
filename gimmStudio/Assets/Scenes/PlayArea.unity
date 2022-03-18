@@ -1804,22 +1804,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4068373912626513877, guid: cbbef570e893c5a438f9dfb863af782f, type: 3}
---- !u!114 &1588454744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7887788546967059859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d2afe60c3cc1c45903ef45c4308e00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playPanel: {fileID: 0}
-  gameText: {fileID: 0}
-  isPlaying: 0
-  testCam: {fileID: 1337482417}
 --- !u!1 &1924927948
 GameObject:
   m_ObjectHideFlags: 0
@@ -8561,9 +8545,9 @@ GameObject:
   - component: {fileID: 8121727806763226747}
   - component: {fileID: 3053008120013503120}
   - component: {fileID: 1588454684}
-  - component: {fileID: 1588454744}
   - component: {fileID: 7887788546967059860}
   - component: {fileID: 7887788546967059861}
+  - component: {fileID: 7887788546967059862}
   m_Layer: 0
   m_Name: TestMachine
   m_TagString: Untagged
@@ -8606,6 +8590,19 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7887788546967059862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887788546967059859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4b642d80865e14fa7627f33f48e5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testCam: {fileID: 1337482417}
 --- !u!33 &7892225633954028580
 MeshFilter:
   m_ObjectHideFlags: 0
