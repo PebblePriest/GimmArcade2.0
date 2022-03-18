@@ -224,6 +224,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             playerName.text = PhotonNetwork.NickName.ToString();
             PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
             PV.RPC("ChangeName", RpcTarget.All);
+            instructions.SetActive(true);
             startUp = true;
         }
     }

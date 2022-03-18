@@ -1,50 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ButtonCode : MonoBehaviour
+using Photon.Pun;
+public class ButtonCode : MonoBehaviourPunCallbacks
 {
     public GameObject mainUser;
     public AvatarChanges avatar;
     bool userFound = false;
     List<GameObject> players = new List<GameObject>();
+    [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
+    public PhotonView PV;
+
+   
     public void Update()
     {
-        if (!userFound)
+        if (PV.IsMine)
         {
-            players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-            for (int i = 0; i < players.Count; i++)
+            if (!userFound)
             {
-                mainUser = players[i];
-                break;
+                players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+                for (int i = 0; i < players.Count; i++)
+                {
+                    mainUser = players[i];
+                    break;
+                }
+                userFound = true;
             }
-            userFound = true;
+
+            if (mainUser)
+            {
+                avatar = mainUser.GetComponent<AvatarChanges>();
+            }
+            else
+            {
+                Debug.Log("Can't find the user");
+            }
         }
        
-        if (mainUser)
-        {
-            avatar = mainUser.GetComponent<AvatarChanges>();
-        }
-        else
-        {
-            Debug.Log("Can't find the user");
-        }
 
     }
     public void ControlsOn()
     {
-        avatar.KeyControlsOn();
+        if (PV.IsMine)
+        {
+
+            avatar.KeyControlsOn();
+        }
     }
     public void ControlsOff()
     {
-        avatar.KeyControlsOff();
+        if (PV.IsMine)
+        {
+            avatar.KeyControlsOff();
+        }
     }
     public void AvatarOn()
     {
-        avatar.AvatarMenu();
+        if (PV.IsMine)
+        {
+            avatar.AvatarMenu();
+        }
     }
     public void AvatarOff()
     {
-        avatar.StartGame();
+        if (PV.IsMine)
+        {
+            avatar.StartGame();
+        }
     }
 }
