@@ -38,6 +38,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public GameObject instructions;
     public GameObject controls;
     public GameObject settings;
+    public GameObject miniGameStart;
 
     public Material choice1;
     public Material choice2;
@@ -225,6 +226,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
             PV.RPC("ChangeName", RpcTarget.All);
             instructions.SetActive(true);
+            miniGameStart.SetActive(false);
             startUp = true;
         }
     }

@@ -16,17 +16,15 @@ public class PlayArcadeGame : MonoBehaviour
     private bool isLoaded;
     private GameObject player;
     public GameObject testCam;
+    bool findLocalPlayer = false;
    
     public void Awake()
     {
         
-        playPanel.SetActive(false);
+        
         testCam.SetActive(false);
     }
-    public void Start()
-    {
-        gameText.text += " Test Scene.";
-    }
+   
  
     public void OnTriggerEnter(Collider other)
     {
@@ -34,6 +32,9 @@ public class PlayArcadeGame : MonoBehaviour
             if (other.name == "Local")
             {
                 player = other.gameObject;
+                playPanel = GameObject.Find("LocalStartGame");
+                gameText = playPanel.GetComponentInChildren<Text>();
+                gameText.text += " Test Scene.";
                 playPanel.SetActive(true);
                 isPlaying = true;
                 
@@ -54,7 +55,11 @@ public class PlayArcadeGame : MonoBehaviour
     }
     public void Update()
     {
-        
+        if(!findLocalPlayer)
+        {
+            player = GameObject.Find("Local");
+            playPanel = GameObject.Find("LocalStartGame");
+        }
             if (isPlaying)
             {
                 if (!isLoaded)
