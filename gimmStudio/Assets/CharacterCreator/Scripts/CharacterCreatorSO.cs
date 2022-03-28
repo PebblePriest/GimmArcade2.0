@@ -46,6 +46,7 @@ public class CharacterCreatorSO : ScriptableObject
     private GameObject _activeHair;
     public int _hairIndex = 0;
     public bool _hair = true;
+    public float hairYOffset = 60f;
 
     #endregion
 
@@ -130,7 +131,6 @@ public class CharacterCreatorSO : ScriptableObject
 
     public void HairModel_GetNext(Transform anchor)
     {
-        Debug.Log(_hairIndex);
         if (_hairIndex < hairModels.Length - 1) _hairIndex++;
         else _hairIndex = 0;
         ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,_hair, _hairIndex,anchor);
@@ -317,15 +317,16 @@ public class CharacterCreatorSO : ScriptableObject
         switch (detail)
         {
             case ModelDetail.HAIR:
-                //if (_activeHair || !load) Destroy(_activeHair);
+                if (_activeHair || !load) Destroy(_activeHair);
                 if (load)
                 {
-                    _activeHair = Instantiate(hairModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeHair = Instantiate(hairModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
+                    
                     ApplyColor(0, _hairColor);
                 }
                 break;
             case ModelDetail.TOP:
-                //if (_activeTop || !load) Destroy(_activeTop);
+                if (_activeTop || !load) Destroy(_activeTop);
                 if (load)
                 {
                     _activeTop = Instantiate(topModels[id], pos, rot, anchor);
@@ -333,7 +334,7 @@ public class CharacterCreatorSO : ScriptableObject
                 }
                 break;
             case ModelDetail.BOTTOM:
-                //if (_activeBottom || !load) Destroy(_activeBottom);
+                if (_activeBottom || !load) Destroy(_activeBottom);
                 if (load)
                 {
                     _activeBottom = Instantiate(bottomModels[id], pos, rot, anchor);
@@ -341,23 +342,23 @@ public class CharacterCreatorSO : ScriptableObject
                 }
                 break;
             case ModelDetail.HAT:
-                //if (_activeHat || !load) Destroy(_activeHat);
+                if (_activeHat || !load) Destroy(_activeHat);
                 if (load)
                 {
-                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
                     ApplyColor(4, _hatColor);
                 }
                 break;
             case ModelDetail.MASK:
-                //if (_activeMask || !load) Destroy(_activeMask);
+                if (_activeMask || !load) Destroy(_activeMask);
                 if (load)
                 {
-                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
                     ApplyColor(5, _maskColor);
                 }
                 break;
             case ModelDetail.WINGS:
-                //if (_activeWings || !load) Destroy(_activeWings);
+                if (_activeWings || !load) Destroy(_activeWings);
                 if (load)
                 {
                     _activeWings = Instantiate(wingsModels[id], pos, rot, anchor);
@@ -365,7 +366,7 @@ public class CharacterCreatorSO : ScriptableObject
                 }
                 break;
             case ModelDetail.HANDS:
-                //if (_activeHands || !load) Destroy(_activeHands);
+                if (_activeHands || !load) Destroy(_activeHands);
                 if (load)
                 {
                     _activeHands = Instantiate(handsModels[id], pos, rot, anchor);
@@ -417,6 +418,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public void ApplyModifierOnCreator(ModelDetail detail, bool load, int id, Transform anchor)
     {
+        float hairOffset = 85f;
         //Debug.Log("ApplyModifierCharacter on Creator");
         Vector3 pos = anchor.position;
         Quaternion rot = anchor.rotation;
@@ -426,7 +428,7 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeHair || !load) Destroy(_activeHair);
                 if (load)
                 {
-                    _activeHair = Instantiate(hairModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeHair = Instantiate(hairModels[id], pos + new Vector3(0, hairOffset, 0), rot, anchor);
                     ApplyColor(0, _hairColor);
                 }
                 break;
@@ -450,7 +452,7 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeHat || !load) Destroy(_activeHat);
                 if (load)
                 {
-                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, hairOffset, 0), rot, anchor);
                     ApplyColor(4, _hatColor);
                 }
                 break;
@@ -458,7 +460,7 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeMask || !load) Destroy(_activeMask);
                 if (load)
                 {
-                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, 1.6f, 0), rot, anchor);
+                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, hairOffset, 0), rot, anchor);
                     ApplyColor(5, _maskColor);
                 }
                 break;

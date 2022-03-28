@@ -24,7 +24,7 @@ public class ButtonManager : MonoBehaviour
     private void Start()
     {
         //characterCreatorSO.HairModel_GetNext(headAnchor); 
-        nextHairButton.onClick.AddListener(() => { Debug.Log("HIT NEXT HAIR"); });
+        nextHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetNext(headAnchor); });
         previousHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetPrevious(headAnchor); });
         nextTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetNext(headAnchor); });
         previousTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetPrevious(headAnchor); });
@@ -38,9 +38,5 @@ public class ButtonManager : MonoBehaviour
         previousWingsButton.onClick.AddListener(() => { characterCreatorSO.WingsModel_GetPrevious(headAnchor); });
         //nextHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetNext(headAnchor); });
         //previousHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetPrevious(headAnchor); });
-    }
-    public void NextHair()
-    {
-        Debug.Log("HIT NEXT HAIR");
     }
 }
