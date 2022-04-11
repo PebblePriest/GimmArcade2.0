@@ -10,7 +10,6 @@ public class ButtonCode : MonoBehaviourPunCallbacks
     public AvatarChanges avatar;
     public GameObject manager;
     private GameManager mana;
-    bool userFound = false;
     bool managerFound = false;
     List<GameObject> players = new List<GameObject>();
     [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
@@ -31,17 +30,7 @@ public class ButtonCode : MonoBehaviourPunCallbacks
             }
            
             
-            if (!userFound)
-            {
-                players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-                for (int i = 0; i < players.Count; i++)
-                {
-                    mainUser = players[i];
-                    break;
-                }
-                userFound = true;
-            }
-
+          
             if (mainUser)
             {
                 avatar = mainUser.GetComponent<AvatarChanges>();
@@ -58,6 +47,7 @@ public class ButtonCode : MonoBehaviourPunCallbacks
     {
         manager = GameObject.Find("GameManager");
         mana = manager.GetComponent<GameManager>();
+        mainUser = GameObject.Find("Local");
     }
     public void ControlsOn()
     {

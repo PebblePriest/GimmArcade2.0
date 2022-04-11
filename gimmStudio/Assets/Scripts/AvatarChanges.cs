@@ -86,7 +86,10 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
             }
         }
-
+        else
+        {
+            playerName.text = PV.Owner.NickName;
+        }
 
 
     }
@@ -156,6 +159,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             mainUser.GetComponentInChildren<Renderer>().material = choice1;
             mainUser.GetComponentInChildren<Text>().text = playerName.text;
             hudPlayerName.text = playerName.text;
+         
         }
         if (choice == 2)
         {
@@ -180,12 +184,16 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             mainUser = GameObject.Find("Local");
             playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
             playerName = GameObject.Find("PlayerName").GetComponent<Text>();
-            playerName.text = PhotonNetwork.NickName.ToString();
+            playerName.text = PhotonNetwork.NickName;
             PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
             playerMovementImpared = true;
             instructions.SetActive(true);
             miniGameStart.SetActive(false);
             startUp = true;
+        }
+        else
+        {
+            playerName.text = PV.Owner.NickName;
         }
     }
     public void PlayArcadeGame()
