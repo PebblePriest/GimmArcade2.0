@@ -3652,9 +3652,9 @@ GameObject:
   - component: {fileID: 6683727312116776270}
   - component: {fileID: 6683727312116776269}
   - component: {fileID: 1392067990217117887}
-  - component: {fileID: -6057992611876211327}
   - component: {fileID: 567289989721240682}
   - component: {fileID: 3884513550630808533}
+  - component: {fileID: 1859860388153883157}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3696,7 +3696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27945f4f870600f41a10ccda5b570170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 10
   theRB: {fileID: 6683727312116776264}
   theCam: {fileID: 6683727313248739837}
   myCamera: {fileID: 6683727313248739834}
@@ -3717,7 +3717,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6683727312116776271
 MonoBehaviour:
@@ -3837,19 +3837,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!65 &-6057992611876211327
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6683727312116776262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.6437169, z: 1}
-  m_Center: {x: 0, y: -0.32185858, z: 0}
 --- !u!114 &567289989721240682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3901,6 +3888,20 @@ MonoBehaviour:
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
   SetupDebugSpeaker: 0
+--- !u!136 &1859860388153883157
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683727312116776262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.9439722
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.2712918, z: 0}
 --- !u!1 &6683727313248739834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,7 +5838,7 @@ PrefabInstance:
     - target: {fileID: 5684423763552822489, guid: af7734d8faf5c8c45a00516942901d20, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7e861f278f1ab0244a4431914a59dbf1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6189033561060099340, guid: af7734d8faf5c8c45a00516942901d20, type: 3}
       propertyPath: m_Name
       value: AvatarModel

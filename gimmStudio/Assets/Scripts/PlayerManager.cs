@@ -19,7 +19,7 @@ namespace Com.MyCompany.MyGame
     {
         private float inputX, inputZ;
         private Vector2 deltaPointer;
-        public float moveSpeed;
+        public float moveSpeed = 1000;
         public Rigidbody theRB;
         public Transform theCam;
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
@@ -33,6 +33,8 @@ namespace Com.MyCompany.MyGame
         private bool isLoaded;
         public GameObject testCam;
         private ArcadeScript arcadeCode;
+        private float turnSmoothTime = .01f;
+        private float turnSmoothVelocity = .15f;
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -72,8 +74,23 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 MouseLookAround();
-                
-                    if (isPlaying)
+                //Vector3 direction = new Vector3(inputX, 0f, inputZ).normalized;
+
+                //if (direction.magnitude >= 0.1f)
+                //{
+                //    //gets angle of camera to rotate player based on that angle
+                //    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + myCamera.transform.eulerAngles.y;
+                //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+                //    //rotates player
+                //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+
+                //    Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                //    theRB.velocity = new Vector3(moveDir.normalized.x * moveSpeed * Time.deltaTime, theRB.velocity.y, moveDir.normalized.z * moveSpeed * Time.deltaTime);
+                //}
+                if (isPlaying)
                     {
                         if (!isLoaded)
                         {
@@ -111,15 +128,13 @@ namespace Com.MyCompany.MyGame
 
         private void FixedUpdate()
         {
-            //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
             if (photonView.IsMine)
             {
                 theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
                 theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
 
-                //myCamera.transform.Rotate(new Vector3(0f, deltaPointer.x, 0f), Space.World);
-                //myCamera.transform.Rotate(new Vector3(-deltaPointer.y, 0f, 0f), Space.World);
-                
+                //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+
             }
         }
 
