@@ -41,7 +41,7 @@ public class NewMenuManager : MonoBehaviour
 
     IEnumerator EnableCharacterOptions()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         loadingTxt.enabled = false;
         options.SetActive(true);

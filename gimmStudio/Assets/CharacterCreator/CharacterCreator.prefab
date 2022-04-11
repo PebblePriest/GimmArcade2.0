@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  headAnchor: {fileID: 1495597115544656152}
+  headAnchor: {fileID: 0}
   audioSource: {fileID: 1495597115544656153}
   colorPickerCanvasPrefab: {fileID: 6282156461016696301, guid: cc9a538c8104bfe49bb8b960e46f5c14, type: 3}
   colorIndex: 0
@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalRotation.x
@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalRotation.z
@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3018d5b9168fda54a8827687e02a2d76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

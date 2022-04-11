@@ -124,7 +124,7 @@ namespace Com.MyCompany.MyGame
             }
         }
 
-        public override void OnDisconnected(DisconnectCause cause)
+        public void OnDisconnected(DisconnectCause cause)
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);

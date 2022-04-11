@@ -23,6 +23,7 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
+        //characterCreatorSO.HairModel_GetNext(headAnchor); 
         nextHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetNext(headAnchor); });
         previousHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetPrevious(headAnchor); });
         nextTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetNext(headAnchor); });
