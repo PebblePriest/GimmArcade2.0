@@ -15,12 +15,19 @@ namespace Com.MyCompany.MyGame
     public class GameManager : MonoBehaviourPunCallbacks
     {
         public static GameManager instance;
-
+        PhotonView PV;
         [Tooltip("The prefab to use for representing the player")]
         public GameObject vrPlayerPrefab;
         public GameObject PlayerPrefab;
         private MeshRenderer player;
-
+        private GameObject mainUser;
+        public GameObject settingsPanel;
+        private bool mouseVisible;
+        private bool settingOpen;
+        public void Awake()
+        {
+            PV = this.photonView;
+        }
         private void Start()
         {
             instance = this;
@@ -52,6 +59,59 @@ namespace Com.MyCompany.MyGame
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
             }
+            if (PV.IsMine)
+            {
+                
+                
+            }
+          
+        }
+        public void Update()
+        {
+            if(PV.IsMine)
+            {
+                if(!mouseVisible)
+                {
+                    if (Input.GetKeyDown(KeyCode.LeftAlt))
+                    {
+                        Cursor.lockState = CursorLockMode.None;
+                        mouseVisible = true;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.LeftAlt))
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        mouseVisible = false;
+                    }
+                }
+                if(!settingOpen)
+                {
+                    if (Input.GetKeyDown(KeyCode.P))
+                    {
+                        settingsPanel.SetActive(true);
+                        Cursor.lockState = CursorLockMode.None;
+                        //PhotonNetwork.LocalPlayer.GetComponent<PlayerManager>().moveSpeed = 20f;
+                        //GetComponent<PlayerManager>().lookSpeed = 0f;
+                        settingOpen = true;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.P))
+                    {
+                        settingsPanel.SetActive(false);
+                        Cursor.lockState = CursorLockMode.Locked;
+                        //GetComponent<PlayerManager>().moveSpeed = 20f;
+                        //GetComponent<PlayerManager>().lookSpeed = 5f;
+                        settingOpen = false;
+                    }
+                }
+               
+            }
+            
+           
         }
 
         #region Photon Callbacks
@@ -125,8 +185,7 @@ namespace Com.MyCompany.MyGame
                 LoadArena();
             }
         }
-
-
+        
         #endregion
     }
 }
