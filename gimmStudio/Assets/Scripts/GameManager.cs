@@ -38,12 +38,33 @@ namespace Com.MyCompany.MyGame
                 {
                     if(Application.platform == RuntimePlatform.WindowsEditor)
                     {
-                        Debug.Log("You on Windows");
+                        Debug.Log("You on Windows Editor");
                         PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
                         
 
                     }
-                    if(Application.platform == RuntimePlatform.Android)
+                    if (Application.platform == RuntimePlatform.WindowsPlayer)
+                    {
+                        Debug.Log("You on Windows Player");
+                        PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+
+
+                    }
+                    if (Application.platform == RuntimePlatform.OSXEditor)
+                    {
+                        Debug.Log("You on Mac Editor");
+                        PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+
+
+                    }
+                    if (Application.platform == RuntimePlatform.OSXPlayer)
+                    {
+                        Debug.Log("You on Mac Player");
+                        PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+
+
+                    }
+                    if (Application.platform == RuntimePlatform.Android)
                     {
                         Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                         // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
