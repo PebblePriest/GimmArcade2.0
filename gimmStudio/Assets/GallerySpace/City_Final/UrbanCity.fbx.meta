@@ -1,0 +1,367 @@
+fileFormatVersion: 2
+guid: 980d804e5d04d9a4c93b7887a1000599
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: AirConditionerAlt_AC_BodyAlt_BaseColor
+    second: {fileID: 2800000, guid: ed983f47e976e2b479a18750e162322f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: AirConditioner_AC_Body_BaseColor
+    second: {fileID: 2800000, guid: 6946b856b796ed54e94929380e7ad3a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: AirConditioner_AC_MetalBrace_BaseColor
+    second: {fileID: 2800000, guid: 0546400ab8ff2ad46a95e94b964a5b8d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Awning_AWN_Body_BaseColor
+    second: {fileID: 2800000, guid: 4ee964917cd00f4409e668ba2f6261d2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Awning_AWN_Metal_BaseColor
+    second: {fileID: 2800000, guid: 2e52f5153345d25498d7421835924dc2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD11_BLD_11_BaseColor
+    second: {fileID: 2800000, guid: 7de4c033c50bbd24ea8c2cb518a4114a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD12_BLD_12_BaseColor
+    second: {fileID: 2800000, guid: 3dac47207bbcb39479dcee94dabc7f18, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD13_BLD_13_BaseColor
+    second: {fileID: 2800000, guid: f3403cf514333934d9cf59f5e58bf88e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD14_BLD_14_BaseColor
+    second: {fileID: 2800000, guid: 983c3b9b8ee38a748a875f62b3b33756, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD15_BLD_15_BaseColor
+    second: {fileID: 2800000, guid: 01ba5adde8695234fb148b13d81fe6eb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD16_BLD_16_BaseColor
+    second: {fileID: 2800000, guid: 0a083d1fbf44fae4abf51536a7ceb81e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD17_BLD_17_BaseColor
+    second: {fileID: 2800000, guid: 82632705426be03479955c49cec89102, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD17_BLD_17_Normal
+    second: {fileID: 2800000, guid: fea5d77287a14c4429778fb49abc9ab6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD18_BLD_18Glass_BaseColor
+    second: {fileID: 2800000, guid: 29a344e1c0035a7428bde1821730885b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD18_BLD_18Metal_BaseColor
+    second: {fileID: 2800000, guid: 6ee094a7a99ce19479259e68a704790e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD18_BLD_18_BaseColor
+    second: {fileID: 2800000, guid: 98df4a32900c77940adec05d56eec79d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD19_BLD_19_BaseColor
+    second: {fileID: 2800000, guid: 9d736d3db6a1d8a4d9505bec53bece35, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD1_BLD_1_BaseColor
+    second: {fileID: 2800000, guid: 92fc172cbb514df489648e025bc2ae7a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD20_BLD_20_BaseColor
+    second: {fileID: 2800000, guid: a7eae2ef7d15fb344bbf820c8fe4c765, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD21_BLD_21_BaseColor
+    second: {fileID: 2800000, guid: ad67b4fb8c3a44d45ab1297c7d426636, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD2_BLD_2_BaseColor
+    second: {fileID: 2800000, guid: 8fcc2e914cc7b0c42871907cf6723802, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD3_BLD_3_BaseColor
+    second: {fileID: 2800000, guid: 7de190e5e05167342ba917905e2d4848, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD4_BLD_4_BaseColor
+    second: {fileID: 2800000, guid: 67c45d5bd2dca244882f7c79b7fce473, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD5_BLD_5_BaseColor
+    second: {fileID: 2800000, guid: 54c944ebdfbec9048a519713ae670771, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD6_10_BLD_6_10Glass_BaseColor
+    second: {fileID: 2800000, guid: 154a735ee6a70b244979192d5bb1939d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD6_10_BLD_6_10_BaseColor
+    second: {fileID: 2800000, guid: e4263e82371f4654da7abac9dfcb29ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD7_BLD_7_BaseColor
+    second: {fileID: 2800000, guid: f6635014c4152d34fb198d76bcfa0f19, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BLD8_BLD_8_BaseColor
+    second: {fileID: 2800000, guid: c7c99399c5be931468367a212bd61033, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BigSign_S_BigFrame_BaseColor
+    second: {fileID: 2800000, guid: 4e8f60c9418c1ed41ae0a4895b8ffabc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Billboard_S_BillboardFrame_BaseColor
+    second: {fileID: 2800000, guid: 979d3e7843a4ce5499bc9b6ad6f3e915, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CircleSign_S_CircleFrame_BaseColor
+    second: {fileID: 2800000, guid: 8619ef22408393c4d98fa6cf103f5d2f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Doorway_D_Frame_BaseColor
+    second: {fileID: 2800000, guid: a5e00cdf152536545993324fdbf5881c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Doorway_D_Metal_BaseColor
+    second: {fileID: 2800000, guid: 72a2b83779ddf5b439372eec921b0ca2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fences_Mat_Fence_BaseColor
+    second: {fileID: 2800000, guid: 4d8b4fd2d9ff7964ab7ec84bac06af86, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ForwardFaceSign_S_ForwardFrame_BaseColor
+    second: {fileID: 2800000, guid: 270d7a9d2dc03e240a5f272b2a8279b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Keypad_KP_Body_BaseColor
+    second: {fileID: 2800000, guid: fc9cd62d331e5f845a9540351b6706fb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Keypad_KP_Buttons_BaseColor
+    second: {fileID: 2800000, guid: 978d45677c5da004e8536e92394e560b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Keypad_KP_Screen_BaseColor
+    second: {fileID: 2800000, guid: d9e13aeda2eb3134e821c3e4ac823e3d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk_BaseColor
+    second: {fileID: 2800000, guid: 692d996b8d8c10f4f9675a80f36e71e3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk_Stair_1_BaseColor
+    second: {fileID: 2800000, guid: fb204d9a77aab6a4d9f135840c83de14, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk_Stair_2_BaseColor
+    second: {fileID: 2800000, guid: 7c657b344025fb34483f8d32df7d383b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk_Stair_3_BaseColor
+    second: {fileID: 2800000, guid: 46995b293b91f414ca44304689208aca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk_WoodenBoard_BaseColor
+    second: {fileID: 2800000, guid: f3a8bd076417af746b31c34993c909c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: SupportBeam_lambert1_BaseColor
+    second: {fileID: 2800000, guid: d877d2266be11dd4488145d7f8bccf91, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TallSign_S_TallFrame_BaseColor
+    second: {fileID: 2800000, guid: 2abf8615400de394caa82bf602188c7b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TripleWindow_W_TripleFrame_BaseColor
+    second: {fileID: 2800000, guid: 50b717c7e4017114d8b7fcf758009b01, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TripleWindow_W_TripleGlass_BaseColor
+    second: {fileID: 2800000, guid: 2d32cdf5af2df684b92be5666604ab11, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WideShortWindow_W_WideShortFrame_BaseColor
+    second: {fileID: 2800000, guid: 8eee83cb5ac647c4abcf85ae467b4ba4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WideShortWindow_W_WideShortGlass_BaseColor
+    second: {fileID: 2800000, guid: 3afa8f9ebdb1bbe46a6337e264b0644c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Window4Cross_W_4CrossFrame_BaseColor
+    second: {fileID: 2800000, guid: 6df6620186b478343b2d2f3f8298b48f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Window4Cross_W_4CrossGlass_BaseColor
+    second: {fileID: 2800000, guid: c03e7eb55b9b5314d9a6dc00f63c6f0e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WindowSill_W_SillFrame_BaseColor
+    second: {fileID: 2800000, guid: f7357cb262c1c53488f4d0dd2bb262df, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WindowSill_W_SillGlass_BaseColor
+    second: {fileID: 2800000, guid: 37e51f1b7e5a6684eb518313187687c7, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
