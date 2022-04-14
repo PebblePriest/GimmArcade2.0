@@ -8,6 +8,8 @@ using System;
 using System.Collections;
 
 using UnityEngine.InputSystem;
+using Photon.Voice;
+using Photon.Voice.Unity;
 
 namespace Com.MyCompany.MyGame
 {
@@ -35,13 +37,19 @@ namespace Com.MyCompany.MyGame
         private ArcadeScript arcadeCode;
         private float turnSmoothTime = .01f;
         private float turnSmoothVelocity = .15f;
+        public Recorder primaryRecorder;
+        public GameObject voiceManager;
+        
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
         void Awake()
-        {
-
-
+        {      
+            if (photonView.IsMine)
+            {
+                primaryRecorder = voiceManager.GetComponent<Recorder>();
+            }
+            
             // #Important
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
             if (photonView.IsMine)
@@ -121,8 +129,10 @@ namespace Com.MyCompany.MyGame
 
 
                     }
-                
+
                 //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
+
+                PushToTalk();
             }
         }
 
@@ -134,6 +144,8 @@ namespace Com.MyCompany.MyGame
                 theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
 
                 //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+
+                
 
             }
         }
@@ -193,6 +205,22 @@ namespace Com.MyCompany.MyGame
                     isPlaying = false;
                 }
             }
+        }
+
+        public void PushToTalk()
+        {
+            
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    primaryRecorder.transmitEnabled = true;
+                    Debug.Log("TALKING");
+                }
+                if (Input.GetKeyUp(KeyCode.V))
+                {
+                primaryRecorder.transmitEnabled = false;
+                    Debug.Log("Stop TALKING");
+                }
+            
         }
     }
 }

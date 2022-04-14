@@ -89,7 +89,7 @@ namespace Photon.Voice.Unity
         private bool encrypt;
 
         [SerializeField]
-        private bool transmitEnabled;
+        public bool transmitEnabled;
 
         [SerializeField]
         private SamplingRate samplingRate = SamplingRate.Sampling24000;

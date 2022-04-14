@@ -3703,6 +3703,8 @@ MonoBehaviour:
   lookSpeed: 5
   player: {fileID: 6683727312116776262}
   testCam: {fileID: 0}
+  primaryRecorder: {fileID: 0}
+  voiceManager: {fileID: 1651699087097099098, guid: 1b68b2ba598037e4d94b50b1e3daf7e4, type: 3}
 --- !u!54 &6683727312116776264
 Rigidbody:
   m_ObjectHideFlags: 0
