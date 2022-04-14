@@ -217,7 +217,7 @@ namespace Com.MyCompany.MyGame
                 }
                 if (Input.GetKeyUp(KeyCode.V))
                 {
-                primaryRecorder.transmitEnabled = false;
+                    primaryRecorder.transmitEnabled = false;
                     Debug.Log("Stop TALKING");
                 }
             
