@@ -37,9 +37,22 @@ namespace Com.MyCompany.MyGame
         private ArcadeScript arcadeCode;
         private float turnSmoothTime = .01f;
         private float turnSmoothVelocity = .15f;
+        [Header("Teleports")]
+        public GameObject arcade;
+        public GameObject arcadeHud;
+        public bool canEnterArcade;
+        public GameObject plaza;
+        public GameObject plazaHud;
+        public bool canEnterPlaza;
+        public GameObject gallery;
+        public GameObject galleryHud;
+        public bool canEnterGallery;
+
+        [Header("Microphone Settings")]
         public Recorder primaryRecorder;
+        public GameObject micOn, micOff;
         public GameObject voiceManager;
-        
+
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -76,6 +89,7 @@ namespace Com.MyCompany.MyGame
 
                     primaryRecorder.GetComponent<Recorder>().enabled = false;
                 }
+               
             }
         }
 
@@ -84,22 +98,76 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 MouseLookAround();
-                //Vector3 direction = new Vector3(inputX, 0f, inputZ).normalized;
+               
+                   if (Input.GetKeyDown(KeyCode.F))
+                   {
+                    if (canEnterArcade)
+                    {
+                        if (PhotonNetwork.IsMasterClient)
+                        {
 
-                //if (direction.magnitude >= 0.1f)
-                //{
-                //    //gets angle of camera to rotate player based on that angle
-                //    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + myCamera.transform.eulerAngles.y;
-                //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                            PhotonNetwork.AutomaticallySyncScene = false;
+                            canEnterArcade = false;
+                            arcadeHud.SetActive(false);
+                            transform.position = new Vector3(-45, .2f, .5f);
+                            PhotonNetwork.LoadLevel("PlayArea");
 
-                //    //rotates player
-                //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                        }
+                        else
+                        {
+                            canEnterArcade = false;
+                            arcadeHud.SetActive(false);
+                            transform.position = new Vector3(-45, .2f, .5f);
+                            PhotonNetwork.LoadLevel("PlayArea");
+                        }
+                            
+                        
+                       
+                        
+                    }
+                    if(canEnterPlaza)
+                    {
+                        if (PhotonNetwork.IsMasterClient)
+                        {
 
+                            PhotonNetwork.AutomaticallySyncScene = false;
+                            canEnterPlaza = false;
+                            plazaHud.SetActive(false);
+                            transform.position = new Vector3(0 , 5, 0);
+                            PhotonNetwork.LoadLevel("Plaza");
 
-                //    Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                        }
+                        else
+                        {
+                            canEnterPlaza = false;
+                            plazaHud.SetActive(false);
+                            transform.position = new Vector3(0, 5, 0);
+                            PhotonNetwork.LoadLevel("Plaza");
+                        }
+                    }
+                    if (canEnterGallery)
+                    {
+                        if (PhotonNetwork.IsMasterClient)
+                        {
 
-                //    theRB.velocity = new Vector3(moveDir.normalized.x * moveSpeed * Time.deltaTime, theRB.velocity.y, moveDir.normalized.z * moveSpeed * Time.deltaTime);
-                //}
+                            PhotonNetwork.AutomaticallySyncScene = false;
+                            canEnterGallery = false;
+                            galleryHud.SetActive(false);
+                            transform.position = new Vector3(-2, 3, -472);
+                            PhotonNetwork.LoadLevel("GallerySpace");
+
+                        }
+                        else
+                        {
+                            canEnterGallery = false;
+                            galleryHud.SetActive(false);
+                            transform.position = new Vector3(-2, 3, -472);
+                            PhotonNetwork.LoadLevel("GallerySpace");
+                        }
+                    }
+
+                }
+                
                 if (isPlaying)
                     {
                         if (!isLoaded)
@@ -195,6 +263,24 @@ namespace Com.MyCompany.MyGame
                     arcadeCode = other.GetComponent<ArcadeScript>();
                     isPlaying = true;
                 }
+                if(other.tag == "Arcade")
+                {
+                    arcade = other.gameObject;
+                    canEnterArcade = true;
+                    arcadeHud.SetActive(true);
+                }
+                if(other.tag == "Plaza")
+                {
+                    plaza = other.gameObject;
+                    canEnterPlaza = true;
+                    plazaHud.SetActive(true);
+                }
+                if(other.tag == "Gallery")
+                {
+                    gallery = other.gameObject;
+                    canEnterGallery = true;
+                    galleryHud.SetActive(true);
+                }
             }
         }
         public void OnTriggerExit(Collider other)
@@ -206,8 +292,26 @@ namespace Com.MyCompany.MyGame
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
                 }
+                if(other.tag == "Arcade")
+                {
+                    arcadeHud.SetActive(false);
+                    canEnterArcade = false;
+                }
+                if (other.tag == "Plaza")
+                {
+                    plaza = other.gameObject;
+                    canEnterPlaza = false;
+                    plazaHud.SetActive(false);
+                }
+                if (other.tag == "Gallery")
+                {
+                    gallery = other.gameObject;
+                    canEnterGallery = false;
+                    galleryHud.SetActive(false);
+                }
             }
         }
+        
 
         public void PushToTalk()
         {
@@ -216,17 +320,24 @@ namespace Com.MyCompany.MyGame
                 if (Input.GetKeyDown(KeyCode.V))
                 {
                     voiceManager.GetComponent<Recorder>().enabled = true;
+                    micOn.SetActive(true);
+                    micOff.SetActive(false);
                     Debug.Log("TALKING");
                 }
                 if (Input.GetKeyUp(KeyCode.V))
                 {
                     voiceManager.GetComponent<Recorder>().enabled = false;
+                    micOn.SetActive(false);
+                    micOff.SetActive(true);
                     Debug.Log("Stop TALKING");
                 }
             }
                 
             
         }
+       
+       
+       
     }
 }
 

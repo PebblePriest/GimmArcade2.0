@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - VoiceManager
+  - Arcade
+  - Plaza
+  - Gallery
   layers:
   - Default
   - TransparentFX
