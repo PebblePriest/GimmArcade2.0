@@ -73,6 +73,8 @@ namespace Com.MyCompany.MyGame
                 if(myCamera.activeSelf == false)
                 {
                     myCamera.SetActive(true);
+
+                    primaryRecorder.GetComponent<Recorder>().enabled = false;
                 }
             }
         }
@@ -209,17 +211,20 @@ namespace Com.MyCompany.MyGame
 
         public void PushToTalk()
         {
-            
+            if(photonView.IsMine)
+            {
                 if (Input.GetKeyDown(KeyCode.V))
                 {
-                    primaryRecorder.transmitEnabled = true;
+                    voiceManager.GetComponent<Recorder>().enabled = true;
                     Debug.Log("TALKING");
                 }
                 if (Input.GetKeyUp(KeyCode.V))
                 {
-                    primaryRecorder.transmitEnabled = false;
+                    voiceManager.GetComponent<Recorder>().enabled = false;
                     Debug.Log("Stop TALKING");
                 }
+            }
+                
             
         }
     }
