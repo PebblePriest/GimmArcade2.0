@@ -133,7 +133,7 @@ namespace Com.MyCompany.MyGame
                     }
 
                 //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
-
+                GalleryKeypadInteractor();
                 PushToTalk();
             }
         }
@@ -226,6 +226,26 @@ namespace Com.MyCompany.MyGame
             }
                 
             
+        }
+        void GalleryKeypadInteractor()
+        {
+            var ray = GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            //e.enabled = false;
+            if (Physics.Raycast(ray, out hit, 10,LayerMask.GetMask("Interactable")))
+            {
+                var button = hit.transform.gameObject;
+                //e.enabled = true;
+                if (Input.GetKeyDown(KeyCode.T) || Input.GetMouseButtonDown(0))
+                {
+                    switch (button.name)
+                    {
+                        case "Confirm":
+                            button.GetComponentInParent<KeypadTeleporter>().Confirm();
+                            break;
+                    }
+                }
+            }
         }
     }
 }
