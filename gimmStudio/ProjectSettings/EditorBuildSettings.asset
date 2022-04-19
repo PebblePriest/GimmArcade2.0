@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Launcher.unity
     guid: 748770d8bd7f7f244960f99a6c41bd4c
   - enabled: 1
+    path: Assets/Scenes/Plaza.unity
+    guid: 4ddff48db5076ad419ceb9eb71f1819a
+  - enabled: 1
     path: Assets/Scenes/PlayArea.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/GallerySpace.unity
+    guid: c37deb54cd9164e438c60afa17bee270
   - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: b8ef13a7630be93428aa8ee9ff9b1b5d

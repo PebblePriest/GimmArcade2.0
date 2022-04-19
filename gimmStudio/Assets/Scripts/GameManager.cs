@@ -77,6 +77,7 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
+                DontDestroyOnLoad(this.gameObject);
             }
         }
        
@@ -89,7 +90,7 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         public override void OnLeftRoom()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Launcher");
         }
 
         #endregion
@@ -112,12 +113,11 @@ namespace Com.MyCompany.MyGame
             {
                 Debug.LogError("PhotonNetowrk : trying to load a level but we are not the master Client");
             }
-            if(PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-                PhotonNetwork.LoadLevel("PlayArea");
             }
-            
+
         }
 
         #endregion

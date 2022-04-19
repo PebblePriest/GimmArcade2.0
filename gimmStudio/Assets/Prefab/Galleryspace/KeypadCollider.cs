@@ -10,6 +10,7 @@ public class KeypadCollider : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PlayerToBeTeleported = collision.gameObject;
+            GetComponentInParent<KeypadTeleporter>().Confirm();
         }
     }
     private void OnTriggerExit(Collider collision)

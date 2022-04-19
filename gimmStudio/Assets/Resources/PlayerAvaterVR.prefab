@@ -615,7 +615,18 @@ MonoBehaviour:
   lookSpeed: 5
   player: {fileID: 0}
   testCam: {fileID: 0}
+  arcade: {fileID: 0}
+  arcadeHud: {fileID: 0}
+  canEnterArcade: 0
+  plaza: {fileID: 0}
+  plazaHud: {fileID: 0}
+  canEnterPlaza: 0
+  gallery: {fileID: 0}
+  galleryHud: {fileID: 0}
+  canEnterGallery: 0
   primaryRecorder: {fileID: 0}
+  micOn: {fileID: 0}
+  micOff: {fileID: 0}
   voiceManager: {fileID: 0}
 --- !u!114 &5282810807178358230
 MonoBehaviour:
