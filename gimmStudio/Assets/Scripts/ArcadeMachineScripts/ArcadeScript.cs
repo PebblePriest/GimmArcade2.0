@@ -14,4 +14,5 @@ public class ArcadeScript : MonoBehaviour
     {
         testCam.SetActive(false);
     }
+   
 }

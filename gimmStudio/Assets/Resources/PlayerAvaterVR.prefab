@@ -615,6 +615,10 @@ MonoBehaviour:
   lookSpeed: 5
   player: {fileID: 0}
   testCam: {fileID: 0}
+  isTest: 0
+  isOcular: 0
+  isLoaded: 0
+  isPlaying: 0
   arcade: {fileID: 0}
   arcadeHud: {fileID: 0}
   canEnterArcade: 0

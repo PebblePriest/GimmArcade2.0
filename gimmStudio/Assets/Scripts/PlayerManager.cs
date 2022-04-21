@@ -27,16 +27,15 @@ namespace Com.MyCompany.MyGame
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
         private AvatarChanges avatar;
-        private bool isPlaying;
         public GameObject myCamera;
         public float lookSpeed = 5f;
         float cameraPitch = 0.0f;
         public GameObject player;
-        private bool isLoaded;
         public GameObject testCam;
         private ArcadeScript arcadeCode;
         private float turnSmoothTime = .01f;
         private float turnSmoothVelocity = .15f;
+        public bool isTest, isOcular, isLoaded, isPlaying;
         [Header("Teleports")]
         public GameObject arcade;
         public GameObject arcadeHud;
@@ -98,9 +97,9 @@ namespace Com.MyCompany.MyGame
             if (photonView.IsMine)
             {
                 MouseLookAround();
-               
-                   if (Input.GetKeyDown(KeyCode.F))
-                   {
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
                     if (canEnterArcade)
                     {
                         if (PhotonNetwork.IsMasterClient)
@@ -120,12 +119,12 @@ namespace Com.MyCompany.MyGame
                             transform.position = new Vector3(-45, .2f, .5f);
                             PhotonNetwork.LoadLevel("PlayArea");
                         }
-                            
-                        
-                       
-                        
+
+
+
+
                     }
-                    if(canEnterPlaza)
+                    if (canEnterPlaza)
                     {
                         if (PhotonNetwork.IsMasterClient)
                         {
@@ -133,7 +132,7 @@ namespace Com.MyCompany.MyGame
                             PhotonNetwork.AutomaticallySyncScene = false;
                             canEnterPlaza = false;
                             plazaHud.SetActive(false);
-                            transform.position = new Vector3(0 , 5, 0);
+                            transform.position = new Vector3(0, 5, 0);
                             PhotonNetwork.LoadLevel("Plaza");
 
                         }
@@ -165,41 +164,67 @@ namespace Com.MyCompany.MyGame
                             PhotonNetwork.LoadLevel("GallerySpace");
                         }
                     }
-
-                }
-                
-                if (isPlaying)
+                    if (isPlaying)
                     {
                         if (!isLoaded)
                         {
+
                             if (Input.GetKeyDown(KeyCode.F))
                             {
-                                avatar.LeaveArcadeGame();
-                                avatar.playerMovementImpared = true;
-                                arcadeCode.PlayGame();
-                                Debug.Log("Loaded new Scene");
-                                SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
-                                isLoaded = true;
+                                if (isTest)
+                                {
+                                    avatar.LeaveArcadeGame();
+                                    avatar.playerMovementImpared = true;
+                                    arcadeCode.PlayGame();
+                                    Debug.Log("Playing Test Game");
+                                    SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
+                                    isLoaded = true;
+                                }
+                                if (isOcular)
+                                {
+                                    avatar.LeaveArcadeGame();
+                                    avatar.playerMovementImpared = true;
+                                    arcadeCode.PlayGame();
+                                    Debug.Log("Playing Ocular Dark");
+                                    isLoaded = true;
+                                }
+
 
 
                             }
 
                         }
-                        else
-                        {
-                            if (Input.GetKeyDown(KeyCode.L))
-                            {
-                                avatar.PlayArcadeGame();
-                                avatar.playerMovementImpared = false;
-                                arcadeCode.EndGame();
-                                SceneManager.UnloadSceneAsync("Test");
-                                isLoaded = false;
-                            }
-                        }
-
 
                     }
+                }
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    if (isLoaded)
+                    {
+                        Debug.Log("Got the L key");
+                        avatar.PlayArcadeGame();
+                        avatar.playerMovementImpared = false;
+                        arcadeCode.EndGame();
+                        isLoaded = false;
+                        if (isTest)
+                        {
+                            SceneManager.UnloadSceneAsync("Test");
+                        }
+                            
 
+                        
+                    }
+                }
+                    
+                    
+
+
+
+
+
+                
+                
+               
                 //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
 
                 PushToTalk();
@@ -262,6 +287,18 @@ namespace Com.MyCompany.MyGame
                     avatar.PlayArcadeGame();
                     arcadeCode = other.GetComponent<ArcadeScript>();
                     isPlaying = true;
+                    isTest = true;
+                    Debug.Log("In front of test Machine");
+                    avatar.miniGameText.text = "Press 'F' to play Test Scene.";
+                }
+                if(other.name == "OcularDark")
+                {
+                    avatar.PlayArcadeGame();
+                    arcadeCode = other.GetComponent<ArcadeScript>();
+                    isPlaying = true;
+                    isOcular = true;
+                    Debug.Log("In front of Ocular Dark");
+                    avatar.miniGameText.text = "Press 'F' to play Ocular Dark.";
                 }
                 if(other.tag == "Arcade")
                 {
@@ -291,6 +328,13 @@ namespace Com.MyCompany.MyGame
                 {
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
+                    isTest = false;
+                }
+                if(other.name == "OcularDark")
+                {
+                    avatar.LeaveArcadeGame();
+                    isPlaying = false;
+                    isOcular = false;
                 }
                 if(other.tag == "Arcade")
                 {

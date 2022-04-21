@@ -200,8 +200,9 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
+            Debug.Log("Looking for matches");
             miniGameStart.SetActive(true);
-            miniGameText.text = "Press 'F' to play 'Test Scene'.";
+          
         }
         
     }
