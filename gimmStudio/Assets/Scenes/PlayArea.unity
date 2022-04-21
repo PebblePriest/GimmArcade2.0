@@ -638,7 +638,6 @@ GameObject:
   - component: {fileID: 248925574}
   - component: {fileID: 248925573}
   - component: {fileID: 248925572}
-  - component: {fileID: 248925578}
   m_Layer: 0
   m_Name: OcularDark
   m_TagString: Untagged
@@ -774,20 +773,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248925570}
   m_Mesh: {fileID: 7595542528838623718, guid: 5ae8979db15486144bafe2cede7201e5, type: 3}
---- !u!114 &248925578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248925570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb55761b4b924af4e990854c98e44113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 2014665687}
-  videoUrl: https://www.youtube.com/watch?v=nADTdV8wsXQ
 --- !u!1 &288071035
 GameObject:
   m_ObjectHideFlags: 0
@@ -6605,14 +6590,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 3
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: https://www.youtube.com/watch?v=pO-fTpAGHRk&list=PLraccNfiK-F1AU5SyrFxXjh7BsQl_0N3n&index=225
+  m_Url: https://unity-youtube-dl-server.herokuapp.com/watch?v=LGKlOmnKfpU
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
