@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
-
-
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 using Photon.Pun;
-using Photon.Realtime;
 using Com.MyCompany.MyGame;
 
 public class AvatarChanges : MonoBehaviourPunCallbacks
@@ -44,6 +37,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public Material choice2;
     public Material choice3;
 
+    
 
     public void Update()
     {
@@ -85,6 +79,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
             }
+           
         }
         else
         {

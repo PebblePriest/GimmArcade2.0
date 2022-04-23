@@ -33,6 +33,7 @@ namespace Com.MyCompany.MyGame
         public GameObject player;
         public GameObject testCam;
         private ArcadeScript arcadeCode;
+        public GameObject exitScreen;
         private float turnSmoothTime = .01f;
         private float turnSmoothVelocity = .15f;
         public bool isTest, isOcular, isLoaded, isPlaying;
@@ -215,6 +216,12 @@ namespace Com.MyCompany.MyGame
                         
                     }
                 }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    exitScreen.SetActive(true);
+                    avatar.playerMovementImpared = true;
+                }
+                
                     
                     
 

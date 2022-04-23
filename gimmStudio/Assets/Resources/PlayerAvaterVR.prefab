@@ -615,6 +615,7 @@ MonoBehaviour:
   lookSpeed: 5
   player: {fileID: 0}
   testCam: {fileID: 0}
+  exitScreen: {fileID: 0}
   isTest: 0
   isOcular: 0
   isLoaded: 0
