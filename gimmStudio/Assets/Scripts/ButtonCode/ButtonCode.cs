@@ -14,6 +14,7 @@ public class ButtonCode : MonoBehaviourPunCallbacks
     List<GameObject> players = new List<GameObject>();
     [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
     public PhotonView PV;
+    public GameObject exitScreen;
    
 
     public void Update()
@@ -84,5 +85,19 @@ public class ButtonCode : MonoBehaviourPunCallbacks
         {
             mana.LeaveRoom();
         }
+    }
+    public void ExitGame()
+    {
+        if (PV.IsMine)
+        {
+            mana.LeaveRoom();
+            Application.Quit();
+        }
+       
+    }
+    public void Return()
+    {
+        exitScreen.SetActive(false);
+        avatar.playerMovementImpared = false;
     }
 }

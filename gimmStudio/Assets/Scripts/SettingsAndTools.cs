@@ -29,6 +29,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 if (Input.GetKeyDown(KeyCode.LeftAlt))
                 {
                     Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     mouseVisible = true;
                 }
             }
@@ -37,6 +38,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 if (Input.GetKeyDown(KeyCode.LeftAlt))
                 {
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                     mouseVisible = false;
                 }
             }
@@ -46,6 +48,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 {
                     settingsPanel.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     avatar.playerMovementImpared = true;
                     settingOpen = true;
                 }
@@ -56,6 +59,7 @@ public class SettingsAndTools : MonoBehaviourPunCallbacks
                 {
                     settingsPanel.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                     avatar.playerMovementImpared = false;
                     settingOpen = false;
                 }
