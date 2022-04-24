@@ -12,7 +12,7 @@ public class CharacterCreatorSO : ScriptableObject
         BOTTOM,
         HAT,
         MASK,
-        WINGS,
+        BASE,
         HANDS
     }
 
@@ -46,7 +46,7 @@ public class CharacterCreatorSO : ScriptableObject
     private GameObject _activeHair;
     public int _hairIndex = 0;
     public bool _hair = true;
-    public float hairYOffset = 60f;
+    public float hairYOffset = 120f;
 
     #endregion
 
@@ -94,14 +94,14 @@ public class CharacterCreatorSO : ScriptableObject
 
     #endregion
 
-    #region Wings Properties
+    #region Base Properties
 
-    [SerializeField] private GameObject[] wingsModels;
+    [SerializeField] private GameObject[] baseModels;
 
-    public Color _wingsColor;
-    private GameObject _activeWings;
-    public int _wingsIndex = 0;
-    public bool _wings = true;
+    public Color _baseColor;
+    private GameObject _activeBase;
+    public int _baseIndex = 0;
+    public bool _base = true;
 
     #endregion
 
@@ -200,20 +200,20 @@ public class CharacterCreatorSO : ScriptableObject
 
     #endregion
     
-    #region Wings Methods
+    #region Base Methods
 
-    public void WingsModel_GetNext(Transform anchor)
+    public void BaseModel_GetNext(Transform anchor)
     { 
-        if (_wingsIndex < wingsModels.Length - 1) _wingsIndex++;
-        else _wingsIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex,anchor);
+        if (_baseIndex < baseModels.Length - 1) _baseIndex++;
+        else _baseIndex = 0;
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
     }
 
-    public void WingsModel_GetPrevious(Transform anchor)
+    public void BaseModel_GetPrevious(Transform anchor)
     {
-        if (_wingsIndex > 0) _wingsIndex--;
-        else _wingsIndex = wingsModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex,anchor);
+        if (_baseIndex > 0) _baseIndex--;
+        else _baseIndex = baseModels.Length - 1;
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
     }
 
     #endregion
@@ -270,7 +270,7 @@ public class CharacterCreatorSO : ScriptableObject
         ApplyModifier(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom,_bottomIndex,anchor);
         ApplyModifier(CharacterCreatorSO.ModelDetail.HAT,_hat,_hatIndex,anchor);
         //ApplyModifier(CharacterCreatorSO.ModelDetail.MASK,_mask,_maskIndex,anchor);
-        ApplyModifier(CharacterCreatorSO.ModelDetail.WINGS,_wings,_wingsIndex,anchor);
+        ApplyModifier(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
         //ApplyModifier(CharacterCreatorSO.ModelDetail.HANDS,_hands,_handsIndex,anchor);
         
         //TODO: Create special method for eyes
@@ -284,7 +284,7 @@ public class CharacterCreatorSO : ScriptableObject
         _topColor = Color.white;
         _bottomColor = Color.white;
         _eyeColor = Color.white;
-        _wingsColor = Color.white;
+        _baseColor = Color.white;
         _handsColor = Color.white;
         _hatColor = Color.white;
 
@@ -294,7 +294,7 @@ public class CharacterCreatorSO : ScriptableObject
         _topIndex = 0;
         _bottomIndex = 0;
         _eyesIndex = 0;
-        _wingsIndex = 0;
+        _baseIndex = 0;
         _handsIndex = 0;
         _hatIndex = 0;
 
@@ -304,7 +304,7 @@ public class CharacterCreatorSO : ScriptableObject
         _top = true;
         _bottom = true;
         _eyes = true;
-        _wings = true;
+        _base = true;
         _hands = true;
         _hat = true;
     }
@@ -357,12 +357,12 @@ public class CharacterCreatorSO : ScriptableObject
                     ApplyColor(5, _maskColor);
                 }
                 break;
-            case ModelDetail.WINGS:
-                if (_activeWings || !load) Destroy(_activeWings);
+            case ModelDetail.BASE:
+                if (_activeBase || !load) Destroy(_activeBase);
                 if (load)
                 {
-                    _activeWings = Instantiate(wingsModels[id], pos, rot, anchor);
-                    ApplyColor(6, _wingsColor);
+                    _activeBase = Instantiate(baseModels[id], pos, rot, anchor);
+                    ApplyColor(6, _baseColor);
                 }
                 break;
             case ModelDetail.HANDS:
@@ -410,7 +410,7 @@ public class CharacterCreatorSO : ScriptableObject
         ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom, _bottomIndex, anchor);
         ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT,_hat, _hatIndex, anchor);
         //ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK,_mask,_maskIndex,anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE,_base, _baseIndex, anchor);
         //ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS,_hands,_handsIndex,anchor);
 
         //TODO: Create special method for eyes
@@ -464,12 +464,12 @@ public class CharacterCreatorSO : ScriptableObject
                     ApplyColor(5, _maskColor);
                 }
                 break;
-            case ModelDetail.WINGS:
-                if (_activeWings || !load) Destroy(_activeWings);
+            case ModelDetail.BASE:
+                if (_activeBase || !load) Destroy(_activeBase);
                 if (load)
                 {
-                    _activeWings = Instantiate(wingsModels[id], pos, rot, anchor);
-                    ApplyColor(6, _wingsColor);
+                    _activeBase = Instantiate(baseModels[id], pos, rot, anchor);
+                    ApplyColor(6, _baseColor);
                 }
                 break;
             case ModelDetail.HANDS:
@@ -574,22 +574,22 @@ public class CharacterCreatorSO : ScriptableObject
                 }
                 break;
             case 6:
-                _wingsColor = color;
-                if (_activeWings.transform.childCount == 0)
+                _baseColor = color;
+                if (_activeBase.transform.childCount == 0)
                 {
-                    _activeWings.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_wingsColor);
+                    _activeBase.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_baseColor);
                 }
                 else
                 {
-                    for (int i = 0; i < _activeWings.transform.childCount; i++)
+                    for (int i = 0; i < _activeBase.transform.childCount; i++)
                     {
-                        _activeWings.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_wingsColor);
+                        _activeBase.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_baseColor);
                     }
                 } 
                 break;
             case 7:
                 _handsColor = color;
-                if (_activeWings.transform.childCount == 0)
+                if (_activeBase.transform.childCount == 0)
                 {
                     _activeHands.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_handsColor);
                 }
@@ -629,7 +629,7 @@ public class CharacterCreatorSO : ScriptableObject
                 return _maskColor;
                 break;
             case 6:
-                return _wingsColor;
+                return _baseColor;
                 break;
             case 7:
                 return _handsColor;

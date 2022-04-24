@@ -34,8 +34,8 @@ public class ButtonManager : MonoBehaviour
         previousHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetPrevious(headAnchor); });
         //nextMaskButton.onClick.AddListener(() => { characterCreatorSO.MaskModel_GetNext(headAnchor); });
         //previousMaskButton.onClick.AddListener(() => { characterCreatorSO.MaskModel_GetPrevious(headAnchor); });
-        nextWingsButton.onClick.AddListener(() => { characterCreatorSO.WingsModel_GetNext(headAnchor); });
-        previousWingsButton.onClick.AddListener(() => { characterCreatorSO.WingsModel_GetPrevious(headAnchor); });
+        nextWingsButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetNext(headAnchor); });
+        previousWingsButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetPrevious(headAnchor); });
         //nextHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetNext(headAnchor); });
         //previousHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetPrevious(headAnchor); });
     }

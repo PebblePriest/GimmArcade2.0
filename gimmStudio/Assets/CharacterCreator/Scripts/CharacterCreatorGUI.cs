@@ -63,7 +63,7 @@ public class CharacterCreatorGUI : MonoBehaviour
          * 3 = bottom
          * 4 = hat
          * 5 = mask
-         * 6 = wings
+         * 6 = base
          * 7 = hands
          */
         colorWheelControl = _activeColorPickerCanvas.transform.GetChild(0).GetComponent<ColorWheelControl>();
@@ -118,7 +118,7 @@ public class CharacterCreatorGUI : MonoBehaviour
             characterData._bottomIndex, characterData._bottomColor,
             characterData._hatIndex, characterData._hatColor,
             characterData._maskIndex, characterData._maskColor,
-            characterData._wingsIndex, characterData._wingsColor,
+            characterData._baseIndex, characterData._baseColor,
             characterData._handsIndex, characterData._handsColor
         );
         BinaryFormatter bf = new BinaryFormatter();
@@ -167,10 +167,10 @@ public class CharacterCreatorGUI : MonoBehaviour
         characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK,characterData._mask,characterData._maskIndex,headAnchor);
     }
     
-    public void BoolWings()
+    public void BoolBase()
     {
-        characterData._wings = !characterData._wings;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,characterData._wings,characterData._wingsIndex,headAnchor);
+        characterData._base = !characterData._base;
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE,characterData._base, characterData._baseIndex,headAnchor);
     }
     
     public void BoolHands()

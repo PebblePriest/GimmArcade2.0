@@ -2876,7 +2876,7 @@ GameObject:
   - component: {fileID: 1037352306}
   - component: {fileID: 1037352305}
   m_Layer: 5
-  m_Name: backBtn_Wings
+  m_Name: backBtn_BodyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3181,7 +3181,7 @@ GameObject:
   - component: {fileID: 1151618862}
   - component: {fileID: 1151618861}
   m_Layer: 5
-  m_Name: colorWheel_Wings
+  m_Name: colorWheel_BodyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8154,7 +8154,7 @@ GameObject:
   - component: {fileID: 2121798137}
   - component: {fileID: 2121798136}
   m_Layer: 5
-  m_Name: forwardBtn_Wings
+  m_Name: forwardBtn_BodyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
