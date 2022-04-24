@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Com.MyCompany.MyGame;
-
+using SUPERCharacter;
 public class AvatarChanges : MonoBehaviourPunCallbacks
 {
     [Tooltip("Script for the color changing Avatar Menu as well as values used within that script passed to this one")]
@@ -37,12 +37,13 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public Material choice2;
     public Material choice3;
 
-    
+   
 
     public void Update()
     {
         if (PV.IsMine)
         {
+          
             if(!startUp)
             {
                 StartFunction();
@@ -57,25 +58,26 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             }
             if (playerMovementImpared)
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                mainUser.GetComponent<SUPERCharacterAIO>().enabled = false;
 
-                mainUser.GetComponent<PlayerManager>().moveSpeed = 0f;
-                mainUser.GetComponent<PlayerManager>().lookSpeed = 0f;
             }
             else
             {
-
-                mainUser.GetComponent<PlayerManager>().moveSpeed = 20f;
-                mainUser.GetComponent<PlayerManager>().lookSpeed = 5f;
+                mainUser.GetComponent<SUPERCharacterAIO>().enabled = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 2);
             }
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.B))
             {
                 PV.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
             }
@@ -176,6 +178,8 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             mainUser = GameObject.Find("Local");
             playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
             playerName = GameObject.Find("PlayerName").GetComponent<Text>();

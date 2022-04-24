@@ -19,24 +19,24 @@ namespace Com.MyCompany.MyGame
     /// </summary>
     public class PlayerManager : MonoBehaviourPunCallbacks
     {
-        private float inputX, inputZ;
-        private Vector2 deltaPointer;
-        public float moveSpeed = 1000;
-        public Rigidbody theRB;
-        public Transform theCam;
+        //Old Code to move player
+        //private float inputX, inputZ;
+        //private Vector2 deltaPointer;
+        //public float moveSpeed = 1000;
+        //public Rigidbody theRB;
+        //public Transform theCam;
+        //public float lookSpeed = 5f;
+        //float cameraPitch = 0.0f;
+        //private float turnSmoothTime = .01f;
+        //private float turnSmoothVelocity = .15f;
+
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
         private AvatarChanges avatar;
         public GameObject myCamera;
-        public float lookSpeed = 5f;
-        float cameraPitch = 0.0f;
         public GameObject player;
-        public GameObject testCam;
-        private ArcadeScript arcadeCode;
         public GameObject exitScreen;
-        private float turnSmoothTime = .01f;
-        private float turnSmoothVelocity = .15f;
-        public bool isTest, isOcular, isLoaded, isPlaying;
+        
         [Header("Teleports")]
         public GameObject arcade;
         public GameObject arcadeHud;
@@ -53,6 +53,11 @@ namespace Com.MyCompany.MyGame
         public GameObject micOn, micOff;
         public GameObject voiceManager;
 
+        [Header("MiniGames")]
+        public bool isTest, isOcular, isLoaded, isPlaying, isBowling;
+        private ArcadeScript arcadeCode;
+        public BowlingMinigame bowlingCode;
+        public GameObject playerModel;
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -81,7 +86,7 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                //Cursor.lockState = CursorLockMode.Locked;
+                
 
                 if(myCamera.activeSelf == false)
                 {
@@ -97,7 +102,7 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                MouseLookAround();
+                //MouseLookAround();
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -189,6 +194,16 @@ namespace Com.MyCompany.MyGame
                                     Debug.Log("Playing Ocular Dark");
                                     isLoaded = true;
                                 }
+                                if (isBowling)
+                                {
+                                    avatar.LeaveArcadeGame();
+                                    avatar.playerMovementImpared = true;
+                                    bowlingCode.PlayGame();
+                                    myCamera.SetActive(false);
+                                    playerModel.SetActive(false);
+                                    Debug.Log("Bowling!");
+                                    isLoaded = true;
+                                }
 
 
 
@@ -202,13 +217,32 @@ namespace Com.MyCompany.MyGame
                 {
                     if (isLoaded)
                     {
-                        Debug.Log("Got the L key");
-                        avatar.PlayArcadeGame();
-                        avatar.playerMovementImpared = false;
-                        arcadeCode.EndGame();
-                        isLoaded = false;
+                        if (isBowling)
+                        {
+                            Debug.Log("Got the L key");
+                            avatar.PlayArcadeGame();
+                            avatar.playerMovementImpared = false;
+                            bowlingCode.LeaveGame();
+                            myCamera.SetActive(true);
+                            playerModel.SetActive(true);
+                            isLoaded = false;
+                        }
+                        if (isOcular)
+                        {
+                            Debug.Log("Got the L key");
+                            avatar.PlayArcadeGame();
+                            avatar.playerMovementImpared = false;
+                            arcadeCode.EndGame();
+                            isLoaded = false;
+                        }
+                        
                         if (isTest)
                         {
+                            Debug.Log("Got the L key");
+                            avatar.PlayArcadeGame();
+                            avatar.playerMovementImpared = false;
+                            arcadeCode.EndGame();
+                            isLoaded = false;
                             SceneManager.UnloadSceneAsync("Test");
                         }
                             
@@ -240,50 +274,50 @@ namespace Com.MyCompany.MyGame
 
         private void FixedUpdate()
         {
-            if (photonView.IsMine)
-            {
-                theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
-                theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
+            //if (photonView.IsMine)
+            //{
+            //    theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
+            //    theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
 
-                //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
+            //    //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
 
                 
 
-            }
+            //}
         }
 
-        public void Move(InputAction.CallbackContext context)
-        {
-            if (photonView.IsMine)
-            {
-                if (context.performed)
-                {
-                    inputX = context.ReadValue<Vector2>().x;
+        //public void Move(InputAction.CallbackContext context)
+        //{
+        //    if (photonView.IsMine)
+        //    {
+        //        if (context.performed)
+        //        {
+        //            inputX = context.ReadValue<Vector2>().x;
 
-                    inputZ = context.ReadValue<Vector2>().y;
-                }
-            }
-        }
+        //            inputZ = context.ReadValue<Vector2>().y;
+        //        }
+        //    }
+        //}
 
-        public void Look(InputAction.CallbackContext context)
-        {
-            if (photonView.IsMine)
-            {
-                deltaPointer = context.ReadValue<Vector2>();
-            }
-        }
-        public void MouseLookAround()
-        {
-            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        //public void Look(InputAction.CallbackContext context)
+        //{
+        //    if (photonView.IsMine)
+        //    {
+        //        deltaPointer = context.ReadValue<Vector2>();
+        //    }
+        //}
+        //public void MouseLookAround()
+        //{
+        //    Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-            cameraPitch -= mouseDelta.y * lookSpeed;
+        //    cameraPitch -= mouseDelta.y * lookSpeed;
 
-            cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+        //    cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
 
-            theCam.localEulerAngles = Vector3.right * cameraPitch;
+        //    theCam.localEulerAngles = Vector3.right * cameraPitch;
 
-            transform.Rotate(Vector3.up * mouseDelta.x * lookSpeed);
-        }
+        //    transform.Rotate(Vector3.up * mouseDelta.x * lookSpeed);
+        //}
         public void OnTriggerEnter(Collider other)
         {
             if (photonView.IsMine)
@@ -295,7 +329,6 @@ namespace Com.MyCompany.MyGame
                     arcadeCode = other.GetComponent<ArcadeScript>();
                     isPlaying = true;
                     isTest = true;
-                    Debug.Log("In front of test Machine");
                     avatar.miniGameText.text = "Press 'F' to play Test Scene.";
                 }
                 if(other.name == "OcularDark")
@@ -304,8 +337,15 @@ namespace Com.MyCompany.MyGame
                     arcadeCode = other.GetComponent<ArcadeScript>();
                     isPlaying = true;
                     isOcular = true;
-                    Debug.Log("In front of Ocular Dark");
                     avatar.miniGameText.text = "Press 'F' to play Ocular Dark.";
+                }
+                if(other.name == "Bowl")
+                {
+                    avatar.PlayArcadeGame();
+                    bowlingCode = other.GetComponent<BowlingMinigame>();
+                    isPlaying = true;
+                    isBowling = true;
+                    avatar.miniGameText.text = "Press F to play Bowling Minigame";
                 }
                 if(other.tag == "Arcade")
                 {
@@ -336,12 +376,14 @@ namespace Com.MyCompany.MyGame
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
                     isTest = false;
+                    arcadeCode = null;
                 }
                 if(other.name == "OcularDark")
                 {
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
                     isOcular = false;
+                    arcadeCode = null;
                 }
                 if(other.tag == "Arcade")
                 {
@@ -359,6 +401,13 @@ namespace Com.MyCompany.MyGame
                     gallery = other.gameObject;
                     canEnterGallery = false;
                     galleryHud.SetActive(false);
+                }
+                if (other.name == "Bowl")
+                {
+                    avatar.LeaveArcadeGame();
+                    isPlaying = false;
+                    isBowling = false;
+                    bowlingCode = null;
                 }
             }
         }
