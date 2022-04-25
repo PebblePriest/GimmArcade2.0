@@ -15,6 +15,7 @@ public class CharacterCreatorGUI : MonoBehaviour
     [SerializeField] private List<Button> colorButtons;
 
     [SerializeField] private Transform headAnchor;
+    [SerializeField] private Transform bodyAnchor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject colorPickerCanvasPrefab;
     private ColorWheelControl colorWheelControl;
@@ -91,7 +92,7 @@ public class CharacterCreatorGUI : MonoBehaviour
 
     private void Start()
     {
-        characterData.LoadCharacterOnCreator(headAnchor,true);
+        characterData.LoadCharacterOnCreator(bodyAnchor,true);
     }
 
     private void Update()
@@ -146,13 +147,13 @@ public class CharacterCreatorGUI : MonoBehaviour
     public void BoolTop()
     {
         characterData._top = !characterData._top;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,characterData._top,characterData._topIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,characterData._top,characterData._topIndex,bodyAnchor);
     }
     
     public void BoolBottom()
     {
         characterData._bottom = !characterData._bottom;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,characterData._bottom,characterData._bottomIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,characterData._bottom,characterData._bottomIndex, bodyAnchor);
     }
     
     public void BoolHat()
@@ -170,7 +171,7 @@ public class CharacterCreatorGUI : MonoBehaviour
     public void BoolBase()
     {
         characterData._base = !characterData._base;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE,characterData._base, characterData._baseIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE,characterData._base, characterData._baseIndex,bodyAnchor);
     }
     
     public void BoolHands()

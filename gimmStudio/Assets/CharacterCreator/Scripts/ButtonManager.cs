@@ -5,6 +5,7 @@ public class ButtonManager : MonoBehaviour
 {
     [SerializeField] private CharacterCreatorSO characterCreatorSO;
     [SerializeField] private Transform headAnchor;
+    [SerializeField] private Transform bodyAnchor;
     
     [SerializeField] private UnityEngine.UI.Button nextHairButton;
     [SerializeField] private UnityEngine.UI.Button previousHairButton;
@@ -16,8 +17,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Button previousHatButton;
     //[SerializeField] private UnityEngine.UI.Button nextMaskButton;
     //[SerializeField] private UnityEngine.UI.Button previousMaskButton;
-    [SerializeField] private UnityEngine.UI.Button nextWingsButton;
-    [SerializeField] private UnityEngine.UI.Button previousWingsButton;
+    [SerializeField] private UnityEngine.UI.Button nextBaseButton;
+    [SerializeField] private UnityEngine.UI.Button previousBaseButton;
     //[SerializeField] private UnityEngine.UI.Button nextHandsButton;
     //[SerializeField] private UnityEngine.UI.Button previousHandsButton;
 
@@ -34,8 +35,8 @@ public class ButtonManager : MonoBehaviour
         previousHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetPrevious(headAnchor); });
         //nextMaskButton.onClick.AddListener(() => { characterCreatorSO.MaskModel_GetNext(headAnchor); });
         //previousMaskButton.onClick.AddListener(() => { characterCreatorSO.MaskModel_GetPrevious(headAnchor); });
-        nextWingsButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetNext(headAnchor); });
-        previousWingsButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetPrevious(headAnchor); });
+        nextBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetNext(bodyAnchor); });
+        previousBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetPrevious(bodyAnchor); });
         //nextHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetNext(headAnchor); });
         //previousHandsButton.onClick.AddListener(() => { characterCreatorSO.HandsModel_GetPrevious(headAnchor); });
     }

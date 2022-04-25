@@ -3526,9 +3526,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 1888404010}
     m_Modifications:
     - target: {fileID: 291195097882871165, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+      propertyPath: bodyAnchor
+      value: 
+      objectReference: {fileID: 1250581980}
+    - target: {fileID: 291195097882871165, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: headAnchor
       value: 
-      objectReference: {fileID: 1250581978}
+      objectReference: {fileID: 1250581979}
     - target: {fileID: 291195097882871165, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: characterData
       value: 
@@ -3718,9 +3722,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 449033948}
     - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+      propertyPath: bodyAnchor
+      value: 
+      objectReference: {fileID: 1250581980}
+    - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: headAnchor
       value: 
-      objectReference: {fileID: 1250581978}
+      objectReference: {fileID: 1250581979}
     - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: nextHatButton
       value: 
@@ -3729,6 +3737,10 @@ PrefabInstance:
       propertyPath: nextTopButton
       value: 
       objectReference: {fileID: 1938545417}
+    - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+      propertyPath: nextBaseButton
+      value: 
+      objectReference: {fileID: 2121798136}
     - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: nextHairButton
       value: 
@@ -3753,6 +3765,10 @@ PrefabInstance:
       propertyPath: characterCreatorSO
       value: 
       objectReference: {fileID: 11400000, guid: 52362490f335cea44a63ae4baa1ad122, type: 2}
+    - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+      propertyPath: previousBaseButton
+      value: 
+      objectReference: {fileID: 1037352305}
     - target: {fileID: 5621138098802390130, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
       propertyPath: previousHairButton
       value: 
@@ -3781,6 +3797,16 @@ MonoBehaviour:
 --- !u!4 &1250581978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1495597115544656152, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+  m_PrefabInstance: {fileID: 1250581976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1250581979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7665664186952780636, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
+  m_PrefabInstance: {fileID: 1250581976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1250581980 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4398243458222966320, guid: 9c07794af0e0ab04d8706a37878bc536, type: 3}
   m_PrefabInstance: {fileID: 1250581976}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383124843
