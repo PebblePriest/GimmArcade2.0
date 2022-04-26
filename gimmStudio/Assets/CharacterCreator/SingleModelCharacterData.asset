@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hairModels:
   - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
-  - {fileID: 919132149155446097, guid: 611bfdfe7b572564e9518a068ce2fd52, type: 3}
-  _hairColor: {r: 0.9866667, g: 0.0592, b: 0.0592, a: 1}
-  _hairIndex: 1
+  - {fileID: 919132149155446097, guid: 3cbf198a2c0701845b70d8c9807eb5f2, type: 3}
+  - {fileID: 919132149155446097, guid: 877bd43af3df39043aadf137735935e6, type: 3}
+  - {fileID: 919132149155446097, guid: 0264a531d1b7bda438ddffb853bae4f9, type: 3}
+  _hairColor: {r: 1, g: 1, b: 1, a: 1}
+  _hairIndex: 0
   _hair: 1
-  hairYOffset: 8
   topModels:
   - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
   _topColor: {r: 1, g: 1, b: 1, a: 1}
@@ -38,11 +39,13 @@ MonoBehaviour:
   _maskColor: {r: 1, g: 1, b: 1, a: 1}
   _maskIndex: 0
   _mask: 1
-  wingsModels:
-  - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
-  _wingsColor: {r: 1, g: 1, b: 1, a: 1}
-  _wingsIndex: 0
-  _wings: 1
+  baseModels:
+  - {fileID: 919132149155446097, guid: 0d8f81e524dfebf4eb74b052e3b3ce8d, type: 3}
+  - {fileID: 919132149155446097, guid: 14f1c7d184e4ddf4fba8bef03f283da1, type: 3}
+  - {fileID: 919132149155446097, guid: 287249608d5fbc44786457c83d82992f, type: 3}
+  _baseColor: {r: 0, g: 0, b: 0, a: 0}
+  _baseIndex: 0
+  _base: 1
   handsModels: []
   _handsColor: {r: 1, g: 1, b: 1, a: 1}
   _handsIndex: 0

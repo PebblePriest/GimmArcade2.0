@@ -13,12 +13,12 @@ public class CharacterLoad : MonoBehaviourPunCallbacks
     private object[] datas;
     void Start()
     {
-        if(photonView.IsMine)
+        if (photonView.IsMine)
         {
             characterData.LoadCharacter(transform);
             Transform[] children = GetComponentsInChildren<Transform>();
 
-            foreach(Transform child in children)
+            foreach (Transform child in children)
             {
                 child.gameObject.layer = 12;
             }
@@ -28,7 +28,7 @@ public class CharacterLoad : MonoBehaviourPunCallbacks
             GetInstantiationData();
             tempCharData.LoadCharacter(transform);
         }
-        
+
     }
 
     public void GetInstantiationData()
@@ -57,9 +57,9 @@ public class CharacterLoad : MonoBehaviourPunCallbacks
         color = new Color((float)datas[17], (float)datas[18], (float)datas[19]);
         tempCharData._hatColor = color;
 
-        tempCharData._wings = (bool)datas[20];
-        tempCharData._wingsIndex = (int)datas[21];
+        tempCharData._base = (bool)datas[20];
+        tempCharData._baseIndex = (int)datas[21];
         color = new Color((float)datas[22], (float)datas[23], (float)datas[24]);
-        tempCharData._wingsColor = color;
+        tempCharData._baseColor = color;
     }
 }

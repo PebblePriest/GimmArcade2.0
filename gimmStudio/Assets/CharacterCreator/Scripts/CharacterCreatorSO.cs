@@ -12,7 +12,7 @@ public class CharacterCreatorSO : ScriptableObject
         BOTTOM,
         HAT,
         MASK,
-        WINGS,
+        BASE,
         HANDS
     }
 
@@ -30,23 +30,22 @@ public class CharacterCreatorSO : ScriptableObject
     // so this value must be set and stored locally on each machine
     private static readonly int ColorID = Shader.PropertyToID("_BaseColor");
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [MenuItem("Assets/Create/CharacterCreatorSO")]
-    public static void CreateAsset ()
+    public static void CreateAsset()
     {
-        ScriptableObjectUtility.CreateAsset<CharacterCreatorSO> ();
+        ScriptableObjectUtility.CreateAsset<CharacterCreatorSO>();
     }
-    #endif
-    
+#endif
+
     #region Hair Properties
-    
+
     [SerializeField] private GameObject[] hairModels;
-    
+
     public Color _hairColor;
     private GameObject _activeHair;
     public int _hairIndex = 0;
     public bool _hair = true;
-    public float hairYOffset = 8f;
 
     #endregion
 
@@ -60,7 +59,7 @@ public class CharacterCreatorSO : ScriptableObject
     public bool _top = true;
 
     #endregion
-    
+
     #region Bottom Properties
 
     [SerializeField] private GameObject[] bottomModels;
@@ -94,14 +93,14 @@ public class CharacterCreatorSO : ScriptableObject
 
     #endregion
 
-    #region Wings Properties
+    #region Base Properties
 
-    [SerializeField] private GameObject[] wingsModels;
+    [SerializeField] private GameObject[] baseModels;
 
-    public Color _wingsColor;
-    private GameObject _activeWings;
-    public int _wingsIndex = 0;
-    public bool _wings = true;
+    public Color _baseColor;
+    private GameObject _activeBase;
+    public int _baseIndex = 0;
+    public bool _base = true;
 
     #endregion
 
@@ -126,21 +125,22 @@ public class CharacterCreatorSO : ScriptableObject
     public bool _eyes = true;
 
     #endregion
-    
+
     #region Hair Methods
 
     public void HairModel_GetNext(Transform anchor)
     {
         if (_hairIndex < hairModels.Length - 1) _hairIndex++;
         else _hairIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,_hair, _hairIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
+
     }
 
     public void HairModel_GetPrevious(Transform anchor)
     {
         if (_hairIndex > 0) _hairIndex--;
         else _hairIndex = hairModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,_hair, _hairIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
     }
 
     #endregion
@@ -148,35 +148,35 @@ public class CharacterCreatorSO : ScriptableObject
     #region Top Methods
 
     public void TopModel_GetNext(Transform anchor)
-    { 
+    {
         if (_topIndex < topModels.Length - 1) _topIndex++;
         else _topIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,_top, _topIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
     }
 
     public void TopModel_GetPrevious(Transform anchor)
     {
         if (_topIndex > 0) _topIndex--;
         else _topIndex = topModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,_top, _topIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
     }
-    
+
     #endregion
-    
+
     #region Bottom Methods
 
     public void BottomModel_GetNext(Transform anchor)
-    { 
+    {
         if (_bottomIndex < bottomModels.Length - 1) _bottomIndex++;
         else _bottomIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom, _bottomIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
     }
 
     public void BottomModel_GetPrevious(Transform anchor)
     {
         if (_bottomIndex > 0) _bottomIndex--;
         else _bottomIndex = bottomModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom, _bottomIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
     }
 
     #endregion
@@ -184,35 +184,35 @@ public class CharacterCreatorSO : ScriptableObject
     #region Hat Methods
 
     public void HatModel_GetNext(Transform anchor)
-    { 
+    {
         if (_hatIndex < hatModels.Length - 1) _hatIndex++;
         else _hatIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT,_hat, _hatIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
     }
 
     public void HatModel_GetPrevious(Transform anchor)
     {
         if (_hatIndex > 0) _hatIndex--;
         else _hatIndex = hatModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT,_hat, _hatIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
     }
 
     #endregion
-    
-    #region Wings Methods
 
-    public void WingsModel_GetNext(Transform anchor)
-    { 
-        if (_wingsIndex < wingsModels.Length - 1) _wingsIndex++;
-        else _wingsIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex,anchor);
+    #region Base Methods
+
+    public void BaseModel_GetNext(Transform anchor)
+    {
+        if (_baseIndex < baseModels.Length - 1) _baseIndex++;
+        else _baseIndex = 0;
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
     }
 
-    public void WingsModel_GetPrevious(Transform anchor)
+    public void BaseModel_GetPrevious(Transform anchor)
     {
-        if (_wingsIndex > 0) _wingsIndex--;
-        else _wingsIndex = wingsModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex,anchor);
+        if (_baseIndex > 0) _baseIndex--;
+        else _baseIndex = baseModels.Length - 1;
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
     }
 
     #endregion
@@ -220,17 +220,17 @@ public class CharacterCreatorSO : ScriptableObject
     #region EyeColor Methods
 
     public void EyeTexture_GetNext()
-    { 
+    {
         if (_eyesIndex < eyeTextures.Length - 1) _eyesIndex++;
         else _eyesIndex = 0;
-      //  ApplyColor(ColorDetail.EYE_COLOR, _eyesIndex, selectedColor);
+        //  ApplyColor(ColorDetail.EYE_COLOR, _eyesIndex, selectedColor);
     }
 
     public void EyeTexture_GetPrevious()
     {
         if (_eyesIndex > 0) _eyesIndex--;
         else _eyesIndex = eyeTextures.Length - 1;
-      //  ApplyColor(ColorDetail.EYE_COLOR, _eyesIndex, selectedColor);
+        //  ApplyColor(ColorDetail.EYE_COLOR, _eyesIndex, selectedColor);
     }
 
     #endregion
@@ -260,19 +260,14 @@ public class CharacterCreatorSO : ScriptableObject
         Instantiate(nose, pos + new Vector3(0, 1.6f, 0), rot, anchor);
         Instantiate(torso, pos, rot, anchor);
         */
-        //Instantiate(handL, pos + new Vector3(-.4f, .2f, .3f), rot, anchor);
-        //Instantiate(handR, pos + new Vector3(.4f, .2f, .3f), rot, anchor);
 
         //load custom meshes and colors
-        ApplyModifier(CharacterCreatorSO.ModelDetail.HAIR,_hair,_hairIndex,anchor);
-        ApplyModifier(CharacterCreatorSO.ModelDetail.TOP,_top,_topIndex,anchor);
-        ApplyModifier(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom,_bottomIndex,anchor);
-        ApplyModifier(CharacterCreatorSO.ModelDetail.HAT,_hat,_hatIndex,anchor);
-        //ApplyModifier(CharacterCreatorSO.ModelDetail.MASK,_mask,_maskIndex,anchor);
-        ApplyModifier(CharacterCreatorSO.ModelDetail.WINGS,_wings,_wingsIndex,anchor);
-        //ApplyModifier(CharacterCreatorSO.ModelDetail.HANDS,_hands,_handsIndex,anchor);
-        
-        //TODO: Create special method for eyes
+        ApplyModifier(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
+        ApplyModifier(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
+        ApplyModifier(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
+        ApplyModifier(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
+        ApplyModifier(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
+
     }
 
     private void LoadDefaultData()
@@ -283,7 +278,7 @@ public class CharacterCreatorSO : ScriptableObject
         _topColor = Color.white;
         _bottomColor = Color.white;
         _eyeColor = Color.white;
-        _wingsColor = Color.white;
+        _baseColor = Color.white;
         _handsColor = Color.white;
         _hatColor = Color.white;
 
@@ -293,7 +288,7 @@ public class CharacterCreatorSO : ScriptableObject
         _topIndex = 0;
         _bottomIndex = 0;
         _eyesIndex = 0;
-        _wingsIndex = 0;
+        _baseIndex = 0;
         _handsIndex = 0;
         _hatIndex = 0;
 
@@ -303,12 +298,12 @@ public class CharacterCreatorSO : ScriptableObject
         _top = true;
         _bottom = true;
         _eyes = true;
-        _wings = true;
+        _base = true;
         _hands = true;
         _hat = true;
     }
-    
-    public void ApplyModifier(ModelDetail detail,bool load, int id,Transform anchor)
+
+    public void ApplyModifier(ModelDetail detail, bool load, int id, Transform anchor)
     {
         Debug.Log("ApplyModifierCharacter");
         Vector3 pos = anchor.position;
@@ -319,8 +314,8 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeHair || !load) Destroy(_activeHair);
                 if (load)
                 {
-                    _activeHair = Instantiate(hairModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
-                    
+                    _activeHair = Instantiate(hairModels[id], pos, rot, anchor);
+
                     ApplyColor(0, _hairColor);
                 }
                 break;
@@ -344,7 +339,7 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeHat || !load) Destroy(_activeHat);
                 if (load)
                 {
-                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
+                    _activeHat = Instantiate(hatModels[id], pos, rot, anchor);
                     ApplyColor(4, _hatColor);
                 }
                 break;
@@ -352,16 +347,16 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeMask || !load) Destroy(_activeMask);
                 if (load)
                 {
-                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, hairYOffset, 0), rot, anchor);
+                    _activeMask = Instantiate(maskModels[id], pos, rot, anchor);
                     ApplyColor(5, _maskColor);
                 }
                 break;
-            case ModelDetail.WINGS:
-                if (_activeWings || !load) Destroy(_activeWings);
+            case ModelDetail.BASE:
+                if (_activeBase || !load) Destroy(_activeBase);
                 if (load)
                 {
-                    _activeWings = Instantiate(wingsModels[id], pos, rot, anchor);
-                    ApplyColor(6, _wingsColor);
+                    _activeBase = Instantiate(baseModels[id], pos, rot, anchor);
+                    ApplyColor(6, _baseColor);
                 }
                 break;
             case ModelDetail.HANDS:
@@ -400,36 +395,28 @@ public class CharacterCreatorSO : ScriptableObject
         Instantiate(mask, pos + new Vector3(0, 1.6f, 0), rot, anchor);
         Instantiate(nose, pos + new Vector3(0, 1.6f, 0), rot, anchor);
         Instantiate(torso, pos, rot, anchor);*/
-        //Instantiate(handL, pos + new Vector3(-.4f, .2f, .3f), rot, anchor);
-        //Instantiate(handR, pos + new Vector3(.4f, .2f, .3f), rot, anchor);
 
         //load custom meshes and colors
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,_hair, _hairIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,_top, _topIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,_bottom, _bottomIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT,_hat, _hatIndex, anchor);
-        //ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK,_mask,_maskIndex,anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,_wings, _wingsIndex, anchor);
-        //ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS,_hands,_handsIndex,anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
 
-        //TODO: Create special method for eyes
     }
 
     public void ApplyModifierOnCreator(ModelDetail detail, bool load, int id, Transform anchor)
     {
-        float hairOffset = 85f;
         //Debug.Log("ApplyModifierCharacter on Creator");
         Vector3 pos = anchor.position;
         Quaternion rot = anchor.rotation;
-        Debug.Log(pos);
         switch (detail)
         {
             case ModelDetail.HAIR:
                 if (_activeHair || !load) Destroy(_activeHair);
                 if (load)
                 {
-                    //pos + new Vector3(0, hairOffset, 0)
-                    _activeHair = Instantiate(hairModels[id], new Vector3(pos.x, pos.y + hairYOffset, pos.z), rot, anchor);
+                    _activeHair = Instantiate(hairModels[id], pos, rot, anchor);
                     ApplyColor(0, _hairColor);
                 }
                 break;
@@ -453,7 +440,7 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeHat || !load) Destroy(_activeHat);
                 if (load)
                 {
-                    _activeHat = Instantiate(hatModels[id], pos + new Vector3(0, hairOffset, 0), rot, anchor);
+                    _activeHat = Instantiate(hatModels[id], pos, rot, anchor);
                     ApplyColor(4, _hatColor);
                 }
                 break;
@@ -461,16 +448,16 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeMask || !load) Destroy(_activeMask);
                 if (load)
                 {
-                    _activeMask = Instantiate(maskModels[id], pos + new Vector3(0, hairOffset, 0), rot, anchor);
+                    _activeMask = Instantiate(maskModels[id], pos, rot, anchor);
                     ApplyColor(5, _maskColor);
                 }
                 break;
-            case ModelDetail.WINGS:
-                if (_activeWings || !load) Destroy(_activeWings);
+            case ModelDetail.BASE:
+                if (_activeBase || !load) Destroy(_activeBase);
                 if (load)
                 {
-                    _activeWings = Instantiate(wingsModels[id], pos, rot, anchor);
-                    ApplyColor(6, _wingsColor);
+                    _activeBase = Instantiate(baseModels[id], pos, rot, anchor);
+                    ApplyColor(6, _baseColor);
                 }
                 break;
             case ModelDetail.HANDS:
@@ -494,13 +481,13 @@ public class CharacterCreatorSO : ScriptableObject
                 _hairColor = color;
                 if (_activeHair.transform.childCount == 0)
                 {
-                    _activeHair.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_hairColor);
+                    _activeHair.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _hairColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeHair.transform.childCount; i++)
                     {
-                        _activeHair.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_hairColor);
+                        _activeHair.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _hairColor);
                     }
                 }
                 break;
@@ -508,13 +495,13 @@ public class CharacterCreatorSO : ScriptableObject
                 _eyeColor = color;
                 if (_activeEyes.transform.childCount == 0)
                 {
-                    _activeEyes.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_eyeColor);
+                    _activeEyes.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _eyeColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeHair.transform.childCount; i++)
                     {
-                        _activeEyes.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_eyeColor);
+                        _activeEyes.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _eyeColor);
                     }
                 }
                 break;
@@ -522,13 +509,13 @@ public class CharacterCreatorSO : ScriptableObject
                 _topColor = color;
                 if (_activeTop.transform.childCount == 0)
                 {
-                    _activeTop.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_topColor);
+                    _activeTop.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _topColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeTop.transform.childCount; i++)
                     {
-                        _activeTop.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_topColor);
+                        _activeTop.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _topColor);
                     }
                 }
                 break;
@@ -536,13 +523,13 @@ public class CharacterCreatorSO : ScriptableObject
                 _bottomColor = color;
                 if (_activeBottom.transform.childCount == 0)
                 {
-                    _activeBottom.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_bottomColor);
+                    _activeBottom.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _bottomColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeBottom.transform.childCount; i++)
                     {
-                        _activeBottom.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_bottomColor);
+                        _activeBottom.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _bottomColor);
                     }
                 }
                 break;
@@ -550,13 +537,13 @@ public class CharacterCreatorSO : ScriptableObject
                 _hatColor = color;
                 if (_activeHat.transform.childCount == 0)
                 {
-                    _activeHat.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_hatColor);
+                    _activeHat.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _hatColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeHat.transform.childCount; i++)
                     {
-                        _activeHat.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_hatColor);
+                        _activeHat.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _hatColor);
                     }
                 }
                 break;
@@ -564,41 +551,41 @@ public class CharacterCreatorSO : ScriptableObject
                 _maskColor = color;
                 if (_activeMask.transform.childCount == 0)
                 {
-                    _activeMask.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_maskColor);
+                    _activeMask.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _maskColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeMask.transform.childCount; i++)
                     {
-                        _activeMask.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_maskColor);
+                        _activeMask.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _maskColor);
                     }
                 }
                 break;
             case 6:
-                _wingsColor = color;
-                if (_activeWings.transform.childCount == 0)
+                _baseColor = color;
+                if (_activeBase.transform.childCount == 0)
                 {
-                    _activeWings.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_wingsColor);
+                    _activeBase.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _baseColor);
                 }
                 else
                 {
-                    for (int i = 0; i < _activeWings.transform.childCount; i++)
+                    for (int i = 0; i < _activeBase.transform.childCount; i++)
                     {
-                        _activeWings.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_wingsColor);
+                        _activeBase.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _baseColor);
                     }
-                } 
+                }
                 break;
             case 7:
                 _handsColor = color;
-                if (_activeWings.transform.childCount == 0)
+                if (_activeBase.transform.childCount == 0)
                 {
-                    _activeHands.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_handsColor);
+                    _activeHands.GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _handsColor);
                 }
                 else
                 {
                     for (int i = 0; i < _activeHands.transform.childCount; i++)
                     {
-                        _activeHands.transform.GetChild(i).GetComponent<Renderer>().material.SetColor(CharacterCreatorSO.ColorID,_handsColor);
+                        _activeHands.transform.GetChild(i).GetComponentInChildren<Renderer>().material.SetColor(CharacterCreatorSO.ColorID, _handsColor);
                     }
                 }
                 break;
@@ -630,7 +617,7 @@ public class CharacterCreatorSO : ScriptableObject
                 return _maskColor;
                 break;
             case 6:
-                return _wingsColor;
+                return _baseColor;
                 break;
             case 7:
                 return _handsColor;

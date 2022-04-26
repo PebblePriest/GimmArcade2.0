@@ -15,6 +15,7 @@ public class CharacterCreatorGUI : MonoBehaviour
     [SerializeField] private List<Button> colorButtons;
 
     [SerializeField] private Transform headAnchor;
+    [SerializeField] private Transform bodyAnchor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject colorPickerCanvasPrefab;
     private ColorWheelControl colorWheelControl;
@@ -51,7 +52,7 @@ public class CharacterCreatorGUI : MonoBehaviour
         {
             _activeColorPickerCanvas = Instantiate(colorPickerCanvasPrefab);
         }
-        
+
         Debug.Log("step 3: Instantiate");
         _activeColorPickerCanvas.transform.GetChild(0).Find("CloseButton").GetComponent<Button>().onClick.AddListener(CloseColorPicker);
         Debug.Log("step 4: addListener");
@@ -63,7 +64,7 @@ public class CharacterCreatorGUI : MonoBehaviour
          * 3 = bottom
          * 4 = hat
          * 5 = mask
-         * 6 = wings
+         * 6 = body
          * 7 = hands
          */
         colorWheelControl = _activeColorPickerCanvas.transform.GetChild(0).GetComponent<ColorWheelControl>();
@@ -75,7 +76,7 @@ public class CharacterCreatorGUI : MonoBehaviour
         colorWheelControl.UpdateMaterial();
         colorWheelControl.UpdateColor();
     }
-    
+
     private void CloseColorPicker()
     {
         colorOpen = false;
@@ -91,7 +92,7 @@ public class CharacterCreatorGUI : MonoBehaviour
 
     private void Start()
     {
-        characterData.LoadCharacterOnCreator(headAnchor,true);
+        characterData.LoadCharacterOnCreator(bodyAnchor, true);
     }
 
     private void Update()
@@ -100,7 +101,7 @@ public class CharacterCreatorGUI : MonoBehaviour
         {
             characterData.ApplyColor(colorIndex, colorWheelControl.Selection);
         }
-        
+
         spinDirection = colorOpen ? 1 : -3;
         transform.Rotate(Vector3.up, Time.deltaTime * 10f * spinDirection);
     }
@@ -118,7 +119,7 @@ public class CharacterCreatorGUI : MonoBehaviour
             characterData._bottomIndex, characterData._bottomColor,
             characterData._hatIndex, characterData._hatColor,
             characterData._maskIndex, characterData._maskColor,
-            characterData._wingsIndex, characterData._wingsColor,
+            characterData._baseIndex, characterData._baseColor,
             characterData._handsIndex, characterData._handsColor
         );
         BinaryFormatter bf = new BinaryFormatter();
@@ -134,48 +135,47 @@ public class CharacterCreatorGUI : MonoBehaviour
     public void BoolHair()
     {
         characterData._hair = !characterData._hair;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR,characterData._hair,characterData._hairIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, characterData._hair, characterData._hairIndex, headAnchor);
     }
-    
+
     public void BoolEyes()
     {
         characterData._hat = !characterData._eyes;
-        //TODO: Create custom method for eyes
     }
-    
+
     public void BoolTop()
     {
         characterData._top = !characterData._top;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP,characterData._top,characterData._topIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, characterData._top, characterData._topIndex, bodyAnchor);
     }
-    
+
     public void BoolBottom()
     {
         characterData._bottom = !characterData._bottom;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM,characterData._bottom,characterData._bottomIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, characterData._bottom, characterData._bottomIndex, bodyAnchor);
     }
-    
+
     public void BoolHat()
     {
         characterData._hat = !characterData._hat;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT,characterData._hat,characterData._hatIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, characterData._hat, characterData._hatIndex, headAnchor);
     }
-    
+
     public void BoolMask()
     {
         characterData._mask = !characterData._mask;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK,characterData._mask,characterData._maskIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK, characterData._mask, characterData._maskIndex, headAnchor);
     }
-    
-    public void BoolWings()
+
+    public void BoolBase()
     {
-        characterData._wings = !characterData._wings;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.WINGS,characterData._wings,characterData._wingsIndex,headAnchor);
+        characterData._base = !characterData._base;
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, characterData._base, characterData._baseIndex, bodyAnchor);
     }
-    
+
     public void BoolHands()
     {
         characterData._hands = !characterData._hands;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS,characterData._hands,characterData._handsIndex,headAnchor);
+        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS, characterData._hands, characterData._handsIndex, headAnchor);
     }
 }
