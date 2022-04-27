@@ -8,8 +8,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     [Tooltip("Script for the color changing Avatar Menu as well as values used within that script passed to this one")]
     public PlayerNameInputField field;
     public float hair, body, face;
-    Color color;
-    private bool avatarChanging;
+    public bool avatarChanging;
 
 
     [Tooltip("PhotonView for the Game Manager so changes cross over the network, as well as the player name saved over the network")]
@@ -32,13 +31,12 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public GameObject controls;
     public GameObject settings;
     public GameObject miniGameStart;
+    public Renderer playerModel;
 
+    public Material avatarBody;
+    public GameObject playerBody;
     public Material choice1;
-    public Material choice2;
-    public Material choice3;
-
-   
-
+    public Color color;
     public void Update()
     {
         if (PV.IsMine)
@@ -69,19 +67,50 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            if (Input.GetKeyDown(KeyCode.R))
+
+            if (avatarChanging)
             {
-                PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
+                if (playerBody == null)
+                {
+                    Debug.Log("Avatar Color is NonBinary");
+                    playerBody = GameObject.Find("avatarBase_NonBinary(Clone)");
+                    if (playerBody == null)
+                    {
+                        playerBody = GameObject.Find("AvatarBase_Female(Clone)");
+                        if (playerBody == null)
+                        {
+                            playerBody = GameObject.Find("avatarBase_Male(Clone)");
+                            if (playerBody == null)
+                            {
+                                Debug.Log("There is no body here!");
+                            }
+                            else
+                            {
+                                avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
+                                color = avatarBody.color;
+                                playerBody = null;
+                                Debug.Log("I have gotten the material for the Male body!");
+                            }
+                        }
+                        else
+                        {
+                            avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
+                            color = avatarBody.color;
+                            playerBody = null;
+                            Debug.Log("I have gotten the material for the Female body!");
+                        }
+                    }
+                    else
+                    {
+                        avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
+                        color = avatarBody.color;
+                        playerBody = null;
+                        Debug.Log("I have gotten the material for the Non Binary Body!");
+                    }
+
+                }
+
             }
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                PV.RPC("ChangeAvatarTexture", RpcTarget.All, 2);
-            }
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                PV.RPC("ChangeAvatarTexture", RpcTarget.All, 3);
-            }
-           
         }
         else
         {
@@ -117,7 +146,6 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             hud.SetActive(false);
             instructions.SetActive(false);
             mainUser = GameObject.Find("Local");
-            playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
             mainUser.GetComponentInChildren<Camera>().enabled = false;
             avatarChanging = true;
             playerMovementImpared = true;
@@ -138,7 +166,8 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         if (PV.IsMine)
         {
             playerName.text = PhotonNetwork.NickName.ToString();
-            PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
+            PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
+            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
@@ -147,29 +176,22 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         }
     }
 
- 
+
     [PunRPC]
-    void ChangeAvatarTexture(int choice)
+    void ChangeUsername(int choice)
     {
         if (choice == 1)
         {
-            mainUser.GetComponentInChildren<Renderer>().material = choice1;
-            mainUser.GetComponentInChildren<Text>().text = playerName.text;
-            hudPlayerName.text = playerName.text;
-         
-        }
-        if (choice == 2)
-        {
-            mainUser.GetComponentInChildren<Renderer>().material = choice2;
             mainUser.GetComponentInChildren<Text>().text = playerName.text;
             hudPlayerName.text = playerName.text;
         }
-        if (choice == 3)
-        {
-            mainUser.GetComponentInChildren<Renderer>().material = choice3;
-            mainUser.GetComponentInChildren<Text>().text = playerName.text;
-            hudPlayerName.text = playerName.text;
-        }
+    }
+    [PunRPC]
+    void ColorChange(Vector3 randomColor)
+    {
+
+        Color playerColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+        playerModel.material.color = playerColor;
     }
     /// <summary>
     /// Runs in the first update to make sure all the elements of the player are found correctly, as well as pass over the network the username and color of the character.
@@ -181,10 +203,10 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             mainUser = GameObject.Find("Local");
-            playerMaterial = mainUser.GetComponentInChildren<MeshRenderer>().material;
             playerName = GameObject.Find("PlayerName").GetComponent<Text>();
             playerName.text = PhotonNetwork.NickName;
-            PV.RPC("ChangeAvatarTexture", RpcTarget.All, 1);
+            PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
+            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
             playerMovementImpared = true;
             instructions.SetActive(true);
             miniGameStart.SetActive(false);
