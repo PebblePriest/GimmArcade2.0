@@ -620,6 +620,12 @@ MonoBehaviour:
   gallery: {fileID: 0}
   galleryHud: {fileID: 0}
   canEnterGallery: 0
+  classrooms: {fileID: 0}
+  classroomsHud: {fileID: 0}
+  canEnterClassrooms: 0
+  jackPolifka: {fileID: 0}
+  jackPolifkaHud: {fileID: 0}
+  canEnterJackPolifka: 0
   primaryRecorder: {fileID: 0}
   micOn: {fileID: 0}
   micOff: {fileID: 0}

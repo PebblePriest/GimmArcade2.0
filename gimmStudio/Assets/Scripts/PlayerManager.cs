@@ -47,6 +47,12 @@ namespace Com.MyCompany.MyGame
         public GameObject gallery;
         public GameObject galleryHud;
         public bool canEnterGallery;
+        public GameObject classrooms;
+        public GameObject classroomsHud;
+        public bool canEnterClassrooms;
+        public GameObject jackPolifka;
+        public GameObject jackPolifkaHud;
+        public bool canEnterJackPolifka;
 
         [Header("Microphone Settings")]
         public Recorder primaryRecorder;
@@ -125,10 +131,7 @@ namespace Com.MyCompany.MyGame
                             transform.position = new Vector3(-45, .2f, .5f);
                             PhotonNetwork.LoadLevel("PlayArea");
                         }
-
-
-
-
+                        
                     }
                     if (canEnterPlaza)
                     {
@@ -169,6 +172,48 @@ namespace Com.MyCompany.MyGame
                             transform.position = new Vector3(-2, 3, -472);
                             PhotonNetwork.LoadLevel("GallerySpace");
                         }
+                    }
+                    if (canEnterClassrooms)
+                    {
+                        if (PhotonNetwork.IsMasterClient)
+                        {
+
+                            PhotonNetwork.AutomaticallySyncScene = false;
+                            canEnterClassrooms = false;
+                            classroomsHud.SetActive(false);
+                            transform.position = new Vector3(-200, 5f, 5f);
+                            PhotonNetwork.LoadLevel("Classrooms");
+
+                        }
+                        else
+                        {
+                            canEnterClassrooms = false;
+                            classroomsHud.SetActive(false);
+                            transform.position = new Vector3(-200, 5f, 5f);
+                            PhotonNetwork.LoadLevel("Classrooms");
+                        }
+
+                    }
+                    if (canEnterJackPolifka)
+                    {
+                        if (PhotonNetwork.IsMasterClient)
+                        {
+
+                            PhotonNetwork.AutomaticallySyncScene = false;
+                            canEnterJackPolifka = false;
+                            jackPolifkaHud.SetActive(false);
+                            transform.position = new Vector3(-10, 0.5f, 0.5f);
+                            PhotonNetwork.LoadLevel("Jack Polifka's Room");
+
+                        }
+                        else
+                        {
+                            canEnterJackPolifka = false;
+                            jackPolifkaHud.SetActive(false);
+                            transform.position = new Vector3(-10, 0.5f, 0.5f);
+                            PhotonNetwork.LoadLevel("Jack Polifka's Room");
+                        }
+
                     }
                     if (isPlaying)
                     {
@@ -365,6 +410,18 @@ namespace Com.MyCompany.MyGame
                     canEnterGallery = true;
                     galleryHud.SetActive(true);
                 }
+                if(other.tag == "Classrooms")
+                {
+                    classrooms = other.gameObject;
+                    canEnterClassrooms = true;
+                    classroomsHud.SetActive(true);
+                }
+                if(other.tag == "Jack Polifka")
+                {
+                    jackPolifka = other.gameObject;
+                    canEnterJackPolifka = true;
+                    jackPolifkaHud.SetActive(true);
+                }
             }
         }
         public void OnTriggerExit(Collider other)
@@ -401,6 +458,18 @@ namespace Com.MyCompany.MyGame
                     gallery = other.gameObject;
                     canEnterGallery = false;
                     galleryHud.SetActive(false);
+                }
+                if (other.tag == "Classrooms")
+                {
+                    classrooms = other.gameObject;
+                    canEnterClassrooms = false;
+                    classroomsHud.SetActive(false);
+                }
+                if (other.tag == "Jack Polifka")
+                {
+                    jackPolifka = other.gameObject;
+                    canEnterJackPolifka = false;
+                    jackPolifkaHud.SetActive(false);
                 }
                 if (other.name == "Bowl")
                 {
