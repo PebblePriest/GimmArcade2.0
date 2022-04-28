@@ -7074,7 +7074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3123228169260249378}
   m_Layer: 0
-  m_Name: VisblePlayerAnchor
+  m_Name: VisiblePlayerAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7088,7 +7088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8734442416311533575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.09, y: 31.03, z: 20.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 727330273974258409}
@@ -7366,7 +7366,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 982494241064266932, guid: 7d7fcca2b5ee34c43b4e46a4c4842abf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.168
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 1823298081281670667, guid: 7d7fcca2b5ee34c43b4e46a4c4842abf, type: 3}
       propertyPath: nextHatButton
@@ -8365,6 +8365,10 @@ PrefabInstance:
     - target: {fileID: 6189033561060099340, guid: af7734d8faf5c8c45a00516942901d20, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189033561060099340, guid: af7734d8faf5c8c45a00516942901d20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6820716577965809590, guid: af7734d8faf5c8c45a00516942901d20, type: 3}
       propertyPath: m_RootOrder

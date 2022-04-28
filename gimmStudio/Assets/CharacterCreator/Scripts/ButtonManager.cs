@@ -22,15 +22,15 @@ public class ButtonManager : MonoBehaviour
     private void Start()
     {
         //characterCreatorSO.HairModel_GetNext(headAnchor); 
-        nextHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetNext(headAnchor, visablePlayer); });
-        previousHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetPrevious(headAnchor, visablePlayer); });
-        nextTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetNext(headAnchor, visablePlayer); });
-        previousTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetPrevious(headAnchor, visablePlayer); });
-        nextBottomButton.onClick.AddListener(() => { characterCreatorSO.BottomModel_GetNext(headAnchor, visablePlayer); });
-        previousBottomButton.onClick.AddListener(() => { characterCreatorSO.BottomModel_GetPrevious(headAnchor, visablePlayer); });
-        nextHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetNext(headAnchor, visablePlayer); });
-        previousHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetPrevious(headAnchor, visablePlayer); });
-        nextBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetNext(bodyAnchor, visablePlayer); });
-        previousBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetPrevious(bodyAnchor, visablePlayer); });
+        nextHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetNext(headAnchor); });
+        previousHairButton.onClick.AddListener(() => { characterCreatorSO.HairModel_GetPrevious(headAnchor); });
+        nextTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetNext(headAnchor); });
+        previousTopButton.onClick.AddListener(() => { characterCreatorSO.TopModel_GetPrevious(headAnchor); });
+        nextBottomButton.onClick.AddListener(() => { characterCreatorSO.BottomModel_GetNext(headAnchor); });
+        previousBottomButton.onClick.AddListener(() => { characterCreatorSO.BottomModel_GetPrevious(headAnchor); });
+        nextHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetNext(headAnchor); });
+        previousHatButton.onClick.AddListener(() => { characterCreatorSO.HatModel_GetPrevious(headAnchor); });
+        nextBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetNext(bodyAnchor); });
+        previousBaseButton.onClick.AddListener(() => { characterCreatorSO.BaseModel_GetPrevious(bodyAnchor); });
     }
 }

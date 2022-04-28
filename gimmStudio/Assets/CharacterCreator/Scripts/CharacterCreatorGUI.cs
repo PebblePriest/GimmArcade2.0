@@ -94,7 +94,7 @@ public class CharacterCreatorGUI : MonoBehaviour
 
     private void Start()
     {
-        characterData.LoadCharacterOnCreator(bodyAnchor, visablePlayer, true);
+        characterData.LoadCharacterOnCreator(bodyAnchor, true);
     }
 
     private void Update()
