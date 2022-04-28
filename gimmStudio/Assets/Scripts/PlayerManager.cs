@@ -202,7 +202,7 @@ namespace Com.MyCompany.MyGame
                             PhotonNetwork.AutomaticallySyncScene = false;
                             canEnterJackPolifka = false;
                             jackPolifkaHud.SetActive(false);
-                            transform.position = new Vector3(-10, 0.5f, 0.5f);
+                            transform.position = new Vector3(-18.4f, 0.5f, 0.5f);
                             PhotonNetwork.LoadLevel("Jack Polifka's Room");
 
                         }
@@ -210,7 +210,7 @@ namespace Com.MyCompany.MyGame
                         {
                             canEnterJackPolifka = false;
                             jackPolifkaHud.SetActive(false);
-                            transform.position = new Vector3(-10, 0.5f, 0.5f);
+                            transform.position = new Vector3(-18.44f, 0.5f, 0.5f);
                             PhotonNetwork.LoadLevel("Jack Polifka's Room");
                         }
 
