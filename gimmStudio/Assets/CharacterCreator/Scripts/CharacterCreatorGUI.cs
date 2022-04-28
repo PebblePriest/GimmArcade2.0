@@ -16,6 +16,8 @@ public class CharacterCreatorGUI : MonoBehaviour
 
     [SerializeField] private Transform headAnchor;
     [SerializeField] private Transform bodyAnchor;
+    [SerializeField] private Transform visablePlayer;
+
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject colorPickerCanvasPrefab;
     private ColorWheelControl colorWheelControl;
@@ -92,7 +94,7 @@ public class CharacterCreatorGUI : MonoBehaviour
 
     private void Start()
     {
-        characterData.LoadCharacterOnCreator(bodyAnchor, true);
+        characterData.LoadCharacterOnCreator(bodyAnchor, visablePlayer, true);
     }
 
     private void Update()
@@ -132,50 +134,50 @@ public class CharacterCreatorGUI : MonoBehaviour
         SaveFile();
     }
 
-    public void BoolHair()
-    {
-        characterData._hair = !characterData._hair;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, characterData._hair, characterData._hairIndex, headAnchor);
-    }
+    // public void BoolHair()
+    // {
+    //     characterData._hair = !characterData._hair;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, characterData._hair, characterData._hairIndex, headAnchor);
+    // }
 
-    public void BoolEyes()
-    {
-        characterData._hat = !characterData._eyes;
-    }
+    // public void BoolEyes()
+    // {
+    //     characterData._hat = !characterData._eyes;
+    // }
 
-    public void BoolTop()
-    {
-        characterData._top = !characterData._top;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, characterData._top, characterData._topIndex, bodyAnchor);
-    }
+    // public void BoolTop()
+    // {
+    //     characterData._top = !characterData._top;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, characterData._top, characterData._topIndex, bodyAnchor);
+    // }
 
-    public void BoolBottom()
-    {
-        characterData._bottom = !characterData._bottom;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, characterData._bottom, characterData._bottomIndex, bodyAnchor);
-    }
+    // public void BoolBottom()
+    // {
+    //     characterData._bottom = !characterData._bottom;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, characterData._bottom, characterData._bottomIndex, bodyAnchor);
+    // }
 
-    public void BoolHat()
-    {
-        characterData._hat = !characterData._hat;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, characterData._hat, characterData._hatIndex, headAnchor);
-    }
+    // public void BoolHat()
+    // {
+    //     characterData._hat = !characterData._hat;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, characterData._hat, characterData._hatIndex, headAnchor);
+    // }
 
-    public void BoolMask()
-    {
-        characterData._mask = !characterData._mask;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK, characterData._mask, characterData._maskIndex, headAnchor);
-    }
+    // public void BoolMask()
+    // {
+    //     characterData._mask = !characterData._mask;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.MASK, characterData._mask, characterData._maskIndex, headAnchor);
+    // }
 
-    public void BoolBase()
-    {
-        characterData._base = !characterData._base;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, characterData._base, characterData._baseIndex, bodyAnchor);
-    }
+    // public void BoolBase()
+    // {
+    //     characterData._base = !characterData._base;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, characterData._base, characterData._baseIndex, bodyAnchor);
+    // }
 
-    public void BoolHands()
-    {
-        characterData._hands = !characterData._hands;
-        characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS, characterData._hands, characterData._handsIndex, headAnchor);
-    }
+    // public void BoolHands()
+    // {
+    //     characterData._hands = !characterData._hands;
+    //     characterData.ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HANDS, characterData._hands, characterData._handsIndex, headAnchor);
+    // }
 }

@@ -44,6 +44,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _hairColor;
     private GameObject _activeHair;
+    private GameObject _activeVisableHair;
     public int _hairIndex = 0;
     public bool _hair = true;
 
@@ -55,6 +56,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _topColor;
     private GameObject _activeTop;
+    private GameObject _activeVisableTop;
     public int _topIndex = 0;
     public bool _top = true;
 
@@ -66,6 +68,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _bottomColor;
     private GameObject _activeBottom;
+    private GameObject _activeVisableBottom;
     public int _bottomIndex = 0;
     public bool _bottom = true;
 
@@ -77,6 +80,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _hatColor;
     private GameObject _activeHat;
+    private GameObject _activeVisableHat;
     public int _hatIndex = 0;
     public bool _hat = true;
 
@@ -88,6 +92,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _maskColor;
     private GameObject _activeMask;
+    private GameObject _activeVisableMask;
     public int _maskIndex = 0;
     public bool _mask = true;
 
@@ -99,6 +104,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _baseColor;
     private GameObject _activeBase;
+    private GameObject _activeVisableBase;
     public int _baseIndex = 0;
     public bool _base = true;
 
@@ -110,6 +116,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     public Color _handsColor;
     private GameObject _activeHands;
+    private GameObject _activeVisableHands;
     public int _handsIndex = 0;
     public bool _hands = true;
 
@@ -128,91 +135,91 @@ public class CharacterCreatorSO : ScriptableObject
 
     #region Hair Methods
 
-    public void HairModel_GetNext(Transform anchor)
+    public void HairModel_GetNext(Transform anchor, Transform visableAnchor)
     {
         if (_hairIndex < hairModels.Length - 1) _hairIndex++;
         else _hairIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor, visableAnchor);
 
     }
 
-    public void HairModel_GetPrevious(Transform anchor)
+    public void HairModel_GetPrevious(Transform anchor, Transform visableAnchor)
     {
         if (_hairIndex > 0) _hairIndex--;
         else _hairIndex = hairModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor, visableAnchor);
     }
 
     #endregion
 
     #region Top Methods
 
-    public void TopModel_GetNext(Transform anchor)
+    public void TopModel_GetNext(Transform anchor, Transform visableAnchor)
     {
         if (_topIndex < topModels.Length - 1) _topIndex++;
         else _topIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor, visableAnchor);
     }
 
-    public void TopModel_GetPrevious(Transform anchor)
+    public void TopModel_GetPrevious(Transform anchor, Transform visableAnchor)
     {
         if (_topIndex > 0) _topIndex--;
         else _topIndex = topModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor, visableAnchor);
     }
 
     #endregion
 
     #region Bottom Methods
 
-    public void BottomModel_GetNext(Transform anchor)
+    public void BottomModel_GetNext(Transform anchor, Transform visableAnchor)
     {
         if (_bottomIndex < bottomModels.Length - 1) _bottomIndex++;
         else _bottomIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor, visableAnchor);
     }
 
-    public void BottomModel_GetPrevious(Transform anchor)
+    public void BottomModel_GetPrevious(Transform anchor, Transform visableAnchor)
     {
         if (_bottomIndex > 0) _bottomIndex--;
         else _bottomIndex = bottomModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor, visableAnchor);
     }
 
     #endregion
 
     #region Hat Methods
 
-    public void HatModel_GetNext(Transform anchor)
+    public void HatModel_GetNext(Transform anchor, Transform visableAnchor)
     {
         if (_hatIndex < hatModels.Length - 1) _hatIndex++;
         else _hatIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor, visableAnchor);
     }
 
-    public void HatModel_GetPrevious(Transform anchor)
+    public void HatModel_GetPrevious(Transform anchor, Transform visableAnchor)
     {
         if (_hatIndex > 0) _hatIndex--;
         else _hatIndex = hatModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor, visableAnchor);
     }
 
     #endregion
 
     #region Base Methods
 
-    public void BaseModel_GetNext(Transform anchor)
+    public void BaseModel_GetNext(Transform anchor, Transform visableAnchor)
     {
         if (_baseIndex < baseModels.Length - 1) _baseIndex++;
         else _baseIndex = 0;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor, visableAnchor);
     }
 
-    public void BaseModel_GetPrevious(Transform anchor)
+    public void BaseModel_GetPrevious(Transform anchor, Transform visableAnchor)
     {
         if (_baseIndex > 0) _baseIndex--;
         else _baseIndex = baseModels.Length - 1;
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor, visableAnchor);
     }
 
     #endregion
@@ -315,7 +322,6 @@ public class CharacterCreatorSO : ScriptableObject
                 if (load)
                 {
                     _activeHair = Instantiate(hairModels[id], pos, rot, anchor);
-
                     ApplyColor(0, _hairColor);
                 }
                 break;
@@ -372,7 +378,7 @@ public class CharacterCreatorSO : ScriptableObject
         }
     }
 
-    public void LoadCharacterOnCreator(Transform anchor, bool isCreator = false)
+    public void LoadCharacterOnCreator(Transform anchor, Transform visableAnchor,bool isCreator = false)
     {
         //Debug.Log("LoadCharacter");
         // Sam did is
@@ -397,15 +403,15 @@ public class CharacterCreatorSO : ScriptableObject
         Instantiate(torso, pos, rot, anchor);*/
 
         //load custom meshes and colors
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor);
-        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAIR, _hair, _hairIndex, anchor, visableAnchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.TOP, _top, _topIndex, anchor, visableAnchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BOTTOM, _bottom, _bottomIndex, anchor, visableAnchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.HAT, _hat, _hatIndex, anchor, visableAnchor);
+        ApplyModifierOnCreator(CharacterCreatorSO.ModelDetail.BASE, _base, _baseIndex, anchor, visableAnchor);
 
     }
 
-    public void ApplyModifierOnCreator(ModelDetail detail, bool load, int id, Transform anchor)
+    public void ApplyModifierOnCreator(ModelDetail detail, bool load, int id, Transform anchor, Transform visableAnchor)
     {
         //Debug.Log("ApplyModifierCharacter on Creator");
         Vector3 pos = anchor.position;
@@ -414,54 +420,75 @@ public class CharacterCreatorSO : ScriptableObject
         {
             case ModelDetail.HAIR:
                 if (_activeHair || !load) Destroy(_activeHair);
+                if (_activeVisableHair || !load) Destroy(_activeVisableHair);
                 if (load)
                 {
                     _activeHair = Instantiate(hairModels[id], pos, rot, anchor);
                     ApplyColor(0, _hairColor);
+                    _activeHair.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+
+                    _activeVisableHair = Instantiate(hairModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.TOP:
                 if (_activeTop || !load) Destroy(_activeTop);
+                if (_activeVisableTop || !load) Destroy(_activeVisableTop);
                 if (load)
                 {
                     _activeTop = Instantiate(topModels[id], pos, rot, anchor);
                     ApplyColor(2, _topColor);
+
+                    _activeVisableTop = Instantiate(topModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.BOTTOM:
                 if (_activeBottom || !load) Destroy(_activeBottom);
+                if (_activeVisableBottom || !load) Destroy(_activeVisableBottom);
                 if (load)
                 {
                     _activeBottom = Instantiate(bottomModels[id], pos, rot, anchor);
                     ApplyColor(3, _bottomColor);
+
+                    _activeVisableBottom = Instantiate(bottomModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.HAT:
                 if (_activeHat || !load) Destroy(_activeHat);
+                if (_activeVisableHat || !load) Destroy(_activeVisableHat);
                 if (load)
                 {
                     _activeHat = Instantiate(hatModels[id], pos, rot, anchor);
                     ApplyColor(4, _hatColor);
+
+                    _activeVisableHat = Instantiate(hatModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.MASK:
                 if (_activeMask || !load) Destroy(_activeMask);
+                if (_activeVisableMask || !load) Destroy(_activeVisableMask);
                 if (load)
                 {
                     _activeMask = Instantiate(maskModels[id], pos, rot, anchor);
                     ApplyColor(5, _maskColor);
+
+                    _activeVisableMask = Instantiate(maskModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.BASE:
                 if (_activeBase || !load) Destroy(_activeBase);
+                if (_activeVisableBase || !load) Destroy(_activeVisableBase);
                 if (load)
                 {
                     _activeBase = Instantiate(baseModels[id], pos, rot, anchor);
                     ApplyColor(6, _baseColor);
+                    _activeBase.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+
+                    _activeVisableBase = Instantiate(baseModels[id], pos, rot, visableAnchor);
                 }
                 break;
             case ModelDetail.HANDS:
                 if (_activeHands || !load) Destroy(_activeHands);
+                if (_activeVisableHands || !load) Destroy(_activeVisableHands);
                 if (load)
                 {
                     _activeHands = Instantiate(handsModels[id], pos, rot, anchor);
