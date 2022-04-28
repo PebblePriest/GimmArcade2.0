@@ -624,11 +624,6 @@ MonoBehaviour:
   micOn: {fileID: 0}
   micOff: {fileID: 0}
   voiceManager: {fileID: 0}
-  isTest: 0
-  isOcular: 0
-  isLoaded: 0
-  isPlaying: 0
-  isBowling: 0
   bowlingCode: {fileID: 0}
   playerModel: {fileID: 0}
 --- !u!114 &5282810807178358230

@@ -54,7 +54,7 @@ namespace Com.MyCompany.MyGame
         public GameObject voiceManager;
 
         [Header("MiniGames")]
-        public bool isTest, isOcular, isLoaded, isPlaying, isBowling;
+        private bool isTest, isOcular, isDevil, isLoaded, isPlaying, isBowling;
         private ArcadeScript arcadeCode;
         public BowlingMinigame bowlingCode;
         public GameObject playerModel;
@@ -194,6 +194,14 @@ namespace Com.MyCompany.MyGame
                                     Debug.Log("Playing Ocular Dark");
                                     isLoaded = true;
                                 }
+                                if (isDevil)
+                                {
+                                    avatar.LeaveArcadeGame();
+                                    avatar.playerMovementImpared = true;
+                                    arcadeCode.PlayGame();
+                                    Debug.Log("Playing Devil's Secretary");
+                                    isLoaded = true;
+                                }
                                 if (isBowling)
                                 {
                                     avatar.LeaveArcadeGame();
@@ -228,6 +236,14 @@ namespace Com.MyCompany.MyGame
                             isLoaded = false;
                         }
                         if (isOcular)
+                        {
+                            Debug.Log("Got the L key");
+                            avatar.PlayArcadeGame();
+                            avatar.playerMovementImpared = false;
+                            arcadeCode.EndGame();
+                            isLoaded = false;
+                        }
+                        if (isDevil)
                         {
                             Debug.Log("Got the L key");
                             avatar.PlayArcadeGame();
@@ -339,6 +355,14 @@ namespace Com.MyCompany.MyGame
                     isOcular = true;
                     avatar.miniGameText.text = "Press 'F' to play Ocular Dark.";
                 }
+                if(other.name =="DevilsSecretary")
+                {
+                    avatar.PlayArcadeGame();
+                    arcadeCode = other.GetComponent<ArcadeScript>();
+                    isPlaying = true;
+                    isDevil = true;
+                    avatar.miniGameText.text = "Press 'F' to play Devil's Secretary.";
+                }
                 if(other.name == "Bowl")
                 {
                     avatar.PlayArcadeGame();
@@ -383,6 +407,13 @@ namespace Com.MyCompany.MyGame
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
                     isOcular = false;
+                    arcadeCode = null;
+                }
+                if(other.name == "DevilsSecretary")
+                {
+                    avatar.LeaveArcadeGame();
+                    isPlaying = false;
+                    isDevil = false;
                     arcadeCode = null;
                 }
                 if(other.tag == "Arcade")

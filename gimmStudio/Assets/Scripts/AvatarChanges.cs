@@ -32,18 +32,20 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public GameObject settings;
     public GameObject miniGameStart;
     public Renderer playerModel;
-
+    public Renderer hairModel;
     public Material avatarBody;
    
     public Material choice1;
     public Color color;
-
+    public Color hairColor;
+    public Material hairMaterial;
 
     [Header("Player GameObjects")]
     private GameObject playerBody;
+    private GameObject hairBody;
     public GameObject visiblePlayerAnchor;
     public GameObject nonBinaryBody, femaleBody, maleBody, hairStyle1, hairStyle2, hairStyle3;
-    public bool isMale, isFemale, isNon, isHair1, isHair2, isHair3;
+    public bool isMale, isFemale, isNon,noHair, isHair1, isHair2, isHair3;
     public void Update()
     {
         if (PV.IsMine)
@@ -77,6 +79,60 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
 
             if (avatarChanging)
             {
+                if(hairBody == null)
+                {
+                    Debug.Log("Hair Color is Choice 1");
+                    hairBody = GameObject.Find("AvatarHair_1(Clone)");
+                    if (hairBody == null)
+                    {
+                        Debug.Log("Hair Color is Choice 1");
+                        hairBody = GameObject.Find("AvatarHair_2(Clone)");
+                        if (hairBody == null)
+                        {
+                            Debug.Log("Hair Color is Choice 1");
+                            hairBody = GameObject.Find("AvatarHair_3(Clone)");
+                            if (hairBody == null)
+                            {
+                                Debug.Log("There is no hair here!");
+                                isHair1 = false;
+                                isHair2 = false;
+                                isHair3 = false;
+                                noHair = true;
+                            }
+                            else
+                            {
+                                isHair1 = false;
+                                isHair2 = false;
+                                isHair3 = true;
+                                hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
+                                hairColor = hairMaterial.color;
+                                hairBody = null;
+                                Debug.Log("You have chosen hair 1");
+                            }
+                        }
+                        else
+                        {
+                            isHair1 = false;
+                            isHair2 = true;
+                            isHair3 = false;
+                            hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
+                            hairColor = hairMaterial.color;
+                            hairBody = null;
+                            Debug.Log("You have chosen hair 1");
+                        }
+                    }
+                    else
+                    {
+                        isHair1 = true;
+                        isHair2 = false;
+                        isHair3 = false;
+                        hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
+                        hairColor = hairMaterial.color;
+                        hairBody = null;
+                        Debug.Log("You have chosen hair 1");
+                    }
+                }
+
                 if (playerBody == null)
                 {
                     Debug.Log("Avatar Color is NonBinary");
@@ -198,33 +254,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         if (PV.IsMine)
         {
             playerName.text = PhotonNetwork.NickName.ToString();
-            PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
-            if (isNon)
-            {
-                
-                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, true);
-                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
-                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
-               
-            }   
-            if (isMale)
-            {
-               
-                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
-                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, true);
-                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
-                
-            }
-
-            if (isFemale)
-            {
-                
-                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
-                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
-                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, true);
-                
-            }
-            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+            AvatarBodySelect();
             visiblePlayerAnchor.SetActive(false);
             avatarMenu.SetActive(false);
             hud.SetActive(true);
@@ -233,7 +263,54 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             playerMovementImpared = false;
         }
     }
+    [PunRPC]
+    void HairOption1(bool isActive)
+    {
+        if (isActive)
+        {
+            hairStyle1.SetActive(isActive);
+            hairModel = hairStyle1.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            hairStyle1.SetActive(isActive);
+            Debug.Log("Do not set the hairModel for the hairstyle1");
+        }
 
+
+    }
+    [PunRPC]
+    void HairOption2(bool isActive)
+    {
+        if (isActive)
+        {
+            hairStyle2.SetActive(isActive);
+            hairModel = hairStyle2.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            hairStyle2.SetActive(isActive);
+            Debug.Log("Do not set the hairModel for the hairstyle2");
+        }
+
+
+    }
+    [PunRPC]
+    void HairOption3(bool isActive)
+    {
+        if (isActive)
+        {
+            hairStyle3.SetActive(isActive);
+            hairModel = hairStyle3.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            hairStyle3.SetActive(isActive);
+            Debug.Log("Do not set the hairModel for the hairstyle3");
+        }
+
+
+    }
     [PunRPC]
     void NonBinaryAvatar(bool isActive)
     {
@@ -292,12 +369,20 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         }
     }
     [PunRPC]
+    void HairColorChange(Vector3 randomColor)
+    {
+
+        Color hairColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+        hairModel.material.color = hairColor;
+    }
+    [PunRPC]
     void ColorChange(Vector3 randomColor)
     {
         
         Color playerColor = new Color(randomColor.x, randomColor.y, randomColor.z);
         playerModel.material.color = playerColor;
     }
+
     /// <summary>
     /// Runs in the first update to make sure all the elements of the player are found correctly, as well as pass over the network the username and color of the character.
     /// </summary>
@@ -337,6 +422,64 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public void LeaveArcadeGame()
     {
         miniGameStart.SetActive(false);
+    }
+    public void AvatarBodySelect()
+    {
+        PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
+        if (isNon)
+        {
+
+            PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, true);
+            PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+        }
+        if (isMale)
+        {
+
+            PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("MaleAvatar", RpcTarget.AllBuffered, true);
+            PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+        }
+
+        if (isFemale)
+        {
+
+            PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
+            PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, true);
+            PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+        }
+        if (noHair)
+        {
+            PV.RPC("HairOption1", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption2", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption3", RpcTarget.AllBuffered, false);
+        }
+        if(isHair1)
+        {
+            PV.RPC("HairOption1", RpcTarget.AllBuffered, true);
+            PV.RPC("HairOption2", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption3", RpcTarget.AllBuffered, false);
+            PV.RPC("HairColorChange", RpcTarget.AllBuffered, new Vector3(hairColor.r, hairColor.g, hairColor.b));
+        }
+        if(isHair2)
+        {
+            PV.RPC("HairOption1", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption2", RpcTarget.AllBuffered, true);
+            PV.RPC("HairOption3", RpcTarget.AllBuffered, false);
+            PV.RPC("HairColorChange", RpcTarget.AllBuffered, new Vector3(hairColor.r, hairColor.g, hairColor.b));
+        }
+        if (isHair3)
+        {
+            PV.RPC("HairOption1", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption2", RpcTarget.AllBuffered, false);
+            PV.RPC("HairOption3", RpcTarget.AllBuffered, true);
+            PV.RPC("HairColorChange", RpcTarget.AllBuffered, new Vector3(hairColor.r, hairColor.g, hairColor.b));
+        }
+        
+        
     }
 
 }
