@@ -4771,11 +4771,6 @@ MonoBehaviour:
   micOn: {fileID: 5777530501043356399}
   micOff: {fileID: 6422856511954250326}
   voiceManager: {fileID: 7416595118398474405}
-  isTest: 0
-  isOcular: 0
-  isLoaded: 0
-  isPlaying: 0
-  isBowling: 0
   bowlingCode: {fileID: 0}
   playerModel: {fileID: 676084707540242427}
 --- !u!54 &6683727312116776264
@@ -4943,9 +4938,12 @@ MonoBehaviour:
   settings: {fileID: 5032571328961220004}
   miniGameStart: {fileID: 6969835805114841937}
   playerModel: {fileID: 8814078999781185737}
+  hairModel: {fileID: 0}
   avatarBody: {fileID: 0}
   choice1: {fileID: 2100000, guid: 35893bbdd9d56b6479db39775fa42d58, type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
+  hairColor: {r: 0, g: 0, b: 0, a: 0}
+  hairMaterial: {fileID: 0}
   visiblePlayerAnchor: {fileID: 8734442416311533575}
   nonBinaryBody: {fileID: 1221460920584896518}
   femaleBody: {fileID: 7127754872200698642}
@@ -4956,6 +4954,7 @@ MonoBehaviour:
   isMale: 0
   isFemale: 0
   isNon: 0
+  noHair: 0
   isHair1: 0
   isHair2: 0
   isHair3: 0
