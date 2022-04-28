@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
-
+using Photon.Pun;
 public class CharacterCreatorSO : ScriptableObject
 {
+   
     public enum ModelDetail
     {
         HAIR,
@@ -242,6 +243,7 @@ public class CharacterCreatorSO : ScriptableObject
 
     #endregion
 
+   
     //Used to load character in the scene
     public void LoadCharacter(Transform anchor, bool isCreator = false)
     {

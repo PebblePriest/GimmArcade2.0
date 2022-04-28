@@ -34,9 +34,16 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public Renderer playerModel;
 
     public Material avatarBody;
-    public GameObject playerBody;
+   
     public Material choice1;
     public Color color;
+
+
+    [Header("Player GameObjects")]
+    private GameObject playerBody;
+    public GameObject visiblePlayerAnchor;
+    public GameObject nonBinaryBody, femaleBody, maleBody, hairStyle1, hairStyle2, hairStyle3;
+    public bool isMale, isFemale, isNon, isHair1, isHair2, isHair3;
     public void Update()
     {
         if (PV.IsMine)
@@ -74,18 +81,31 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                 {
                     Debug.Log("Avatar Color is NonBinary");
                     playerBody = GameObject.Find("avatarBase_NonBinary(Clone)");
+                    
                     if (playerBody == null)
                     {
+                        Debug.Log("You are not NonBinary");
                         playerBody = GameObject.Find("AvatarBase_Female(Clone)");
+                       
+                        
                         if (playerBody == null)
                         {
+                            Debug.Log("You are not female");
                             playerBody = GameObject.Find("avatarBase_Male(Clone)");
+                            
+                            
                             if (playerBody == null)
                             {
                                 Debug.Log("There is no body here!");
                             }
                             else
                             {
+                                
+                               
+                                isMale = true;
+                                isFemale = false;
+                                isNon = false;
+                                //playerModel = GameObject.Find("VisiblePlayerAnchor").transform.Find("avatarBase_Male(Clone)").GetComponentInChildren<Renderer>();
                                 avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
                                 color = avatarBody.color;
                                 playerBody = null;
@@ -94,14 +114,25 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                         }
                         else
                         {
+                            
+                            isFemale = true;
+                            isMale = false;
+                            isNon = false;
+                            //playerModel = GameObject.Find("VisiblePlayerAnchor").transform.Find("AvatarBase_Female(Clone)").GetComponentInChildren<Renderer>();
                             avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
                             color = avatarBody.color;
+                           
                             playerBody = null;
                             Debug.Log("I have gotten the material for the Female body!");
                         }
                     }
                     else
                     {
+                        
+                        isNon = true;
+                        isMale = false;
+                        isFemale = false; 
+                        //playerModel = GameObject.Find("VisiblePlayerAnchor").transform.Find("avatarBase_NonBinary(Clone)").GetComponentInChildren<Renderer>();
                         avatarBody = playerBody.GetComponentInChildren<MeshRenderer>().material;
                         color = avatarBody.color;
                         playerBody = null;
@@ -139,6 +170,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
+            visiblePlayerAnchor.SetActive(true);
             avatarMenu.SetActive(true);
             hud.SetActive(false);
             settings.SetActive(false);
@@ -167,7 +199,33 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         {
             playerName.text = PhotonNetwork.NickName.ToString();
             PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
+            if (isNon)
+            {
+                
+                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, true);
+                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
+                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
+               
+            }   
+            if (isMale)
+            {
+               
+                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
+                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, true);
+                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, false);
+                
+            }
+
+            if (isFemale)
+            {
+                
+                PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, false);
+                PV.RPC("MaleAvatar", RpcTarget.AllBuffered, false);
+                PV.RPC("FemaleAvatar", RpcTarget.AllBuffered, true);
+                
+            }
             PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+            visiblePlayerAnchor.SetActive(false);
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
@@ -176,7 +234,54 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
+    void NonBinaryAvatar(bool isActive)
+    {
+        if (isActive)
+        {
+            nonBinaryBody.SetActive(isActive);
+            playerModel = nonBinaryBody.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            nonBinaryBody.SetActive(isActive);
+            Debug.Log("Do not set the playerModel color for nonbinary body");
+        }
+       
+        
+    }
+    [PunRPC]
+    void MaleAvatar(bool isActive)
+    {
+        if (isActive)
+        {
+            maleBody.SetActive(isActive);
+            playerModel = maleBody.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            maleBody.SetActive(isActive);
+            Debug.Log("Do not set the playerModel color for male body");
+        }
 
+
+    }
+    [PunRPC]
+    void FemaleAvatar(bool isActive)
+    {
+        if (isActive)
+        {
+            femaleBody.SetActive(isActive);
+            playerModel = femaleBody.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            femaleBody.SetActive(isActive);
+            Debug.Log("Do not set the playerModel color for female body");
+        }
+
+
+    }
     [PunRPC]
     void ChangeUsername(int choice)
     {
@@ -189,7 +294,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     [PunRPC]
     void ColorChange(Vector3 randomColor)
     {
-
+        
         Color playerColor = new Color(randomColor.x, randomColor.y, randomColor.z);
         playerModel.material.color = playerColor;
     }
@@ -206,7 +311,9 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             playerName = GameObject.Find("PlayerName").GetComponent<Text>();
             playerName.text = PhotonNetwork.NickName;
             PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
+            PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, true);
             PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
+            visiblePlayerAnchor.SetActive(true);
             playerMovementImpared = true;
             instructions.SetActive(true);
             miniGameStart.SetActive(false);

@@ -47,6 +47,10 @@ MonoBehaviour:
   - ChangeName
   - ChangeUsername
   - ColorChange
+  - ChangeAvatar
+  - FemaleAvatar
+  - MaleAvatar
+  - NonBinaryAvatar
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
