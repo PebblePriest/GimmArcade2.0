@@ -55,6 +55,7 @@ MonoBehaviour:
   - HairOption1
   - HairOption2
   - HairOption3
+  - SendChat
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
