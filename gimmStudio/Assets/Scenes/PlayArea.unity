@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 30287642}
   - component: {fileID: 30287641}
   m_Layer: 0
-  m_Name: w
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2701,6 +2701,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1057170702}
     m_Modifications:
+    - target: {fileID: 1268131425743822571, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268131425743822571, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268131425743822571, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1268131425902690970, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
       propertyPath: m_Name
       value: Bowling Game
@@ -2795,6 +2807,18 @@ PrefabInstance:
       objectReference: {fileID: 1628201384}
     - target: {fileID: 1268131427356704645, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
       propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268131427363232457, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268131427363232457, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268131427363232457, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}
+      propertyPath: m_fontColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8719770426187777773, guid: 7866746975761bb4590c2ce3cf5b650d, type: 3}

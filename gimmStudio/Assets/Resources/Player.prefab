@@ -4847,7 +4847,7 @@ MonoBehaviour:
   micOff: {fileID: 6422856511954250326}
   voiceManager: {fileID: 7416595118398474405}
   bowlingCode: {fileID: 0}
-  playerModel: {fileID: 676084707540242427}
+  playerModel: {fileID: 3167849678860081267}
 --- !u!54 &6683727312116776264
 Rigidbody:
   m_ObjectHideFlags: 0
