@@ -3,22 +3,7 @@ guid: 2086300ef2bfedf479ff707abd17cbb3
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Blob_MAT
-    second: {fileID: 2100000, guid: b817b191c5158b84fab8ebdeb9143e70, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GLow_Mat
-    second: {fileID: 2100000, guid: 8e2e681b0435dd4449f9788decd60465, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lamp_MAT
-    second: {fileID: 2100000, guid: fb72fb019ca282b4198beb27784872dc, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

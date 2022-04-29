@@ -34,8 +34,6 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public Renderer playerModel;
     public Renderer hairModel;
     public Material avatarBody;
-   
-    public Material choice1;
     public Color color;
     public Color hairColor;
     public Material hairMaterial;
@@ -43,7 +41,6 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     [Header("Player GameObjects")]
     private GameObject playerBody;
     private GameObject hairBody;
-    public GameObject visiblePlayerAnchor;
     public GameObject nonBinaryBody, femaleBody, maleBody, hairStyle1, hairStyle2, hairStyle3;
     public bool isMale, isFemale, isNon,noHair, isHair1, isHair2, isHair3;
     public void Update()
@@ -226,7 +223,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
-            visiblePlayerAnchor.SetActive(true);
+           
             avatarMenu.SetActive(true);
             hud.SetActive(false);
             settings.SetActive(false);
@@ -255,7 +252,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         {
             playerName.text = PhotonNetwork.NickName.ToString();
             AvatarBodySelect();
-            visiblePlayerAnchor.SetActive(false);
+           
             avatarMenu.SetActive(false);
             hud.SetActive(true);
             mainUser.GetComponentInChildren<Camera>().enabled = true;
@@ -398,7 +395,7 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             PV.RPC("ChangeUsername", RpcTarget.AllBuffered, 1);
             PV.RPC("NonBinaryAvatar", RpcTarget.AllBuffered, true);
             PV.RPC("ColorChange", RpcTarget.AllBuffered, new Vector3(color.r, color.g, color.b));
-            visiblePlayerAnchor.SetActive(true);
+           
             playerMovementImpared = true;
             instructions.SetActive(true);
             miniGameStart.SetActive(false);

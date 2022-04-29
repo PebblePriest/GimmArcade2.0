@@ -27,7 +27,15 @@ namespace Com.MyCompany.MyGame
 
         public void Start()
         {
-            instance = this;
+            if(instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(this.gameObject);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
             if (vrPlayerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -77,8 +85,9 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
-                DontDestroyOnLoad(this.gameObject);
+               
             }
+            
         }
        
 

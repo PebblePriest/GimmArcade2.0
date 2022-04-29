@@ -36,7 +36,7 @@ namespace Com.MyCompany.MyGame
         public GameObject myCamera;
         public GameObject player;
         public GameObject exitScreen;
-        
+        private VideoPlayers video;
         [Header("Teleports")]
         public GameObject arcade;
         public GameObject arcadeHud;
@@ -446,6 +446,11 @@ namespace Com.MyCompany.MyGame
                     canEnterJackPolifka = true;
                     jackPolifkaHud.SetActive(true);
                 }
+                if(other.tag == "Video")
+                {
+                    video = other.GetComponent<VideoPlayers>();
+                    video.StartVideo();
+                }
             }
         }
         public void OnTriggerExit(Collider other)
@@ -475,6 +480,7 @@ namespace Com.MyCompany.MyGame
                 }
                 if(other.tag == "Arcade")
                 {
+                    arcade = other.gameObject;
                     arcadeHud.SetActive(false);
                     canEnterArcade = false;
                 }
@@ -508,6 +514,12 @@ namespace Com.MyCompany.MyGame
                     isPlaying = false;
                     isBowling = false;
                     bowlingCode = null;
+                }
+                if (other.tag == "Video")
+                {
+
+                    video.StopVideo();
+                    video = null;
                 }
             }
         }

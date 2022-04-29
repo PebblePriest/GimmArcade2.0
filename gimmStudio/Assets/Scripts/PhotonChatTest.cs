@@ -18,6 +18,10 @@ public class PhotonChatTest : MonoBehaviourPun
     }
 
     List<ChatMessage> chatMessages = new List<ChatMessage>();
+    public void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
