@@ -8,6 +8,11 @@ TagManager:
   - Arcade
   - Plaza
   - Gallery
+  - Pin
+  - Bullet
+  - Classrooms
+  - Jack Polifka
+  - interactable
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Interactables
   - 
   - 
   - 
