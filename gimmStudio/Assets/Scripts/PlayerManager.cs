@@ -163,7 +163,7 @@ namespace Com.MyCompany.MyGame
                             PhotonNetwork.AutomaticallySyncScene = false;
                             canEnterGallery = false;
                             galleryHud.SetActive(false);
-                            transform.position = new Vector3(-2, 3, -472);
+                            transform.position = new Vector3(-2, 5, -472);
                             PhotonNetwork.LoadLevel("GallerySpace");
 
                         }
@@ -171,7 +171,7 @@ namespace Com.MyCompany.MyGame
                         {
                             canEnterGallery = false;
                             galleryHud.SetActive(false);
-                            transform.position = new Vector3(-2, 3, -472);
+                            transform.position = new Vector3(-2, 5, -472);
                             PhotonNetwork.LoadLevel("GallerySpace");
                         }
                     }
