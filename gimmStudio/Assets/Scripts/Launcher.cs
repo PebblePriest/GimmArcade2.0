@@ -152,5 +152,9 @@ namespace Com.MyCompany.MyGame
         }
 
         #endregion
+        public void ExitApplication()
+        {
+            Application.Quit();
+        }
     }
 }

@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ArcadeScript : MonoBehaviour
 {
-    public GameObject testCam;
+    public GameObject arcadeCamera;
+    public GameObject arcadeVideo;
+    public GameObject blankScreen;
 
     public void PlayGame()
     {
-        testCam.SetActive(true);
+        blankScreen.SetActive(false);
+        arcadeCamera.SetActive(true);
+        arcadeVideo.SetActive(true);
     }
     public void EndGame()
     {
-        testCam.SetActive(false);
+        blankScreen.SetActive(true);
+        arcadeCamera.SetActive(false);
+        arcadeVideo.SetActive(false);
     }
    
 }

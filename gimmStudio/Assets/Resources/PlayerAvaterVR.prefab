@@ -626,6 +626,9 @@ MonoBehaviour:
   jackPolifka: {fileID: 0}
   jackPolifkaHud: {fileID: 0}
   canEnterJackPolifka: 0
+  concertHall: {fileID: 0}
+  concertHallHud: {fileID: 0}
+  canEnterConcertHall: 0
   primaryRecorder: {fileID: 0}
   micOn: {fileID: 0}
   micOff: {fileID: 0}

@@ -27,6 +27,8 @@ sysinfo.txt
 *.userprefs
 *.pidb
 *.mp4
+*.mov
+*.avi
 .DS_Store
 
 ###

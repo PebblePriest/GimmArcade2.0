@@ -53,6 +53,9 @@ namespace Com.MyCompany.MyGame
         public GameObject jackPolifka;
         public GameObject jackPolifkaHud;
         public bool canEnterJackPolifka;
+        public GameObject concertHall;
+        public GameObject concertHallHud;
+        public bool canEnterConcertHall;
 
         [Header("Microphone Settings")]
         public Recorder primaryRecorder;
@@ -60,7 +63,7 @@ namespace Com.MyCompany.MyGame
         public GameObject voiceManager;
 
         [Header("MiniGames")]
-        private bool isTest, isOcular, isDevil, isLoaded, isPlaying, isBowling;
+        private bool isMachine, isLoaded, isPlaying, isBowling;
         private ArcadeScript arcadeCode;
         public BowlingMinigame bowlingCode;
         public GameObject playerModel;
@@ -108,7 +111,6 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                //MouseLookAround();
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -222,31 +224,18 @@ namespace Com.MyCompany.MyGame
 
                             if (Input.GetKeyDown(KeyCode.F))
                             {
-                                if (isTest)
+
+                                if (isMachine)
                                 {
                                     avatar.LeaveArcadeGame();
                                     avatar.playerMovementImpared = true;
                                     arcadeCode.PlayGame();
-                                    Debug.Log("Playing Test Game");
-                                    SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
+                                    Debug.Log("Playing Arcade Machine");
                                     isLoaded = true;
                                 }
-                                if (isOcular)
-                                {
-                                    avatar.LeaveArcadeGame();
-                                    avatar.playerMovementImpared = true;
-                                    arcadeCode.PlayGame();
-                                    Debug.Log("Playing Ocular Dark");
-                                    isLoaded = true;
-                                }
-                                if (isDevil)
-                                {
-                                    avatar.LeaveArcadeGame();
-                                    avatar.playerMovementImpared = true;
-                                    arcadeCode.PlayGame();
-                                    Debug.Log("Playing Devil's Secretary");
-                                    isLoaded = true;
-                                }
+                                    
+                                
+                                
                                 if (isBowling)
                                 {
                                     avatar.LeaveArcadeGame();
@@ -280,7 +269,7 @@ namespace Com.MyCompany.MyGame
                             playerModel.SetActive(true);
                             isLoaded = false;
                         }
-                        if (isOcular)
+                        if (isMachine)
                         {
                             Debug.Log("Got the L key");
                             avatar.PlayArcadeGame();
@@ -288,27 +277,6 @@ namespace Com.MyCompany.MyGame
                             arcadeCode.EndGame();
                             isLoaded = false;
                         }
-                        if (isDevil)
-                        {
-                            Debug.Log("Got the L key");
-                            avatar.PlayArcadeGame();
-                            avatar.playerMovementImpared = false;
-                            arcadeCode.EndGame();
-                            isLoaded = false;
-                        }
-                        
-                        if (isTest)
-                        {
-                            Debug.Log("Got the L key");
-                            avatar.PlayArcadeGame();
-                            avatar.playerMovementImpared = false;
-                            arcadeCode.EndGame();
-                            isLoaded = false;
-                            SceneManager.UnloadSceneAsync("Test");
-                        }
-                            
-
-                        
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.Escape))
@@ -316,97 +284,21 @@ namespace Com.MyCompany.MyGame
                     exitScreen.SetActive(true);
                     avatar.playerMovementImpared = true;
                 }
-                
-                    
-                    
-
-
-
-
-
-                
-                
-               
-                //myCamera.transform.localEulerAngles = new Vector3(0f, theCam.localEulerAngles.y, 0f);
 
                 PushToTalk();
             }
         }
-
-        private void FixedUpdate()
-        {
-            //if (photonView.IsMine)
-            //{
-            //    theRB.AddForce(transform.forward * inputZ * moveSpeed, ForceMode.Force);
-            //    theRB.AddForce(transform.right * inputX * moveSpeed, ForceMode.Force);
-
-            //    //theRB.velocity = new Vector3(inputX * moveSpeed, theRB.velocity.y, inputZ * moveSpeed);
-
-                
-
-            //}
-        }
-
-        //public void Move(InputAction.CallbackContext context)
-        //{
-        //    if (photonView.IsMine)
-        //    {
-        //        if (context.performed)
-        //        {
-        //            inputX = context.ReadValue<Vector2>().x;
-
-        //            inputZ = context.ReadValue<Vector2>().y;
-        //        }
-        //    }
-        //}
-
-        //public void Look(InputAction.CallbackContext context)
-        //{
-        //    if (photonView.IsMine)
-        //    {
-        //        deltaPointer = context.ReadValue<Vector2>();
-        //    }
-        //}
-        //public void MouseLookAround()
-        //{
-        //    Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-        //    cameraPitch -= mouseDelta.y * lookSpeed;
-
-        //    cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
-
-        //    theCam.localEulerAngles = Vector3.right * cameraPitch;
-
-        //    transform.Rotate(Vector3.up * mouseDelta.x * lookSpeed);
-        //}
         public void OnTriggerEnter(Collider other)
         {
             if (photonView.IsMine)
             {
-                if(other.name == "TestMachine")
-                {
-                    
-                    avatar.PlayArcadeGame();
-                    arcadeCode = other.GetComponent<ArcadeScript>();
-                    isPlaying = true;
-                    isTest = true;
-                    avatar.miniGameText.text = "Press 'F' to play Test Scene.";
-                }
-                if(other.name == "OcularDark")
+                if(other.tag == "ArcadeMachine")
                 {
                     avatar.PlayArcadeGame();
                     arcadeCode = other.GetComponent<ArcadeScript>();
                     isPlaying = true;
-                    isOcular = true;
-                    avatar.miniGameText.text = "Press 'F' to play Ocular Dark.";
-                }
-                if(other.name =="DevilsSecretary")
-                {
-                    avatar.PlayArcadeGame();
-                    arcadeCode = other.GetComponent<ArcadeScript>();
-                    isPlaying = true;
-                    isDevil = true;
-                    avatar.miniGameText.text = "Press 'F' to play Devil's Secretary.";
+                    isMachine = true;
+                    avatar.miniGameText.text = "Press 'F' to play.";
                 }
                 if(other.name == "Bowl")
                 {
@@ -446,6 +338,12 @@ namespace Com.MyCompany.MyGame
                     canEnterJackPolifka = true;
                     jackPolifkaHud.SetActive(true);
                 }
+                if(other.tag == "ConcertHall")
+                {
+                    concertHall = other.gameObject;
+                    canEnterConcertHall = true;
+                    concertHallHud.SetActive(true);
+                }
                 if(other.tag == "Video")
                 {
                     video = other.GetComponent<VideoPlayers>();
@@ -457,25 +355,11 @@ namespace Com.MyCompany.MyGame
         {
             if (photonView.IsMine)
             {
-                if(other.name == "TestMachine")
+                if(other.tag == "ArcadeMachine")
                 {
                     avatar.LeaveArcadeGame();
                     isPlaying = false;
-                    isTest = false;
-                    arcadeCode = null;
-                }
-                if(other.name == "OcularDark")
-                {
-                    avatar.LeaveArcadeGame();
-                    isPlaying = false;
-                    isOcular = false;
-                    arcadeCode = null;
-                }
-                if(other.name == "DevilsSecretary")
-                {
-                    avatar.LeaveArcadeGame();
-                    isPlaying = false;
-                    isDevil = false;
+                    isMachine = false;
                     arcadeCode = null;
                 }
                 if(other.tag == "Arcade")
@@ -507,6 +391,12 @@ namespace Com.MyCompany.MyGame
                     jackPolifka = other.gameObject;
                     canEnterJackPolifka = false;
                     jackPolifkaHud.SetActive(false);
+                }
+                if (other.tag == "ConcertHall")
+                {
+                    concertHall = other.gameObject;
+                    canEnterConcertHall = false;
+                    concertHallHud.SetActive(false);
                 }
                 if (other.name == "Bowl")
                 {

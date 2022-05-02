@@ -14,6 +14,8 @@ TagManager:
   - Jack Polifka
   - interactable
   - Video
+  - ArcadeMachine
+  - ConcertHall
   layers:
   - Default
   - TransparentFX
