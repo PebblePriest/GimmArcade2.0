@@ -64,12 +64,14 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                hud.SetActive(false);
                 mainUser.GetComponent<SUPERCharacterAIO>().enabled = false;
 
             }
             else
             {
                 mainUser.GetComponent<SUPERCharacterAIO>().enabled = true;
+                hud.SetActive(true);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
