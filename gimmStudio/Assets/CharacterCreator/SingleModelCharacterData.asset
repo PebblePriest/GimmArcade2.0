@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hairModels:
   - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
-  - {fileID: 919132149155446097, guid: 3cbf198a2c0701845b70d8c9807eb5f2, type: 3}
-  - {fileID: 919132149155446097, guid: 877bd43af3df39043aadf137735935e6, type: 3}
-  - {fileID: 919132149155446097, guid: 0264a531d1b7bda438ddffb853bae4f9, type: 3}
+  - {fileID: 6425774160414838793, guid: d8ffdec6ed70ef84f9ef549253d17902, type: 3}
+  - {fileID: 705780777499620308, guid: 788eac934f3b99c43bd5304ad3185d74, type: 3}
+  - {fileID: 8048410885723562047, guid: 9da98493d0aa5e14d873b40d61af19c2, type: 3}
   _hairColor: {r: 1, g: 1, b: 1, a: 1}
-  _hairIndex: 0
+  _hairIndex: 1
   _hair: 1
   topModels:
   - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
+  - {fileID: 919132149155446097, guid: badfb43281051c0429bac7706a8df00d, type: 3}
+  - {fileID: 919132149155446097, guid: 848f6295df24b6340acf5e6c5bf8226d, type: 3}
   _topColor: {r: 1, g: 1, b: 1, a: 1}
-  _topIndex: 0
+  _topIndex: 1
   _top: 1
   bottomModels:
   - {fileID: 6810115499645889031, guid: c699695fc06b8e7408838f02e5cb4622, type: 3}
@@ -43,7 +45,7 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: 0d8f81e524dfebf4eb74b052e3b3ce8d, type: 3}
   - {fileID: 919132149155446097, guid: 14f1c7d184e4ddf4fba8bef03f283da1, type: 3}
   - {fileID: 919132149155446097, guid: 287249608d5fbc44786457c83d82992f, type: 3}
-  _baseColor: {r: 0, g: 0, b: 0, a: 0}
+  _baseColor: {r: 1, g: 1, b: 1, a: 1}
   _baseIndex: 0
   _base: 1
   handsModels: []

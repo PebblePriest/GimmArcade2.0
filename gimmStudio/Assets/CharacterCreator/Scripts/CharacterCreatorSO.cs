@@ -450,11 +450,10 @@ public class CharacterCreatorSO : ScriptableObject
                 if (load)
                 {
                     _activeHair = Instantiate(hairModels[id], pos, rot, anchor);
-                    _activeHair.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+                    _activeHair.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
-                    Vector3 posWithOffset = new Vector3(visPos.x, visPos.y+2.6f ,visPos.z);
+                    Vector3 posWithOffset = new Vector3(visPos.x, visPos.y+2.6f, visPos.z);
                     _activeVisableHair = Instantiate(hairModels[id], posWithOffset, visRot, visableAnchor);
-                    _activeVisableHair.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
                     ApplyColor(0, _hairColor);
                 }
@@ -464,9 +463,13 @@ public class CharacterCreatorSO : ScriptableObject
                 if (_activeVisableTop || !load) Destroy(_activeVisableTop);
                 if (load)
                 {
-                    _activeTop = Instantiate(topModels[id], pos, rot, anchor);
+                    Vector3 posWithOffset = new Vector3(pos.x, pos.y-10.0f, pos.z);
+                    Debug.Log(posWithOffset);
+                    _activeTop = Instantiate(topModels[id], posWithOffset, rot, anchor);
+                    _activeTop.transform.localScale = new Vector3(0.87f, 0.87f, 0.87f);
 
-                    _activeVisableTop = Instantiate(topModels[id], visPos, visRot, visableAnchor);
+                    Vector3 visPosWithOffset = new Vector3(visPos.y-0.993f, visPos.z);
+                    _activeVisableTop = Instantiate(topModels[id], visPosWithOffset, visRot, visableAnchor);
 
                     ApplyColor(2, _topColor);
                 }
@@ -489,8 +492,11 @@ public class CharacterCreatorSO : ScriptableObject
                 if (load)
                 {
                     _activeHat = Instantiate(hatModels[id], pos, rot, anchor);
+                    _activeHat.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
 
-                    _activeVisableHat = Instantiate(hatModels[id], visPos, visRot, visableAnchor);
+                    Vector3 posWithOffset = new Vector3(visPos.x, visPos.y+2.7f ,visPos.z);
+                    _activeVisableHat = Instantiate(hatModels[id], posWithOffset, visRot, visableAnchor);
+                    //_activeVisableHat.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
                     ApplyColor(4, _hatColor);
                 }

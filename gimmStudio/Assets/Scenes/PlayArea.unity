@@ -21345,7 +21345,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 580296631491586180, guid: f49730524d63b0147bcb8d25ae1a4938, type: 3}
       propertyPath: m_Text
-      value: Void(Star)
+      value: Void*
       objectReference: {fileID: 0}
     - target: {fileID: 580296631491586180, guid: f49730524d63b0147bcb8d25ae1a4938, type: 3}
       propertyPath: m_Color.b
