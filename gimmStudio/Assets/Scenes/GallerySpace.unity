@@ -18102,11 +18102,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7287986100472888239, guid: 92f025107b42c444ab0c7121f362186d, type: 3}
   m_PrefabInstance: {fileID: 831386973}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &831386975 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7287986100128545513, guid: 92f025107b42c444ab0c7121f362186d, type: 3}
-  m_PrefabInstance: {fileID: 831386973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832616315
 GameObject:
   m_ObjectHideFlags: 0
@@ -32401,7 +32396,7 @@ PrefabInstance:
     - target: {fileID: 7573421954265883432, guid: 6d3978b49323f4e49aa3021c089df709, type: 3}
       propertyPath: waypointTransforms.Array.data[0]
       value: 
-      objectReference: {fileID: 831386975}
+      objectReference: {fileID: 799956848}
     - target: {fileID: 7583814668033849968, guid: 6d3978b49323f4e49aa3021c089df709, type: 3}
       propertyPath: m_RootOrder
       value: 0

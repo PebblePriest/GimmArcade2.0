@@ -15,7 +15,7 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         [Tooltip("The maximum number of player per room. When a room is ful, it can't be joined by new players, and so new room will be created")]
         [SerializeField]
-        private byte maxPlayersPerRoom = 100;
+        private byte maxPlayersPerRoom = 20;
 
 
         [Tooltip("the ui label to inform the user that the connection is in progress")]
