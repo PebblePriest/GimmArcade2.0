@@ -33,16 +33,20 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
     public GameObject miniGameStart;
     public Renderer playerModel;
     public Renderer hairModel;
+    public Renderer shirtModel;
     public Material avatarBody;
     public Color color;
     public Color hairColor;
     public Material hairMaterial;
+    public Color top;
+    public Material topMaterial;
 
     [Header("Player GameObjects")]
     private GameObject playerBody;
     private GameObject hairBody;
-    public GameObject nonBinaryBody, femaleBody, maleBody, hairStyle1, hairStyle2, hairStyle3;
-    public bool isMale, isFemale, isNon,noHair, isHair1, isHair2, isHair3;
+    private GameObject playerShirt;
+    public GameObject nonBinaryBody, femaleBody, maleBody, hairStyle1, hairStyle2, hairStyle3, hairStyle4, hat1, suitAndTie, fancyShirt;
+    public bool isMale, isFemale, isNon,noHair, isHair1, isHair2, isHair3, isHair4, isFedora, isFancy, isSuit, isBare;
     public void Update()
     {
         if (PV.IsMine)
@@ -81,32 +85,52 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                 if(hairBody == null)
                 {
                     Debug.Log("Hair Color is Choice 1");
-                    hairBody = GameObject.Find("AvatarHair_1(Clone)");
+                    hairBody = GameObject.Find("Avatar_Hair_1(Clone)");
                     if (hairBody == null)
                     {
-                        Debug.Log("Hair Color is Choice 1");
-                        hairBody = GameObject.Find("AvatarHair_2(Clone)");
+                        Debug.Log("Hair Color is Choice 2");
+                        hairBody = GameObject.Find("Avatar_Hair_2(Clone)");
                         if (hairBody == null)
                         {
-                            Debug.Log("Hair Color is Choice 1");
-                            hairBody = GameObject.Find("AvatarHair_3(Clone)");
+                            Debug.Log("Hair Color is Choice 3");
+                            hairBody = GameObject.Find("Avatar_Hair_3(Clone)");
                             if (hairBody == null)
                             {
-                                Debug.Log("There is no hair here!");
-                                isHair1 = false;
-                                isHair2 = false;
-                                isHair3 = false;
-                                noHair = true;
+                                Debug.Log("Hair Color is Choice 4");
+                                hairBody = GameObject.Find("Avatar_Hair_4(Clone)");
+                                if (hairBody == null)
+                                {
+                                    Debug.Log("There is no hair here!");
+                                    isHair1 = false;
+                                    isHair2 = false;
+                                    isHair3 = false;
+                                    isHair4 = false;
+                                    noHair = true;
+                                }
+                                else
+                                {
+                                    isHair1 = false;
+                                    isHair2 = false;
+                                    isHair3 = false;
+                                    isHair4 = true;
+                                    noHair = false;
+                                    hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
+                                    hairColor = hairMaterial.color;
+                                    hairBody = null;
+                                    Debug.Log("You have chosen hair 4");
+                                }
                             }
                             else
                             {
                                 isHair1 = false;
                                 isHair2 = false;
                                 isHair3 = true;
+                                isHair4 = false;
+                                noHair = false;
                                 hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
                                 hairColor = hairMaterial.color;
                                 hairBody = null;
-                                Debug.Log("You have chosen hair 1");
+                                Debug.Log("You have chosen hair 3");
                             }
                         }
                         else
@@ -114,10 +138,12 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                             isHair1 = false;
                             isHair2 = true;
                             isHair3 = false;
+                            isHair4 = false;
+                            noHair = false;
                             hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
                             hairColor = hairMaterial.color;
                             hairBody = null;
-                            Debug.Log("You have chosen hair 1");
+                            Debug.Log("You have chosen hair 2");
                         }
                     }
                     else
@@ -125,11 +151,51 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
                         isHair1 = true;
                         isHair2 = false;
                         isHair3 = false;
+                        isHair4 = false;
+                        noHair = false;
                         hairMaterial = hairBody.GetComponentInChildren<MeshRenderer>().material;
                         hairColor = hairMaterial.color;
                         hairBody = null;
                         Debug.Log("You have chosen hair 1");
                     }
+                }
+                if(playerShirt == null)
+                {
+                    Debug.Log("Shirt 1 Chosen");
+                    playerShirt = GameObject.Find("CharacterSuit(Clone)");
+                    if(playerShirt == null)
+                    {
+                        Debug.Log("Shirt 2 Chosen");
+                        playerShirt = GameObject.Find("FancyShirt(Clone)");
+                        if (playerShirt == null)
+                        {
+                            Debug.Log("No Shirt found!");
+                            isSuit = false;
+                            isFancy = false;
+                            isBare = true;
+                        }
+                        else
+                        {
+                            Debug.Log("Fancy");
+                            isSuit = false;
+                            isFancy = true;
+                            isBare = false;
+                            topMaterial = playerShirt.GetComponentInChildren<MeshRenderer>().material;
+                            top = topMaterial.color;
+                            playerShirt = null;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Suit");
+                        isSuit = true;
+                        isFancy = false;
+                        isBare = false;
+                        topMaterial = playerShirt.GetComponentInChildren<MeshRenderer>().material;
+                        top = topMaterial.color;
+                        playerShirt = null;
+                    }
+                    
                 }
 
                 if (playerBody == null)
@@ -263,6 +329,38 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         }
     }
     [PunRPC]
+    void ShirtOption1(bool isActive)
+    {
+        if (isActive)
+        {
+            fancyShirt.SetActive(isActive);
+            shirtModel = fancyShirt.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            fancyShirt.SetActive(isActive);
+            Debug.Log("Do not set the hairModel for the hairstyle1");
+        }
+
+
+    }
+    [PunRPC]
+    void ShirtOption2(bool isActive)
+    {
+        if (isActive)
+        {
+            suitAndTie.SetActive(isActive);
+            shirtModel = suitAndTie.GetComponentInChildren<MeshRenderer>();
+        }
+        if (!isActive)
+        {
+            suitAndTie.SetActive(isActive);
+            Debug.Log("Do not set the hairModel for the hairstyle1");
+        }
+
+
+    }
+    [PunRPC]
     void HairOption1(bool isActive)
     {
         if (isActive)
@@ -375,6 +473,13 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
         hairModel.material.color = hairColor;
     }
     [PunRPC]
+    void ShirtColorChange(Vector3 randomColor)
+    {
+
+        Color topColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+        shirtModel.material.color = topColor;
+    }
+    [PunRPC]
     void ColorChange(Vector3 randomColor)
     {
         
@@ -476,6 +581,23 @@ public class AvatarChanges : MonoBehaviourPunCallbacks
             PV.RPC("HairOption2", RpcTarget.AllBuffered, false);
             PV.RPC("HairOption3", RpcTarget.AllBuffered, true);
             PV.RPC("HairColorChange", RpcTarget.AllBuffered, new Vector3(hairColor.r, hairColor.g, hairColor.b));
+        }
+        if (isFancy)
+        {
+            PV.RPC("ShirtOption1", RpcTarget.AllBuffered, true);
+            PV.RPC("ShirtOption2", RpcTarget.AllBuffered, false);
+            PV.RPC("ShirtColorChange", RpcTarget.AllBuffered, new Vector3(top.r, top.g, top.b));
+        }
+        if (isSuit)
+        {
+            PV.RPC("ShirtOption1", RpcTarget.AllBuffered, false);
+            PV.RPC("ShirtOption2", RpcTarget.AllBuffered, true);
+            PV.RPC("ShirtColorChange", RpcTarget.AllBuffered, new Vector3(top.r, top.g, top.b));
+        }
+        if (isBare)
+        {
+            PV.RPC("ShirtOption1", RpcTarget.AllBuffered, false);
+            PV.RPC("ShirtOption2", RpcTarget.AllBuffered, false);
         }
         
         

@@ -56,6 +56,9 @@ MonoBehaviour:
   - HairOption2
   - HairOption3
   - SendChat
+  - ShirtColorChange
+  - ShirtOption1
+  - ShirtOption2
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
