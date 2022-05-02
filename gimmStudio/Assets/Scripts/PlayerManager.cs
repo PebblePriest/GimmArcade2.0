@@ -63,7 +63,7 @@ namespace Com.MyCompany.MyGame
         public GameObject voiceManager;
 
         [Header("MiniGames")]
-        private bool isMachine, isLoaded, isPlaying, isBowling;
+        private bool isMachine, isLoaded, isPlaying, isBowling, isVideo;
         private ArcadeScript arcadeCode;
         public BowlingMinigame bowlingCode;
         public GameObject playerModel;
@@ -163,7 +163,7 @@ namespace Com.MyCompany.MyGame
                             PhotonNetwork.AutomaticallySyncScene = false;
                             canEnterGallery = false;
                             galleryHud.SetActive(false);
-                            transform.position = new Vector3(-2, 3, -472);
+                            transform.position = new Vector3(-2, 5, -472);
                             PhotonNetwork.LoadLevel("GallerySpace");
 
                         }
@@ -171,7 +171,7 @@ namespace Com.MyCompany.MyGame
                         {
                             canEnterGallery = false;
                             galleryHud.SetActive(false);
-                            transform.position = new Vector3(-2, 3, -472);
+                            transform.position = new Vector3(-2, 5, -472);
                             PhotonNetwork.LoadLevel("GallerySpace");
                         }
                     }
@@ -233,8 +233,16 @@ namespace Com.MyCompany.MyGame
                                     Debug.Log("Playing Arcade Machine");
                                     isLoaded = true;
                                 }
-                                    
-                                
+
+                                if (isVideo)
+                                {
+                                    avatar.LeaveArcadeGame();
+                                    avatar.playerMovementImpared = true;
+                                    video.StartVideo();
+                                    myCamera.SetActive(false);
+                                    playerModel.SetActive(false);
+                                    isLoaded = true;
+                                }
                                 
                                 if (isBowling)
                                 {
@@ -265,6 +273,15 @@ namespace Com.MyCompany.MyGame
                             avatar.PlayArcadeGame();
                             avatar.playerMovementImpared = false;
                             bowlingCode.LeaveGame();
+                            myCamera.SetActive(true);
+                            playerModel.SetActive(true);
+                            isLoaded = false;
+                        }
+                        if (isVideo)
+                        {
+                            avatar.PlayArcadeGame();
+                            avatar.playerMovementImpared = false;
+                            video.StopVideo();
                             myCamera.SetActive(true);
                             playerModel.SetActive(true);
                             isLoaded = false;
@@ -346,8 +363,11 @@ namespace Com.MyCompany.MyGame
                 }
                 if(other.tag == "Video")
                 {
+                    avatar.PlayArcadeGame();
                     video = other.GetComponent<VideoPlayers>();
-                    video.StartVideo();
+                    isPlaying = true;
+                    avatar.miniGameText.text = "Press 'F' to play Demo Reel.";
+                    isVideo = true;
                 }
             }
         }
@@ -407,8 +427,9 @@ namespace Com.MyCompany.MyGame
                 }
                 if (other.tag == "Video")
                 {
-
-                    video.StopVideo();
+                    avatar.LeaveArcadeGame();
+                    isPlaying = false;
+                    isVideo = false;
                     video = null;
                 }
             }
